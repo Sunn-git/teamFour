@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
+import kr.or.bit.service.ServiceListAction;
 
 
 @WebServlet("*.do")
@@ -50,18 +51,20 @@ public class EmpFrontController extends HttpServlet {
     	
     	
     	///////////////////여기부터 수정하면 됨////////////////////////////
-    	if(url_Command.equals("/Register.do")) { 
-    		//UI 제공 (서비스클래스가 필요 없다. 하지만 표준화 시키기 위해 이렇게 사용한다.)
-    		forward = new ActionForward();
-    		forward.setRedirect(false);
-    		forward.setPath("/WEB-INF/Register/Register.jsp");
+    	if(url_Command.equals("/EmpList.do")) { 
     		
-    	}else if(url_Command.equals("/ok.do")) { //회원가입처리
-    		//UI 제공 + 로직처리
-//    		action = new MemberWriteAction();
+    		
+    		//UI 제공 (서비스클래스가 필요 없다. 하지만 표준화 시키기 위해 이렇게 사용한다.)
+    		action = new ServiceListAction();
     		forward = action.execute(request, response);
     		
     	}
+//    		else if(url_Command.equals("/ok.do")) { //회원가입처리
+//    		//UI 제공 + 로직처리
+////    		action = new MemberWriteAction();
+//    		forward = action.execute(request, response);
+//    		
+//    	}
     	
     	
     	
