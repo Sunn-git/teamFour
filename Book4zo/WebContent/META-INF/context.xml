@@ -15,7 +15,7 @@
             maxIdle="20" 
             maxActive="100" 
             password="1004" 
-            username="DBUSER" 
+            username="BOOKTEAMTEST" 
             url="jdbc:oracle:thin:@localhost:1521:XE"
             driverClassName="oracle.jdbc.OracleDriver" 
             type="javax.sql.DataSource"
