@@ -1,1 +1,3 @@
-ㅇㅇ
+1. controller
+	AdminController : admin과 관련한 컨트롤러 
+2. 
