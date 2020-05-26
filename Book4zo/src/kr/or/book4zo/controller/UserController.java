@@ -14,16 +14,16 @@ import com.sun.corba.se.spi.orbutil.fsm.Action;
 import kr.or.book4zo.action.ActionForward;
 
 /**
- * Servlet implementation class Controller
+ * Servlet implementation class UserController
  */
-@WebServlet("*.book")
-public class BookController extends HttpServlet {
+@WebServlet("*.user")
+public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public BookController() {
+
+    public UserController() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,22 +44,34 @@ public class BookController extends HttpServlet {
 		String viewPage = "";
 		
 		//main 페이지 연결
-		if (urlCmd.equals("/Main.book")) {
-			System.out.println("/Main.book 실행");
+		if (urlCmd.equals("/Login.user")) {
+			System.out.println("/Login.book 실행");
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/index.jsp");
+			forward.setPath("/WEB-INF/user/v_login.jsp");
 			
 		}
 		//sidebar 페이지 연결 
-		else if(urlCmd.equals("/Search.book")) {
-			System.out.println("/Search.book 실행");
+		else if(urlCmd.equals("/Register.user")) {
+			System.out.println("/Register.user 실행");
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/book/v_search.jsp");
-			
+			forward.setPath("/WEB-INF/user/v_register.jsp");
 		}
-
+		//mypage >> user컨트롤러로 빼야함. 임시로 넣어둠
+		else if(urlCmd.equals("/Mypage.user")) {
+			System.out.println("/Mypage.book 실행");
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/WEB-INF/user/v_myPage.jsp");
+		}
+		//infoedit >> user컨트롤러로 빼야함 임시로 넣어둠
+		else if(urlCmd.equals("/InfoEdit.user")) {
+			System.out.println("/InfoEdit.book 실행");
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/WEB-INF/user/v_infoEdit.jsp");
+		}
 		///////////////////////////////////////////////////////////////////////
 		//------------------------뷰로 실제로 보내주는 역할.-------------------------
 		if(forward != null){

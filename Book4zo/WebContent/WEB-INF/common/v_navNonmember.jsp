@@ -27,8 +27,8 @@
                   </button>
                   
                   <li class="nav-item">
-                    <a href="javascript:;" class="btn btn-rose btn-raised btn-round " data-toggle="dropdown">
-                      Register
+                    <a href="Login.user" class="btn btn-rose btn-raised btn-round ">
+                      LOG IN
                     </a>
                   </li>
                 </ul>

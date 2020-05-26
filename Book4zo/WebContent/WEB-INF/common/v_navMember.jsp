@@ -40,8 +40,8 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                       <h6 class="dropdown-header">누구누구님 반갑습니다 :)</h6>
-                      <a href="Mypage.book" class="dropdown-item">내 도서함</a>
-                      <a href="InfoEdit.book" class="dropdown-item">내 계정 관리</a>
+                      <a href="Mypage.user" class="dropdown-item">내 도서함</a>
+                      <a href="InfoEdit.user" class="dropdown-item">내 정보 수정</a>
                       <a href="javascript:;" class="dropdown-item">로그아웃</a>
                     </div>
                   </li>
