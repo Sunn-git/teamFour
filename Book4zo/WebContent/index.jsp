@@ -24,8 +24,8 @@
    <h3>테스트</h3>
    <a href="register.jsp">회원가입</a><br>
    <a href="login.jsp">로그인</a><br>
-   <a href="/WEB-INF/post/v_postList.jsp">포스트</a><br>
-   <a href="/WEB-INF/post/v_postWrite.jsp">포스트작성</a><br>
+   <a href="PostList.post">포스트</a><br>
+   <a href="PostWrite.post">포스트작성</a><br>
    
    
 <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
