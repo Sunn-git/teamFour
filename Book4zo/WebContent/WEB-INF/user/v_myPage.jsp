@@ -113,19 +113,19 @@
               	<div class ="card card-body">
               		<div class="mydipsbooks row mt-3">
               			<div class="col-md-3">
-	              			<a href="#"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
+	              			<a href="Detail.book"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
 	              			<h5>책제목</h5>
               			</div>
               			<div class="col-md-3">
-	              			<a href="#"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
+	              			<a href="Detail.book"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
 	              			<h5>책제목</h5>
               			</div>
               			<div class="col-md-3">
-	              			<a href="#"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
+	              			<a href="Detail.book"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
 	              			<h5>책제목</h5>
               			</div>
               			<div class="col-md-3">
-	              			<a href="#"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
+	              			<a href="Detail.book"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
 	              			<h5>책제목</h5>
               			</div>
               		</div>
