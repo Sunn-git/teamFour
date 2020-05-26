@@ -12,22 +12,14 @@
   <title>
     Review 4 Book
   </title>
-  <!-- 
-  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-   -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
     />
   
   
 	<!-- 준수 페이지 -->
-	    <!-- CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home-3.10f79.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/swiper.4.1.6.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bass.v10.css" />
+	    <!-- CSS -->     
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css" /> <!-- 여기에  layout css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home-3.10f79.css" /> <!-- 여기에 버튼 css -->    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bookList.css" />
 
     <!-- JS -->
@@ -206,7 +198,11 @@
   <link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
 
 
-
+        <!-- 리디 폰트-->
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&amp;display=swap&amp;subset=korean"
+        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:500,700&amp;display=swap&amp;text=1234567890,/%"
+            rel="stylesheet">
 
 
 
