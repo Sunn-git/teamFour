@@ -23,6 +23,7 @@
 
 </head>
 <body class="index-page sidebar-collapse">
+<header>
 <c:set var="userid" value="${sessionScope.userid}"/>
 <c:choose>
 	<c:when test="${userid != null}">
@@ -36,6 +37,7 @@
 	</c:otherwise>
 
 </c:choose>
+</header>
 <div class="container wrapper"> <!-- style="background-color:white;" -->
     <!--         carousel  -->
     <div class="" id="carousel">

@@ -59,6 +59,13 @@ public class BookController extends HttpServlet {
 			forward.setPath("/WEB-INF/book/v_search.jsp");
 			
 		}
+		//detail
+		else if(urlCmd.equals("/Detail.book")) {
+			System.out.println("/Detail.book 실행");
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/WEB-INF/book/v_detail.jsp");
+		}
 
 		///////////////////////////////////////////////////////////////////////
 		//------------------------뷰로 실제로 보내주는 역할.-------------------------
