@@ -29,52 +29,13 @@
 </head>
 <body class="login-page sidebar-collapse">
 
-	<div class="collapse navbar-collapse">
-		<ul class="navbar-nav ml-auto">
-			<li class="dropdown nav-item"><a href="#"
-				class="dropdown-toggle nav-link" data-toggle="dropdown"> <i
-					class="material-icons">apps</i> Components
-			</a>
-				<div class="dropdown-menu dropdown-with-icons">
-					<a href="../index.html" class="dropdown-item"> <i
-						class="material-icons">layers</i> All Components
-					</a> <a
-						href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html"
-						class="dropdown-item"> <i class="material-icons">content_paste</i>
-						Documentation
-					</a>
-				</div></li>
-			<li class="nav-item"><a class="nav-link"
-				href="https://www.creative-tim.com/product/material-kit-pro"
-				target="_blank"> <i class="material-icons">unarchive</i> Upgrade
-					to PRO
-			</a></li>
-			<li class="nav-item"><a class="nav-link" rel="tooltip" title=""
-				data-placement="bottom" href="https://twitter.com/CreativeTim"
-				target="_blank" data-original-title="Follow us on Twitter"
-				rel="nofollow"> <i class="fa fa-twitter"></i>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" rel="tooltip" title=""
-				data-placement="bottom" href="https://www.facebook.com/CreativeTim"
-				target="_blank" data-original-title="Like us on Facebook"
-				rel="nofollow"> <i class="fa fa-facebook-square"></i>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" rel="tooltip" title=""
-				data-placement="bottom"
-				href="https://www.instagram.com/CreativeTimOfficial" target="_blank"
-				data-original-title="Follow us on Instagram" rel="nofollow"> <i
-					class="fa fa-instagram"></i>
-			</a></li>
-		</ul>
-	</div>
-
 	<div class="page-header header-filter"
-		style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
+		style="background-image: url('${pageContext.request.contextPath}/assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 col-md-6 ml-auto mr-auto">
 					<div class="card card-login">
-						<form class="form" method="" action="" >
+						<form class="form" method="post" action="LoginAction.user" >
 							<div class="card-header card-header-rose text-center">
 								<h4 class="card-title">Login</h4>
 								
@@ -87,7 +48,7 @@
 											class="material-icons">perm_identity</i>
 										</span>
 									</div>
-									<input type="text" class="form-control" placeholder="아이디">
+									<input type="text" id="user_id" name="user_id" class="form-control" placeholder="아이디">
 								</div>
 								<div class="input-group">
 									<div class="input-group-prepend">
@@ -95,17 +56,22 @@
 											class="material-icons">lock_outline</i>
 										</span>
 									</div>
-									<input type="password" class="form-control" placeholder="비밀번호">
+									<input type="password" id="user_pwd" name="user_pwd" class="form-control" placeholder="비밀번호">
 								</div>
 								<div class="row">
-								<div class="col-md-10 m-auto" >
-									
-									<a style="margin-top:60px;" href="LoginAction.user" class="btn btn-rose btn-round">&nbsp;<i class="material-icons">touch_app</i>&nbsp;&nbsp;로그인&nbsp;&nbsp;</a>
-									<a style="margin-top:60px;" href="Register.user" class="btn btn-white btn-round"><i class="material-icons">person_add</i> 회원가입</a>
+								<div class="col-md-4 ml-auto mr-auto mt-4" >
+									<!-- <a style="margin-top:60px;" href="LoginAction.user" class="btn btn-rose btn-round">&nbsp;<i class="material-icons">touch_app</i>&nbsp;&nbsp;로그인&nbsp;&nbsp;</a> -->
+									<input class="btn btn-rose btn-round" type="submit" id="submit" value="로그인"> 
+									<!-- <button onclick="location.href='Register.user'" class="btn btn-white btn-round">
+											<i class="material-icons">person_add</i> 회원가입
+									</button> -->
 								</div>
 								</div>
 							</div>
 						</form>
+									<button onclick="location.href='Register.user'" class="btn btn-white btn-round">
+											<!-- <i class="material-icons">person_add</i>  -->회원가입
+									</button>
 					</div>
 				</div>
 			</div>

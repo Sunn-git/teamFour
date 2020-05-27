@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -24,18 +24,21 @@
 </head>
 <body class="index-page sidebar-collapse">
 <header>
-<c:set var="userid" value="${sessionScope.userid}"/>
+<c:set var="user_id" value="${sessionScope.user_id}"/>
 <c:choose>
-	<c:when test="${userid != null}">
-	<c:if test="${userid == 'admin'}">
-		<jsp:include page="/WEB-INF/common/v_navAdmin.jsp"/>
-	</c:if>
-		<jsp:include page="/WEB-INF/common/v_navMember.jsp"/>
+	<c:when test="${user_id != null}">
+		<c:choose>
+			<c:when test="${user_id == 'admin'}">
+				<jsp:include page="/WEB-INF/common/v_navAdmin.jsp"/>
+			</c:when>
+			<c:otherwise>
+				<jsp:include page="/WEB-INF/common/v_navMember.jsp"/>
+			</c:otherwise>
+		</c:choose>
 	</c:when>
 	<c:otherwise>
 		<jsp:include page="/WEB-INF/common/v_navNonmember.jsp"/>
 	</c:otherwise>
-
 </c:choose>
 </header>
 <div class="container wrapper"> <!-- style="background-color:white;" -->

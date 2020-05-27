@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,18 +22,24 @@
   <link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
 </head>
 <body>
-<c:set var="userid" value="${sessionScope.userid}"/>
+<c:set var="user_id" value="${sessionScope.user_id}"/>
+<header>
 <c:choose>
-	<c:when test="${userid != null}">
-	<c:if test="${userid == 'admin'}">
-		<jsp:include page="/WEB-INF/common/v_navAdmin.jsp"/>
-	</c:if>
-		<jsp:include page="/WEB-INF/common/v_navMember.jsp"/>
+	<c:when test="${user_id != null}">
+		<c:choose>
+			<c:when test="${user_id == 'admin'}">
+				<jsp:include page="/WEB-INF/common/v_navAdmin.jsp"/>
+			</c:when>
+			<c:otherwise>
+				<jsp:include page="/WEB-INF/common/v_navMember.jsp"/>
+			</c:otherwise>
+		</c:choose>
 	</c:when>
 	<c:otherwise>
 		<jsp:include page="/WEB-INF/common/v_navNonmember.jsp"/>
 	</c:otherwise>
 </c:choose>
+</header>
 <div class="header" style="height:240px; background-color:#b8a7a7; color : white; padding-top: 120px;">
 	<div class="container">
 	<h2 style="margin:0;">Review 4 Book과 함께하는 독서 이야기</h2>

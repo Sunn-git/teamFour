@@ -23,7 +23,7 @@
               <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                    <a href="javascript:;" class="nav-link">
+                    <a href="Logout.user" class="nav-link">
                       Discover
                     </a>
                   </li>
@@ -40,8 +40,8 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right ">
                       <h6 class="dropdown-header">관리자님 반갑습니다 :)</h6>
-                      <a href="javascript:;" class="dropdown-item">관리자 페이지</a>
-                      <a href="javascript:;" class="dropdown-item">로그아웃</a>
+                      <a href="Dashboard.admin" class="dropdown-item">관리자 페이지</a>
+                      <a href="Logout.user" class="dropdown-item">로그아웃</a>
                     </div>
                   </li>
                 </ul>
