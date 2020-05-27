@@ -55,6 +55,8 @@ public class GetBookSearchResultAjax extends HttpServlet {
 			bookList = dao.getBookList(searchFilter, bookSearchInput);
 		}
 		
+		System.out.println("bookList 확인 : "+ bookList);
+		
 		
 		
 		request.setAttribute("bookList", bookList);

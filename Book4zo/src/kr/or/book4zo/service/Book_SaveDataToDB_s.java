@@ -30,7 +30,7 @@ public class Book_SaveDataToDB_s implements Action{
 		
 		ActionForward forward = null;
 		String json = "";
-		String address = "http://book.interpark.com/api/bestSeller.api?key=ECF73A29EE9688587F70A785201AB95DE352C2284B870EEE927ECAC11048DEDE&categoryId=102&output=json";
+		String address = "http://book.interpark.com/api/bestSeller.api?key=ECF73A29EE9688587F70A785201AB95DE352C2284B870EEE927ECAC11048DEDE&categoryId=104&output=json";
 		BufferedReader br;
 		URL url;
 		HttpURLConnection conn;

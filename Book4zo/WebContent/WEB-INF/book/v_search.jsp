@@ -299,9 +299,44 @@
 					searchFilter : $('#searchFilter option:selected').val(),
 					bookSearchInput : $('#bookSearchInput').val()
 				},
-				success: function(data) {
-					//console.log(data);
-				},
+				success: function(data){
+	        		console.log(data);
+	        		var totalCount=0;
+	        		
+	            $("#bookSearchResultCard").empty();
+	            $('#bookSearchResultCard').append('<ul id="book-list" class="book-list grid"></ul>');
+
+	        		$.each(data, function (index, item) {
+	                let bl = "<li>"
+	                bl += "<a>"
+	                bl += "<div class='image book-icon readingbook'>"
+	                bl += "<img src='" + item.coverUrl +"'/> </div>"
+	                bl += "<div class ='body'>"
+	                bl += "<span class = 'bedge-icon readingbook'>"
+	                bl += "<span>" +item.categoryTag + "</span>"
+	                bl += "</span>"
+	                bl += "<span class='title'>" +item.title + "</span>"
+	                
+	              //저자 길이 제한
+	                if(item.author.length > 10){
+	                	var shorten = item.author.substring(0,35)
+	                	bl += "<span class='author'>" + shorten +"..."+"</span>"
+	                }else{
+	                	bl += "<div><span class='author'>"+item.author+"</span>"
+	                }
+	                bl += "<span class='publisher'>" +item.publisher+"</span></div>"
+	                bl += "</div>"
+	                bl += "</a>"
+	                bl += "</li>"
+	              
+	              $('#book-list').append(bl)
+	              totalCount+=1;
+	              
+	            }); //each end
+	           $('#total-length').empty();
+	           $('#total-length').append(totalCount)
+				console.log(totalCount)
+	        	},
 				error: function() {
 					console.log("error");
 				}

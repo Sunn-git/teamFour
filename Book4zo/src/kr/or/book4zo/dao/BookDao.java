@@ -192,27 +192,49 @@ public class BookDao {
 		
 		try {
 			conn = ds.getConnection();
-			String sql = "";
+			String sql = "SELECT B.BOOK_SEQ, B.ISBN, B.TITLE, B.AUTHOR, NVL(B.TRANSLATOR, '국내도서') TRANSLATOR, B.COVER_URL, B.PUBLISHER," + 
+							   " B.CATEGORY_ID, C.CATEGORY_TAG, B.PRICE_STANDARD, B.PUB_DATE, B.DESCRIPTION, B.RANK" + 
+						" FROM BOOK B" + 
+						" JOIN CATEGORY C" + 
+						" ON B.CATEGORY_ID = C.CATEGORY_ID";
 			
 			if(searchFilter.equals("제목")) {
-				sql = "";
+				sql += " WHERE B.TITLE = ?";
 			}else if(searchFilter.equals("저자")) {
-				sql = "";
+				sql += " WHERE B.AUTHOR = ?";
 			}else if(searchFilter.equals("출판사")) {
-				sql = "";
+				sql += " WHERE B.PUBLISHER = ?";
 			}
 			
-			System.out.println("sql 확인 : "+ sql);
+			//System.out.println("sql 확인 : "+ sql);
 			
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bookSearchInput);
 			rs = pstmt.executeQuery();
 			
 			bookList = new ArrayList<BookDto>();
 			while(rs.next()) {
 				BookDto book = new BookDto();
+				//생성자를 만드는게 나을까?
 				
-				//여기 SET하는 내용 추가해야함
+				book.setBookSeq(rs.getInt("BOOK_SEQ"));
+				book.setIsbn(rs.getString("ISBN"));
+				book.setTitle(rs.getString("TITLE"));
+				book.setAuthor(rs.getString("AUTHOR"));
+				book.setTranslator(rs.getString("TRANSLATOR"));
+				book.setCoverUrl(rs.getString("COVER_URL"));
+				book.setPublisher(rs.getString("PUBLISHER"));
+				book.setCategoryId(rs.getInt("CATEGORY_ID"));
+//				System.out.println("카테고리 태그 확인" + rs.getString("CATEGORY_TAG"));
+				book.setCategoryTag(rs.getString("CATEGORY_TAG"));
+				System.out.println("들어갔는지 확인 : " + book.getCategoryTag());
+				book.setPriceStandard(rs.getLong("PRICE_STANDARD"));
+				book.setPubDate(rs.getString("PUB_DATE"));
+				book.setDescription(rs.getString("DESCRIPTION"));
+				book.setRank(rs.getLong("RANK"));
 				
+//				System.out.println("book 확인 : "+book);
+				bookList.add(book);	
 			}
 						
 		} catch (Exception e) {
