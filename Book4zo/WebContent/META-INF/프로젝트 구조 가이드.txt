@@ -1,0 +1,50 @@
+1. 폴더및 패키지는 모두 소문자로 표기한다
+2. 
+    1. service 내 카테고리별 패키지를나눈다.
+    2. Controller폴더 내 카테고리별로 파일을 나누고 관련기능 영문 표기로 묶는다 
+			UserController. >> *.user
+			BookListController >> *.book
+			PostController >> *.post
+			ReplyController >> *.reply
+			NoticeListController >> *.notice
+    3. 컨트롤러 변수명 
+		카테고리 분류는 생략하며 파스칼식 표기법을 따른다
+        1. List.board     /     ListView.board
+
+3. 모든 변수명은 카멜표기법을 따르며, 언더스크롤을 사용하지 않는다.
+4. 모든 파일은 파스칼표기법을 따르며, 카테고리를 나누는 단어 이후 하나의 언더스크롤을 허용한다.
+ex) Emp_Delete_s.java
+5. 모든 view 파일은 v_파일명.jsp 로 표기하며 컨트롤러에서도 동일하게 표기하도록 한다
+6. service 파일은 파일명 파일명_s.확장자로 표기하며 
+컨트롤러에서 접근하는 URL명은 _S만 생략하여 팀원간 혼동하는 일이 없도록 한다.
+(ex : Login.user  >> Login_s.java
+7. 패키지 명 
+	kr.or.book4zo
+	action
+	ajax >> 서블릿 따로빼기로 해요
+	controller
+	dao
+	dto
+	filter
+	service
+	utils
+ 
+WEB-INF(폴더명 다 소문자임 오류임저건)
+1. common
+2. book 
+3. post
+4. user
+5. qna
+
+ 
+
+1. 비회원이 접근가능한 페이지는 webContent 바로 아래에 위치할 수 있도록 한다. (Main login register)
+ex : index.jsp 
+2. WEB-INF에서 common 폴더를 생성하고 공통으로 쓰게 되는 페이지 파일을 저장한다..
+3. META-INF폴더 내에 클라이언트 요구사항을 정리한 txt폴더를 저장하고, 
+프로젝트 구조를 설명하는 목차페이지를 txt파일로 저장한다. (또는 git의 readme txt파일로 관리한다.)
+
+* 이미지파일 어디 css파일 어디 업로드파일 경로 어디 할건지 명시 필요 sql테이블명 및 컬럼명 어떻게 할건지
+dto어떻게 할건지 
+
+업로드 파일 폴더명 : (카테고리명)upload
