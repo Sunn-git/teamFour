@@ -4,9 +4,15 @@
 <head>
 <title>게시판</title>
 <script language="javascript">
+<<<<<<< HEAD
 		function addpost(){
 			postform.submit();
 		}
+=======
+	//	function addboard(){
+	//		boardform.submit();
+	//	}
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 </script>
 <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no'
 	name='viewport' />
@@ -26,10 +32,16 @@
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
 	rel="stylesheet">
 </head>
+<<<<<<< HEAD
 <!-- 게시판 등록 -->
 <body>
 	<div class= "col-md-12 ml-auto mr-auto">
 	<form class="form" method="post" action="PostWrite_s.post"
+=======
+<body>
+	<div class= "col-md-12 ml-auto mr-auto">
+	<form class="form" method="post" action="postWrite_s.board"
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 		enctype="multipart/form-data" name="postform">
 		<table >
 	
@@ -74,7 +86,11 @@
 
 		</table>
 		<a href="javascript:history.go(-1)" class="btn btn-round btn-white">뒤로</a>
+<<<<<<< HEAD
 		<a href="javascript:addpost()" class="btn btn-round btn-rose">등록</a>
+=======
+		<a href="javascript:addPost()" class="btn btn-round btn-rose">등록</a>
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 	</form>
 	</div>
 	<!-- 게시판 등록 -->

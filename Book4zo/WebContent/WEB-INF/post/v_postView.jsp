@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@page import="kr.or.book4zo.dto.PostDto"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,6 +8,11 @@
 
 //String sFilePath = sDownLoadPath + "\\" + filename;
 %>
+=======
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 
 <html>
 <head>
@@ -39,7 +45,10 @@
 	</tr>
 	<tr class="subject">
 		<td><h3>제목 들어갈 곳</h3></td> <!-- 수정되어야함 -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 		<td>
 			
 			<c:if test="${'.writer' == userid }"><!-- 수정되어야함 -->
@@ -55,12 +64,19 @@
 	</tr>
 	<tr>
 		<td class="writer">글쓴이</td> <!-- 수정되어야함 -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 		<td class="write_date">몇년 몇월 몇일</td><!-- 수정되어야함 -->
 	</tr>
 	<tr>
 		<td style="font-family:돋음; font-size:12">
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 		</td>
 	</tr>
 	
@@ -76,7 +92,10 @@
 				<tr>
 					<td valign=top">
 						내용 뿌려줄 곳
+<<<<<<< HEAD
 					
+=======
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 					</td>
 				</tr>
 			</table>
@@ -92,8 +111,11 @@
 <div class="">
 <img alt="" src=""> <!-- 수정되어야함 / 삭제가능성 있음 --> 
 회원 프로필 뿌려질 곳
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 </div>
 
 </body>

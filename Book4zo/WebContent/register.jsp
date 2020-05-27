@@ -75,7 +75,11 @@
 				<div class="col-lg-4 col-md-6 ml-auto mr-auto">
 					<div class="card card-login">
 						<form class="form" method="" action="">
+<<<<<<< HEAD
 							<div class="card-header card-header-rose text-center">
+=======
+							<div class="card-header card-header-primary text-center">
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 								<h4 class="card-title">Login</h4>
 								<div class="social-line">
 									<a href="#pablo" class="btn btn-just-icon btn-link"> <i
@@ -95,7 +99,11 @@
 											class="material-icons">perm_identity</i>
 										</span>
 									</div>
+<<<<<<< HEAD
 									<input type="text" class="form-control" name="USER_ID" placeholder="아이디">
+=======
+									<input type="text" class="form-control" placeholder="아이디">
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 								</div>
 								<div class="input-group">
 									<div class="input-group-prepend">
@@ -103,7 +111,11 @@
 											class="material-icons">lock_outline</i>
 										</span>
 									</div>
+<<<<<<< HEAD
 									<input type="password" class="form-control" name="USER_PWD" placeholder="비밀번호">
+=======
+									<input type="password" class="form-control" placeholder="비밀번호">
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 								</div>
 
 								<div class="input-group">
@@ -112,7 +124,11 @@
 											class="material-icons">lock</i>
 										</span>
 									</div>
+<<<<<<< HEAD
 									<input type="password" class="form-control" name="USER_PWD"
+=======
+									<input type="password" class="form-control"
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 										placeholder="비밀번호 확인">
 								</div>
 
@@ -122,7 +138,11 @@
 											class="material-icons">email</i>
 										</span>
 									</div>
+<<<<<<< HEAD
 									<input type="email" class="form-control" name="USER_EMAIL"
+=======
+									<input type="password" class="form-control"
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 										placeholder="이메일 주소">
 								</div>
 
@@ -132,17 +152,28 @@
 											class="material-icons">face</i>
 										</span>
 									</div>
+<<<<<<< HEAD
 									<input type="password" class="form-control" name="USER_NAME" placeholder="이름">
+=======
+									<input type="password" class="form-control" placeholder="이름">
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 								</div>
 
 
 
 								<div class="row">
 									<div class="col-md-6 mx-auto">
+<<<<<<< HEAD
 										<button class="btn btn-link btn-rose btn-round" href="#pablo">
 											<i class="material-icons">cancel</i> 동의안함
 										</button>
 										<button class="btn btn-rose btn-round" href="#pablo">
+=======
+										<button class="btn btn-primary btn-round" href="#pablo">
+											<i class="material-icons">cancel</i> 동의안함
+										</button>
+										<button class="btn btn-primary btn-round" href="#pablo">
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 											<i class="material-icons">person_add</i> 회원가입
 										</button>
 									</div>

@@ -11,8 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.book4zo.action.Action;
 import kr.or.book4zo.action.ActionForward;
+<<<<<<< HEAD
 import kr.or.book4zo.service.PostList_s;
 import kr.or.book4zo.service.PostWrite_s;
+=======
+import kr.or.book4zo.service.board.PostList_s;
+import kr.or.book4zo.service.board.PostWrite_s;
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 
 /**
  * Servlet implementation class PostController
@@ -26,7 +31,12 @@ public class PostController extends HttpServlet {
 
 	}
 
+<<<<<<< HEAD
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws Exception {
+=======
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 		// request.setCharacterEncoding("UTF-8");
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
@@ -45,6 +55,7 @@ public class PostController extends HttpServlet {
 		String viewpage = "";
 
 		/////////////////// 여기부터 수정하면 됨////////////////////////////
+<<<<<<< HEAD
 
 		// 포스트 리스트 보자
 		if (url_Command.equals("/PostList.post")) {
@@ -98,11 +109,77 @@ public class PostController extends HttpServlet {
 				dis.forward(request, response);
 
 			}
+=======
+		
+		
+		//포스트 리스트 보자
+		if (url_Command.equals("/PostList.post")) {
+			System.out.println("PostList여기에 타고있니??");
+			action = new PostList_s();
+			System.out.println("PostList_s여기에 타고있니??");
+			try {
+				forward = action.execute(request, response);
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			System.out.println("뿌려~~");
+		}
+		
+		
+	
+		else if (url_Command.equals("/PostListView.post")) {
+			System.out.println("/PostListView.post 실행");
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/WEB-INF/post/v_postView.jsp");
+
+		}	
+		
+		//포스트에 글쓰러 가자
+			else if (url_Command.equals("/PostWrite.post")) {
+				System.out.println("PostWrite_s여기에 타고있니??");
+				action = new PostWrite_s();
+				System.out.println("PostList_s여기에 타고있니??");
+				try {
+					forward = action.execute(request, response);
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
+				System.out.println("뿌려~~");
+			}
+			else if (url_Command.equals("/PostWriteAction.post")) {
+				System.out.println("/PostWriteAction.post 실행");
+				forward = new ActionForward();
+				forward.setRedirect(false);
+				forward.setPath("/WEB-INF/post/v_postWrite.jsp");
+
+			}	
+	
+	
+	// 4. 뷰 지정하기
+	// RequestDispatcher dis = request.getRequestDispatcher(viewpage);
+	if (forward != null) {
+		if (forward.isRedirect()) { // true
+			response.sendRedirect(forward.getPath()); // redirect는 주소가 바뀌기 때문에 잘 안쓰지만 학습용이라 사용했다
+		} else { // false(모든자원)사용
+			System.out.println("와라좀!!!");
+			RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
+			dis.forward(request, response);
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 
 		}
 
 	}
 
+<<<<<<< HEAD
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
@@ -111,10 +188,17 @@ public class PostController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+=======
+}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doProcess(request, response);
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+<<<<<<< HEAD
 		try {
 			doProcess(request, response);
 		} catch (Exception e) {
@@ -124,3 +208,9 @@ public class PostController extends HttpServlet {
 	}
 
 }
+=======
+		doProcess(request, response);
+	}
+
+}
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2

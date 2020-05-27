@@ -107,10 +107,17 @@
 								</div>
 								<div class="row">
 								<div class="col-md-6 mx-auto">
+<<<<<<< HEAD
 									<button class="btn btn-rose btn-round" href="#pablo">
 										<i class="material-icons">touch_app</i> &nbsp; 로그인 &nbsp;
 									</button>
 									<button class="btn btn-rose btn-round" href="#pablo">
+=======
+									<button class="btn btn-primary btn-round" href="#pablo">
+										<i class="material-icons">touch_app</i> &nbsp; 로그인 &nbsp;
+									</button>
+									<button class="btn btn-primary btn-round" href="#pablo">
+>>>>>>> d82360678ed6dd85f9c03fd50978ed93b719cbc2
 										<i class="material-icons">person_add</i> 회원가입
 									</button>
 								</div>
