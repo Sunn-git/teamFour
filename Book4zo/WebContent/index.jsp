@@ -298,6 +298,8 @@
 <!-- 준수오빠...어케해요... -->
 <main id="contents" class="result_depth" style="">
       <div class="select-box pb12" id="selectBox">
+      
+      <!-- 
         <div class="search-sort">
          <p style="margin: 0 0 0 10px;">총 <span><span id="total-length">0</span>건</span>의 검색결과</p>
           <div>
@@ -360,6 +362,9 @@
             </div>
           </div>
         </div>
+        
+         -->
+        
         <div class="curation-nav swipe">
           <ul class="swiper-wrap">
             <li class="swiper-slide">
