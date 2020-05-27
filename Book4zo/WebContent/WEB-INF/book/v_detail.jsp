@@ -1,3 +1,5 @@
+<%@page import="kr.or.book4zo.dto.BookDto"%>
+<%@page import="kr.or.book4zo.dao.BookDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -5,7 +7,7 @@
 <html lang="ko">
 
 <head>
-    <title>나를 찾아줘 - 리디셀렉트</title>
+    <title>Review 4 Book</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,viewport-fit=cover">
 
@@ -91,7 +93,7 @@
         <main class="SceneWrapper PageBookDetail bookDetailBackgroundColorWhite">
             <div class="PageBookDetail_Header PageBookDetail_Header-dark" style="background: rgb(139, 23, 71);">
                 <!-- 배경 책 표지 사진 들어가는 부분 -->
-                <span class="PageBookDetail_HeaderBackground" style="background-image: url(&quot;https://img.ridicdn.net/cover/2189000006/xxlarge?dpi=xxhdpi&quot;);">
+                <span class="PageBookDetail_HeaderBackground" style="background-image: url(&quot;${book.coverUrl}&quot;);">
                     <span class="Left_GradientOverlay" style="background: linear-gradient(to right, rgb(139, 23, 71) 0%, rgba(255, 255, 255, 0) 100%);"></span>
                     <span class="Right_GradientOverlay" style="background: linear-gradient(to left, rgb(139, 23, 71) 0%, rgba(255, 255, 255, 0) 100%);"></span>
                 </span>
@@ -100,19 +102,19 @@
                         <div class="PageBookDetail_ThumbnailWrapper">
                             <button class="PageBookDetail_ThumbnailButton">
                                 <!-- 책 썸네일 들어가는 부분 -->
-                                <img class="PageBookDetail_Thumbnail" src="https://img.ridicdn.net/cover/2189000006/xxlarge?dpi=xxhdpi" alt="나를 찾아줘">
+                                <img class="PageBookDetail_Thumbnail" src="${book.coverUrl}" alt="${book.title}">
                             </button>
                         </div>
                         <div class="PageBookDetail_Meta">
                             <ul class="PageBookDetail_Categories">
-                                <li class="PageBookDetail_CategoryItem"><span>카테고리 이름</span></li>
+                                <li class="PageBookDetail_CategoryItem"><span>${book.categoryTag}</span></li>
                             </ul>
-                            <h1 class="PageBookDetail_BookTitle">책 제목</h1>
+                            <h1 class="PageBookDetail_BookTitle">${book.title}</h1>
                             <p class="PageBookDetail_BookElements">
-                                <span class="PageBookDetail_Authors">저자 저</span>
-                                <span class="PageBookDetail_Publisher"> ·  역자 역</span>
-                                <span class="PageBookDetail_FileType">출판사 출판</span>
-                                <span class="PageBookDetail_FileSize"> · ISBN</span>
+                                <span class="PageBookDetail_Authors">${book.author} 저</span>
+                                <span class="PageBookDetail_Publisher"> ·  ${book.translator} 역</span>
+                                <span class="PageBookDetail_FileType">${book.publisher} 출판</span>
+                                <span class="PageBookDetail_FileSize"> · ${book.isbn}</span>
                             <p class="PageBookDetail_RatingSummary">
                                 <span class="StarRating_IconBox dark" style="width: 74px; height: 15px;">
                                     <span class="StarRating_Icon_Background" style="width: 74px; height: 15px;"></span>
@@ -141,7 +143,7 @@
             <section class="PageBookDetail_Panel">
                 <h2 class="PageBookDetail_PanelTitle">책 소개</h2>
                 <div class="PageBookDetail_PanelContent">
-                    <p class="TextTruncate TextTruncate-truncated" style="-webkit-line-clamp: 8; max-height: 232px;">   책소개 내용 입니다.  </p>
+                    <p class="TextTruncate TextTruncate-truncated" style="-webkit-line-clamp: 8; max-height: 232px;">${book.description}</p>
                     
 
                     <div class="BookDetail_ContentTruncWrapper">
@@ -165,7 +167,7 @@
                         <div class="card-body">
                             <div class="col-sm-3" style="float: left; width: 100%;">썸네일 영역</div>
                             <div class="col-sm-9" style="float: left;">
-                                <h6 class="card-subtitle mt-1 text-muted">나를 찾아줘 - 저자 길리언 플린</h6>
+                                <h6 class="card-subtitle mt-1 text-muted">${book.title} - 저자 ${book.author}</h6>
                                 <h4 class="PageBookDetail_PanelTitle">포스트 제목 입니다</h4>
                                 
                                 <p class="card-text">포스트 내용 입니다. 포스트 내용 입니다. 포스트 내용 입니다.</p>
@@ -178,7 +180,7 @@
                         <div class="card-body">
                             <div class="col-sm-3" style="float: left; width: 100%;">썸네일 영역</div>
                             <div class="col-sm-9" style="float: left;">
-                                <h6 class="card-subtitle mt-1 text-muted">나를 찾아줘 - 저자 길리언 플린</h6>
+                                <h6 class="card-subtitle mt-1 text-muted">${book.title} - 저자 ${book.author}</h6>
                                 <h4 class="PageBookDetail_PanelTitle">포스트 제목 입니다</h4>
                                 
                                 <p class="card-text">포스트 내용 입니다. 포스트 내용 입니다. 포스트 내용 입니다.</p>

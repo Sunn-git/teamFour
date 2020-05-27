@@ -192,7 +192,8 @@
 				              ><span class="title">싸울 때마다 투명해진다</span>
 				              <p>오디오북으로 듣는 여성들의 서사</p>
 				              <div><span class="author">은유</span><span class="publisher">서해문집</span></div>
-				            </div></a>
+							</div>
+							</a>
 				        </li>   
 					</ul>
 				</div>
@@ -308,7 +309,7 @@
 
 	        		$.each(data, function (index, item) {
 	                let bl = "<li>"
-	                bl += "<a>"
+	                bl += "<a href='Detail.book?bookSeq="+ item.bookSeq +"'>"
 	                bl += "<div class='image book-icon readingbook'>"
 	                bl += "<img src='" + item.coverUrl +"'/> </div>"
 	                bl += "<div class ='body'>"

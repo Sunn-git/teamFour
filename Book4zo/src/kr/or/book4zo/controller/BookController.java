@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.book4zo.action.Action;
 import kr.or.book4zo.action.ActionForward;
 import kr.or.book4zo.service.Book_SaveDataToDB_s;
+import kr.or.book4zo.service.book.Book_Detail_s;
 
 /**
  * Servlet implementation class Controller
@@ -59,16 +60,16 @@ public class BookController extends HttpServlet {
 			forward.setPath("/WEB-INF/book/v_search.jsp");
 			
 		}
-		//detail
+		//detail페이지 연결, 도서정보 가져가기
 		else if(urlCmd.equals("/Detail.book")) {
 			System.out.println("/Detail.book 실행");
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/book/v_detail.jsp");
+			action = new Book_Detail_s();
+			forward = action.execute(request, response);
+			System.out.println("SaveDataToDB.book 끝");
 		}
 		//API 자료를 DB에 저장하기
 		else if(urlCmd.equals("/SaveDataToDB.book")) {
-			System.out.println("/SaveDataToDB.book 실행");
+			System.out.println("/Detail.book 실행");
 			
 			action = new Book_SaveDataToDB_s();
 			forward = action.execute(request, response);
