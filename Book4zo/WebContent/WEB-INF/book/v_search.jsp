@@ -31,7 +31,8 @@
     <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
 
     <script type="text/javascript">
-      $(function () {
+
+    $(function () {
         var isGrid = true
         $("#list-type-btn").on("click", function () {
           isGrid = !isGrid
@@ -46,14 +47,12 @@
           }
         })
         
-        console.log("타긴 타는거야?")
-        
-        //동적으로 도서목록 생성해주는 부분
+        //동적으로 추천도서목록 생성해주는 부분
         var ajax =$.ajax({
 	      	  url: "http://book.interpark.com/api/recommend.api",
 	    	  data: {
 	    		  key: 'ECF73A29EE9688587F70A785201AB95DE352C2284B870EEE927ECAC11048DEDE',
-	    		  categoryId: '100',
+	    		  categoryId: '101',
 	    		  output: 'json'        		  
 	    	  },
 			  dataType: 'jsonp',
@@ -77,10 +76,10 @@
                 bl += "</span>"
                 bl += "<span class='title'>" + item.title + "</span>"
                 
-              //저자 길이 제한
+              	//저자 길이 제한
                 if(item.author.length > 10){
                 	var shorten = item.author.substring(0,35)
-                	bl += "<span>" + shorten +"..."+"</span>"
+                	bl += "<span class='author'>" + shorten +"..."+"</span>"
                 }else{
                 	bl += "<div><span class='author'>"+item.author+"</span>"
                 }
@@ -99,7 +98,7 @@
         	}
         }); //ajax end
         
-        ////////////////////////////////이거만 손댐 밑에껀 아직 손 안댐
+        ////////////////////////////////이거 수정함
         
         
         
@@ -251,58 +250,23 @@
 	  			</div>
 			<!-- </form> -->
     </div>
-    <!-- 
-    <script>
-      $(function(){
-          
-          
-          
-        $('#bookSearchInputButton').click(function() {
-          console.log($('#bookSearchInput').val());
-
-          
-          $.ajax({
-        	  url: "http://book.interpark.com/api/recommend.api",
-        	  data: {
-        		  key: 'ECF73A29EE9688587F70A785201AB95DE352C2284B870EEE927ECAC11048DEDE',
-        		  categoryId: '100',
-        		  output: 'json'        		  
-        	  },
-   			  dataType: 'jsonp',
-			  success: function(data){
-				  console.log(data);
-				  console.log(data.item);
-				  
-				  let dataArr = data.item;
-				  
-				  $.each(dataArr, function(index, book){
-					  console.log(book);
-				  });
-			  },
-			  error: function(xhr){
-				  console.log(xhr);
-			  }
-          });
-          
-        });
-      });
-
-    </script>
-			
- -->
 
 		<!-- 검색결과 출력부분 -->	
 		<div class="search-result">
 		
+		
 		<div class="row">		
 		  <div class="col-md-12">
-		    <div class="card">
+		    <div class="card" id="bookSearchResultCard">
+		    
+		    	<!-- api받아와서 비동기로 뿌려지는 추천도서. 검색결과 나오면 비워질 부분-->
 		        <div class="card-header card-header-rose">
-		            <h4 class="card-title">오늘의 추천도서</h4>
-		            <p class="category">국내 도서 신간</p>
+		            <h4 class="card-title">	추천도서</h4>
+		            <p class="category">국내 소설 신간</p>
 		        </div>
 		        <div class="card-body">
 		        	<ul id="book-list" class="book-list grid">
+		        	<!-- 임시 데이터 -->
 	                  <li>
 				          <a href="/viewfinder/book_detail.html?book_seq=15599279"
 				            ><div class="image book-icon readingbook">
@@ -332,73 +296,13 @@
 				              <p>오디오북으로 듣는 여성들의 서사</p>
 				              <div><span class="author">은유</span><span class="publisher">서해문집</span></div>
 				            </div></a>
-				        </li>
-				        <li>
-				          <a href="/viewfinder/book_detail.html?book_seq=15599279"
-				            ><div class="image book-icon readingbook">
-				              <img
-				                src="https://img.millie.co.kr/200x/service/cover/15599279/ea654d25ef014b00b9475cbb4c0e8247.jpg"
-				                alt=""
-				              />
-				            </div>
-				            <div class="body">
-				              <span class="bedge-icon readingbook"><i>오디오북</i><span>전문성우</span></span
-				              ><span class="title">싸울 때마다 투명해진다</span>
-				              <p>오디오북으로 듣는 여성들의 서사</p>
-				              <div><span class="author">은유</span><span class="publisher">서해문집</span></div>
-				            </div></a>
-				        </li>				        
-				        <li>
-				          <a href="/viewfinder/book_detail.html?book_seq=15599279"
-				            ><div class="image book-icon readingbook">
-				              <img
-				                src="https://img.millie.co.kr/200x/service/cover/15599279/ea654d25ef014b00b9475cbb4c0e8247.jpg"
-				                alt=""
-				              />
-				            </div>
-				            <div class="body">
-				              <span class="bedge-icon readingbook"><i>오디오북</i><span>전문성우</span></span
-				              ><span class="title">싸울 때마다 투명해진다</span>
-				              <p>오디오북으로 듣는 여성들의 서사</p>
-				              <div><span class="author">은유</span><span class="publisher">서해문집</span></div>
-				            </div></a>
-				        </li>
-				        <li>
-				          <a href="/viewfinder/book_detail.html?book_seq=15599279"
-				            ><div class="image book-icon readingbook">
-				              <img
-				                src="https://img.millie.co.kr/200x/service/cover/15599279/ea654d25ef014b00b9475cbb4c0e8247.jpg"
-				                alt=""
-				              />
-				            </div>
-				            <div class="body">
-				              <span class="bedge-icon readingbook"><i>오디오북</i><span>전문성우</span></span
-				              ><span class="title">싸울 때마다 투명해진다</span>
-				              <p>오디오북으로 듣는 여성들의 서사</p>
-				              <div><span class="author">은유</span><span class="publisher">서해문집</span></div>
-				            </div></a>
-				        </li>
-				        <li>
-				          <a href="/viewfinder/book_detail.html?book_seq=15599279"
-				            ><div class="image book-icon readingbook">
-				              <img
-				                src="https://img.millie.co.kr/200x/service/cover/15599279/ea654d25ef014b00b9475cbb4c0e8247.jpg"
-				                alt=""
-				              />
-				            </div>
-				            <div class="body">
-				              <span class="bedge-icon readingbook"><i>오디오북</i><span>전문성우</span></span
-				              ><span class="title">싸울 때마다 투명해진다</span>
-				              <p>오디오북으로 듣는 여성들의 서사</p>
-				              <div><span class="author">은유</span><span class="publisher">서해문집</span></div>
-				            </div></a>
-				        </li>				        
-				        				        
-				        
-				             
+				        </li>   
 					</ul>
-
 				</div>
+				
+				
+				
+				
 		    </div>
 		  </div>
 		</div>
@@ -450,31 +354,62 @@
   <script src="${pageContext.request.contextPath}/assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
   
   
-  
-  <script>
-    //$(document).ready(function() {
-      //init DateTimePickers
-      //materialKit.initFormExtendedDatetimepickers();
+  <!-- 
+  정체불명? 어디서 온건지 모르겠다.
+	  <script>
+	    $(document).ready(function() {
+	      init DateTimePickers
+	      materialKit.initFormExtendedDatetimepickers();
+	
+	       Sliders Init
+	      materialKit.initSliders();
+	      
+	       search-input keyup시 비동기 이벤트발생시키고 싶은데 어케해야할지..
+	      $(".search-input").keyup(function() {
+	          $(".search-input").val().submit()
+	      });
+	
+	    });
+	
+	
+	    function scrollToDownload() {
+	      if ($('.section-download').length != 0) {
+	        $("html, body").animate({
+	          scrollTop: $('.section-download').offset().top
+	        }, 1000);
+	      }
+	    }
+	  </script>
+	-->
 
-      // Sliders Init
-     // materialKit.initSliders();
-      
-      // search-input keyup시 비동기 이벤트발생시키고 싶은데 어케해야할지..
-      //$(".search-input").keyup(function() {
-      //    $(".search-input").val().submit()
-      //});
+<!-- 선 JS -->
+<script type="text/javascript">
+	$(function(){
+		
+		
 
-    //});
+		//검색 기능 : 일단은 버튼 클릭으로 만들고 나중에 keyup으로 변경하기
+		$('#bookSearchInputButton').click(function() {
+			console.log($('#bookSearchInput').val());
+			$.ajax({
+				url:"GetBookSearchResult.ajax",
+				type:"post",
+				dataType:"json",
+				success: function(data) {
+					console.log(data);
+				},
+				error: function() {
+					console.log("error");
+				}
+			});
+		});
+		
+		
+	});
+</script>
 
-
-    //function scrollToDownload() {
-      //if ($('.section-download').length != 0) {
-       // $("html, body").animate({
-       //   scrollTop: $('.section-download').offset().top
-       // }, 1000);
-     // }
-   // }
-  </script>
 
 </body>
+	 
+
 </html>

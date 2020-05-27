@@ -283,7 +283,8 @@
       
     </div>
     <!--         end carousel -->
-<a href="Dashboard.admin">관리자페이지 테스트</a>
+<a href="Dashboard.admin">관리자페이지 테스트</a><br>
+<a href="SaveDataToDB.book"> DB 저장 테스트</a>
 <div class="container bestsellerbykeyward">
 <h3>키워드 별 베스트셀러</h3>
 <div class="bestsellercontents">

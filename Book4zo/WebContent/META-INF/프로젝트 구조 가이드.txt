@@ -48,3 +48,5 @@ ex : index.jsp
 dto어떻게 할건지 
 
 업로드 파일 폴더명 : (카테고리명)upload
+
+모든 날짜는 String 처리

@@ -9,24 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.corba.se.spi.orbutil.fsm.Action;
-
+import kr.or.book4zo.action.Action;
 import kr.or.book4zo.action.ActionForward;
+import kr.or.book4zo.service.Book_SaveDataToDB_s;
 
 /**
- * Servlet implementation class UserController
+ * Servlet implementation class Controller
  */
-@WebServlet("*.user")
-public class UserController extends HttpServlet {
+@WebServlet("*.book")
+public class BookController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
-
-    public UserController() {
+    
+    public BookController() {
         super();
-
+        // TODO Auto-generated constructor stub
     }
 
-    protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doProcess(HttpServletRequest request, HttpServletResponse response) 
+    		throws ServletException, IOException {
     	//response.getWriter().append("Served at: ").append(request.getContextPath());
     	
     	// 주소 요청의 판단 근거 (함수)
@@ -44,34 +46,41 @@ public class UserController extends HttpServlet {
 		String viewPage = "";
 		
 		//main 페이지 연결
-		if (urlCmd.equals("/Login.user")) {
-			System.out.println("/Login.book 실행");
+		if (urlCmd.equals("/Main.book")) {
+			System.out.println("/Main.book 실행");
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/user/v_login.jsp");
+			forward.setPath("/index.jsp");
 			
 		}
 		//sidebar 페이지 연결 
-		else if(urlCmd.equals("/Register.user")) {
-			System.out.println("/Register.user 실행");
+		else if(urlCmd.equals("/Search.book")) {
+			System.out.println("/Search.book 실행");
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/user/v_register.jsp");
+			forward.setPath("/WEB-INF/book/v_search.jsp");
+			
 		}
-		//mypage >> user컨트롤러로 빼야함. 임시로 넣어둠
-		else if(urlCmd.equals("/Mypage.user")) {
-			System.out.println("/Mypage.book 실행");
+		//detail
+		else if(urlCmd.equals("/Detail.book")) {
+			System.out.println("/Detail.book 실행");
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/user/v_myPage.jsp");
+			forward.setPath("/WEB-INF/book/v_detail.jsp");
 		}
-		//infoedit >> user컨트롤러로 빼야함 임시로 넣어둠
-		else if(urlCmd.equals("/InfoEdit.user")) {
-			System.out.println("/InfoEdit.book 실행");
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/user/v_infoEdit.jsp");
+		//API 자료를 DB에 저장하기
+		else if(urlCmd.equals("/SaveDataToDB.book")) {
+			System.out.println("/SaveDataToDB.book 실행");
+			
+			action = new Book_SaveDataToDB_s();
+			forward = action.execute(request, response);
+			System.out.println("SaveDataToDB.book 끝");
+			
 		}
+		
+		
+		
+
 		///////////////////////////////////////////////////////////////////////
 		//------------------------뷰로 실제로 보내주는 역할.-------------------------
 		if(forward != null){
