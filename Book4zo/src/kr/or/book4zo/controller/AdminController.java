@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.corba.se.spi.orbutil.fsm.Action;
-
+import kr.or.book4zo.action.Action;
 import kr.or.book4zo.action.ActionForward;
 
 
