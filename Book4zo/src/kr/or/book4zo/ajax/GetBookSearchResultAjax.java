@@ -51,8 +51,7 @@ public class GetBookSearchResultAjax extends HttpServlet {
 		
 		try {
 			response.setContentType("application/x-json; charset=UTF-8");
-			response.getWriter().print(jsonBookList);
-			
+			response.getWriter().print(jsonBookList);		
 			
 		} catch (Exception e) {
 			// TODO: handle exception

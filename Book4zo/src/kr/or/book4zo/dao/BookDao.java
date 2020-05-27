@@ -56,7 +56,7 @@ public class BookDao {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			//여기서 DB 아이디랑 바꿔주기
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "DBUSER", "1004");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "BOOKTEAMTEST", "1004");
 
 			String sql = "INSERT INTO BOOK(BOOK_SEQ, ISBN, TITLE, AUTHOR, TRANSLATOR, COVER_URL, PUBLISHER," + 
 						 				  "CATEGORY_ID, PRICE_STANDARD, PUB_DATE, DESCRIPTION, RANK)" + 
@@ -95,12 +95,12 @@ public class BookDao {
 		
 		try {
 			conn = ds.getConnection();
-			
+
 			String sql = "SELECT B.BOOK_SEQ, B.ISBN, B.TITLE, B.AUTHOR, B.TRANSLATOR, B.COVER_URL, B.PUBLISHER, B.CATEGORY_ID, C.CATEGORY_TAG, B.PRICE_STANDARD, B.PUB_DATE, B.DESCRIPTION, B.RANK FROM BOOK B JOIN CATEGORY C ON B.CATEGORY_ID = C.CATEGORY_ID";
 			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+
 			allBookList = new ArrayList<BookDto>();
 			
 			while(rs.next()) {
@@ -134,6 +134,56 @@ public class BookDao {
 		}		
 		return allBookList;
 	}
+	
+	
+	//카테고리별 도서 목록 조회
+	public List<BookDto> getBookListByTag(String categoryTag){
+		List<BookDto> bookList = null;
+		
+		try {
+			conn = ds.getConnection();
+
+			String sql = "SELECT B.BOOK_SEQ, B.ISBN, B.TITLE, B.AUTHOR, B.TRANSLATOR, B.COVER_URL, B.PUBLISHER, B.CATEGORY_ID, C.CATEGORY_TAG, B.PRICE_STANDARD, B.PUB_DATE, B.DESCRIPTION, B.RANK FROM BOOK B JOIN CATEGORY C ON B.CATEGORY_ID = C.CATEGORY_ID WHERE C.CATEGORY_TAG = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, categoryTag);
+			rs = pstmt.executeQuery();
+
+			bookList = new ArrayList<BookDto>();
+			
+			while(rs.next()) {
+				BookDto book = new BookDto();
+				
+				book.setBookSeq(rs.getInt("BOOK_SEQ"));
+				book.setIsbn(rs.getString("ISBN"));
+				book.setTitle(rs.getString("TITLE"));
+				book.setAuthor(rs.getString("AUTHOR"));
+				book.setTranslator(rs.getString("TRANSLATOR"));
+				book.setCoverUrl(rs.getString("COVER_URL"));
+				book.setPublisher(rs.getString("PUBLISHER"));
+				book.setCategoryId(rs.getInt("CATEGORY_ID"));
+//				System.out.println("카테고리 태그 확인" + rs.getString("CATEGORY_TAG"));
+				book.setCategoryTag(rs.getString("CATEGORY_TAG"));
+				System.out.println("들어갔는지 확인 : " + book.getCategoryTag());
+				book.setPriceStandard(rs.getLong("PRICE_STANDARD"));
+				book.setPubDate(rs.getString("PUB_DATE"));
+				book.setDescription(rs.getString("DESCRIPTION"));
+				book.setRank(rs.getLong("RANK"));
+				
+//				System.out.println("book 확인 : "+book);
+				bookList.add(book);	
+			}
+						
+		} catch (Exception e) {
+			System.out.println("getBookListByTag 에러 : "+e.getMessage());
+			e.printStackTrace();			
+		}finally {
+			closed();
+		}		
+		return bookList;
+	}
+	
+	
 	
 	
 	//도서 목록 조건 조회 : 나중에 조건 에 따라서 다르게 검색되도록 하기

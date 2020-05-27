@@ -33,7 +33,7 @@
   
 	<!-- 준수 페이지 -->
 	    <!-- CSS -->
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/swiper.4.1.6.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css" /> <!-- 여기에  layout css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home-3.10f79.css" /> <!-- 여기에 버튼 css -->    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bookList.css" />
@@ -43,6 +43,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
 
+
+<!-- 시간되면 ajax 코드 정리하기 ........... 알아보기 힘들다  -->
     <script type="text/javascript">
       $(function () {
         var isGrid = true
@@ -59,7 +61,6 @@
           }
         })
         
-        console.log("타긴 타는거야?")
         
         var ajax =$.ajax({
         	url : "GetBookSearchResult.ajax",
@@ -105,39 +106,42 @@
         	}
         }); //ajax end
         
+        
+        
        //Tag Ajax Start
        $(".swiper-slide").children().on("click", function () {
     	   $(".swiper-slide").children().removeClass("active")
     	   $(this).addClass("active")
     	   if($(this).attr('name') == 'total'){
     		   $.ajax({
-    	        	url : "AllBookAsync.book",
+    				url : "GetBookSearchResult.ajax",
     	        	type : "POST",
     	        	dataType : "json",
-    	        	success : function(korBookList){
+    	        	success : function(data){
+    	        		console.log(data);
     	        		var totalCount=0;
     	            $("#book-list").empty();
     	            
 
-    	        		$.each(korBookList, function (key, value) {
+    	        		$.each(data, function (index, item) {
     	                let bl = "<li>"
     	                bl += "<a>"
     	                bl += "<div class='image book-icon readingbook'>"
-    	                bl += "<img src='" + value.coverUrl +"'/> </div>"
+    	                bl += "<img src='" + item.coverUrl +"'/> </div>"
     	                bl += "<div class ='body'>"
     	                bl += "<span class = 'bedge-icon readingbook'>"
-    	                bl += "<span>" +value.categoryTag + "</span>"
+    	                bl += "<span>" +item.categoryTag + "</span>"
     	                bl += "</span>"
-    	                bl += "<span class='title'>" +value.title + "</span>"
+    	                bl += "<span class='title'>" +item.title + "</span>"
     	                
     	              //저자 길이 제한
-    	                if(value.author.length > 10){
-    	                	var shorten = value.author.substring(0,35)
-    	                	bl += "<span>" + shorten +"..."+"</span>"
+    	                if(item.author.length > 10){
+    	                	var shorten = item.author.substring(0,35)
+    	                	bl += "<span class='author'>" + shorten +"..."+"</span>"
     	                }else{
-    	                	bl += "<div><span class='author'>"+value.author+"</span>"
+    	                	bl += "<div><span class='author'>"+item.author+"</span>"
     	                }
-    	                bl += "<span class='publisher'>" +value.publisher+"</span></div>"
+    	                bl += "<span class='publisher'>" +item.publisher+"</span></div>"
     	                bl += "</div>"
     	                bl += "</a>"
     	                bl += "</li>"
@@ -152,37 +156,39 @@
     	        	}
     	        });
     	   }
+    	   
+    	   
     	   $.ajax({
-    		   url : 'BestSellerByTag.book',
+    		   url : 'GetBookListByTag.ajax',
     		   type : 'POST',
     		   dataType : "json",
     		   data: {
-    			   tagSelect :$(this).attr('name')
+    			   selectedTag :$(this).attr('name')
     		   },
     		   success: function(data) {
     				var totalCount=0;
     	            $("#book-list").empty();
     	            
 
-    	        		$.each(data, function (key, value) {
+    	        		$.each(data, function (index, item) {
     	                let bl = "<li>"
     	                bl += "<a>"
     	                bl += "<div class='image book-icon readingbook'>"
-    	                bl += "<img src='" + value.coverUrl +"'/> </div>"
+    	                bl += "<img src='" + item.coverUrl +"'/> </div>"
     	                bl += "<div class ='body'>"
     	                bl += "<span class = 'bedge-icon readingbook'>"
-    	                bl += "<span>" +value.categoryTag + "</span>"
+    	                bl += "<span>" +item.categoryTag + "</span>"
     	                bl += "</span>"
-    	                bl += "<span class='title'>" +value.title + "</span>"
+    	                bl += "<span class='title'>" +item.title + "</span>"
     	                
     	              //저자 길이 제한
-    	                if(value.author.length > 10){
-    	                	var shorten = value.author.substring(0,35)
-    	                	bl += "<span>" + shorten +"..."+"</span>"
+    	                if(item.author.length > 10){
+    	                	var shorten = item.author.substring(0,35)
+    	                	bl += "<span class='author'>" + shorten +"..."+"</span>"
     	                }else{
-    	                	bl += "<div><span class='author'>"+value.author+"</span>"
+    	                	bl += "<div><span class='author'>"+item.author+"</span>"
     	                }
-    	                bl += "<span class='publisher'>" +value.publisher+"</span></div>"
+    	                bl += "<span class='publisher'>" +item.publisher+"</span></div>"
     	                bl += "</div>"
     	                bl += "</a>"
     	                bl += "</li>"
@@ -279,8 +285,11 @@
       
     </div>
     <!--         end carousel -->
+
+
 <a href="Dashboard.admin">관리자페이지 테스트</a><br>
 <a href="SaveDataToDB.book"> DB 저장 테스트</a>
+
 <div class="container bestsellerbykeyward">
 <h3>키워드 별 베스트셀러</h3>
 <div class="bestsellercontents">
