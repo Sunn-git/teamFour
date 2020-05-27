@@ -52,7 +52,7 @@
 	      	  url: "http://book.interpark.com/api/recommend.api",
 	    	  data: {
 	    		  key: 'ECF73A29EE9688587F70A785201AB95DE352C2284B870EEE927ECAC11048DEDE',
-	    		  categoryId: '101',
+	    		  categoryId: '102',
 	    		  output: 'json'        		  
 	    	  },
 			  dataType: 'jsonp',
@@ -64,7 +64,6 @@
            		let dataArr = data.item;
 
         		$.each(dataArr, function (index, item) {
-        			console.log(item);
         			
                 let bl = "<li>"
                 bl += "<a>"
@@ -94,110 +93,8 @@
             }); //each end
            $('#total-length').empty();
            $('#total-length').append(totalCount)
-			console.log(totalCount)
         	}
         }); //ajax end
-        
-        ////////////////////////////////이거 수정함
-        
-        
-        
-        
-       //Tag Ajax Start
-       $(".swiper-slide").children().on("click", function () {
-    	   $(".swiper-slide").children().removeClass("active")
-    	   $(this).addClass("active")
-    	   if($(this).attr('name') == 'total'){
-    		   $.ajax({
-    	        	url : "AllBookAsync.book",
-    	        	type : "POST",
-    	        	dataType : "json",
-    	        	success : function(korBookList){
-    	        		var totalCount=0;
-    	            $("#book-list").empty();
-    	            
-
-    	        		$.each(korBookList, function (key, value) {
-    	                let bl = "<li>"
-    	                bl += "<a>"
-    	                bl += "<div class='image book-icon readingbook'>"
-    	                bl += "<img src='" + value.coverUrl +"'/> </div>"
-    	                bl += "<div class ='body'>"
-    	                bl += "<span class = 'bedge-icon readingbook'>"
-    	                bl += "<span>" +value.categoryTag + "</span>"
-    	                bl += "</span>"
-    	                bl += "<span class='title'>" +value.title + "</span>"
-    	                
-    	              //저자 길이 제한
-    	                if(value.author.length > 10){
-    	                	var shorten = value.author.substring(0,35)
-    	                	bl += "<span>" + shorten +"..."+"</span>"
-    	                }else{
-    	                	bl += "<div><span class='author'>"+value.author+"</span>"
-    	                }
-    	                bl += "<span class='publisher'>" +value.publisher+"</span></div>"
-    	                bl += "</div>"
-    	                bl += "</a>"
-    	                bl += "</li>"
-    	              
-    	              $('#book-list').append(bl)
-    	              totalCount+=1;
-    	              
-    	            }); //each end
-    	           $('#total-length').empty();
-    	           $('#total-length').append(totalCount)
-    				console.log(totalCount)
-    	        	}
-    	        });
-    	   }
-    	   $.ajax({
-    		   url : 'BestSellerByTag.book',
-    		   type : 'POST',
-    		   dataType : "json",
-    		   data: {
-    			   tagSelect :$(this).attr('name')
-    		   },
-    		   success: function(data) {
-    				var totalCount=0;
-    	            $("#book-list").empty();
-    	            
-
-    	        		$.each(data, function (key, value) {
-    	                let bl = "<li>"
-    	                bl += "<a>"
-    	                bl += "<div class='image book-icon readingbook'>"
-    	                bl += "<img src='" + value.coverUrl +"'/> </div>"
-    	                bl += "<div class ='body'>"
-    	                bl += "<span class = 'bedge-icon readingbook'>"
-    	                bl += "<span>" +value.categoryTag + "</span>"
-    	                bl += "</span>"
-    	                bl += "<span class='title'>" +value.title + "</span>"
-    	                
-    	              //저자 길이 제한
-    	                if(value.author.length > 10){
-    	                	var shorten = value.author.substring(0,35)
-    	                	bl += "<span>" + shorten +"..."+"</span>"
-    	                }else{
-    	                	bl += "<div><span class='author'>"+value.author+"</span>"
-    	                }
-    	                bl += "<span class='publisher'>" +value.publisher+"</span></div>"
-    	                bl += "</div>"
-    	                bl += "</a>"
-    	                bl += "</li>"
-    	              
-    	              $('#book-list').append(bl)
-    	              totalCount+=1;
-    	              
-    	            }); //each end
-    	           $('#total-length').empty();
-    	           $('#total-length').append(totalCount)
-    				console.log(totalCount)
-			}
-    		   
-    	   }) 
-    	   
-        })//tag axaj end
-        
       })
     </script>
   
@@ -236,7 +133,7 @@
 			<!-- <form action="#" class=""> -->
 	    		<label for="exampleFormControlSelect1">카테고리</label>
 				<div class="form-group has-rose row" style="padding-top:10px;">
-	    			<select class="col-sm-1" id="exampleFormControlSelect1" style="margin:4px 16px 4px 20px;">
+	    			<select id="searchFilter" class="col-sm-1" id="exampleFormControlSelect1" style="margin:4px 16px 4px 20px;">
 				      <option>제목</option>
 				      <option>저자</option>
 				      <option>출판사</option>
@@ -390,13 +287,20 @@
 
 		//검색 기능 : 일단은 버튼 클릭으로 만들고 나중에 keyup으로 변경하기
 		$('#bookSearchInputButton').click(function() {
+
+			console.log($('#searchFilter option:selected').val());
 			console.log($('#bookSearchInput').val());
+
 			$.ajax({
 				url:"GetBookSearchResult.ajax",
 				type:"post",
 				dataType:"json",
+				data: {
+					searchFilter : $('#searchFilter option:selected').val(),
+					bookSearchInput : $('#bookSearchInput').val()
+				},
 				success: function(data) {
-					console.log(data);
+					//console.log(data);
 				},
 				error: function() {
 					console.log("error");

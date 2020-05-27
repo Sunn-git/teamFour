@@ -38,9 +38,24 @@ public class GetBookSearchResultAjax extends HttpServlet {
 		System.out.println("requestURI : " + requestURI);
 		System.out.println("contextPath : " + contextPath);
 		System.out.println("url_Command : " + url_Command);
+		
+		String searchFilter = request.getParameter("searchFilter");
+		String bookSearchInput = request.getParameter("bookSearchInput");
 
 		BookDao dao = new BookDao();
-		List<BookDto> bookList = dao.getAllBookList();
+		
+		System.out.println("searchFilter"+searchFilter);
+		System.out.println("bookSearchInput"+bookSearchInput);
+		
+		List<BookDto> bookList = null;
+		
+		if(searchFilter == null && bookSearchInput == null) {
+			bookList = dao.getAllBookList();
+		}else if(searchFilter != null && bookSearchInput != null) {
+			bookList = dao.getBookList(searchFilter, bookSearchInput);
+		}
+		
+		
 		
 		request.setAttribute("bookList", bookList);
 //		System.out.println("bookList 확인 : " + bookList);

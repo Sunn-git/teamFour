@@ -187,12 +187,23 @@ public class BookDao {
 	
 	
 	//도서 목록 조건 조회 : 나중에 조건 에 따라서 다르게 검색되도록 하기
-	public List<BookDto> getBookList(String title, String author, String publisher){
+	public List<BookDto> getBookList(String searchFilter, String bookSearchInput){
 		List<BookDto> bookList = null;
 		
 		try {
 			conn = ds.getConnection();
 			String sql = "";
+			
+			if(searchFilter.equals("제목")) {
+				sql = "";
+			}else if(searchFilter.equals("저자")) {
+				sql = "";
+			}else if(searchFilter.equals("출판사")) {
+				sql = "";
+			}
+			
+			System.out.println("sql 확인 : "+ sql);
+			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			

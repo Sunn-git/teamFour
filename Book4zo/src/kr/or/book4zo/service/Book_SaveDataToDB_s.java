@@ -76,17 +76,17 @@ public class Book_SaveDataToDB_s implements Action{
 				
 				JSONObject tmp = (JSONObject)item.get(i);
 				
-				String isbn = (String)tmp.get("isbn");
-				String title = (String)tmp.get("title");
-				String author = (String)tmp.get("author");
-				String translator = (tmp.get("translator") == null) ? "" : (String)tmp.get("translator");
-				String coverurl = (String)tmp.get("coverLargeUrl");
-				String publisher = (String)tmp.get("publisher");
-				String categoryid = (String)tmp.get("categoryId"); // 이거 타입 확인하기
+				String isbn = ((String)tmp.get("isbn")).trim();
+				String title = ((String)tmp.get("title")).trim();
+				String author = ((String)tmp.get("author")).trim();
+				String translator = (tmp.get("translator") == null) ? "" : ((String)tmp.get("translator")).trim();
+				String coverurl = ((String)tmp.get("coverLargeUrl")).trim();
+				String publisher = ((String)tmp.get("publisher")).trim();
+				String categoryid = ((String)tmp.get("categoryId")).trim(); // 이거 타입 확인하기
 //				String categorytag = (String)tmp.get("categoryTag");
 				Long price = (Long)tmp.get("priceStandard"); // dto 타입 변경해주기
-				String pubDate = (String)tmp.get("pubDate");
-				String description = (String)tmp.get("description");
+				String pubDate = ((String)tmp.get("pubDate")).trim();
+				String description = ((String)tmp.get("description")).trim();
 				Long rank = (Long)tmp.get("rank");
 
 				
@@ -108,7 +108,7 @@ public class Book_SaveDataToDB_s implements Action{
 
 	
 				try {
-					System.out.println("타나?");
+					
 					 int result = dao.insertBookListToDB(book);
 					 System.out.println(result);
 					 
