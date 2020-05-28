@@ -54,10 +54,8 @@ public class BookDao {
 		int result = 0;
 		
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			//여기서 DB 아이디랑 바꿔주기
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "BOOKTEAMTEST", "1004");
-
+			conn = ds.getConnection();
+			
 			String sql = "INSERT INTO BOOK(BOOK_SEQ, ISBN, TITLE, AUTHOR, TRANSLATOR, COVER_URL, PUBLISHER," + 
 						 				  "CATEGORY_ID, PRICE_STANDARD, PUB_DATE, DESCRIPTION, RANK)" + 
 						 		   "VALUES(BOOK_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -96,7 +94,7 @@ public class BookDao {
 		try {
 			conn = ds.getConnection();
 
-			String sql = "SELECT B.BOOK_SEQ, B.ISBN, B.TITLE, B.AUTHOR, B.TRANSLATOR, B.COVER_URL, B.PUBLISHER, B.CATEGORY_ID, C.CATEGORY_TAG, B.PRICE_STANDARD, B.PUB_DATE, B.DESCRIPTION, B.RANK FROM BOOK B JOIN CATEGORY C ON B.CATEGORY_ID = C.CATEGORY_ID";
+			String sql = "SELECT B.BOOK_SEQ, B.ISBN, B.TITLE, B.AUTHOR, B.TRANSLATOR, B.COVER_URL, B.PUBLISHER, B.CATEGORY_ID, C.CATEGORY_TAG, B.PRICE_STANDARD, B.PUB_DATE, B.DESCRIPTION, B.RANK FROM BOOK B JOIN CATEGORY C ON B.CATEGORY_ID = C.CATEGORY_ID ORDER BY RANK ASC";
 			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -116,7 +114,7 @@ public class BookDao {
 				book.setCategoryId(rs.getInt("CATEGORY_ID"));
 //				System.out.println("카테고리 태그 확인" + rs.getString("CATEGORY_TAG"));
 				book.setCategoryTag(rs.getString("CATEGORY_TAG"));
-				System.out.println("들어갔는지 확인 : " + book.getCategoryTag());
+				//System.out.println("들어갔는지 확인 : " + book.getCategoryTag());
 				book.setPriceStandard(rs.getLong("PRICE_STANDARD"));
 				book.setPubDate(rs.getString("PUB_DATE"));
 				book.setDescription(rs.getString("DESCRIPTION"));
@@ -142,7 +140,7 @@ public class BookDao {
 		
 		try {
 			conn = ds.getConnection();
-
+			
 			String sql = "SELECT B.BOOK_SEQ, B.ISBN, B.TITLE, B.AUTHOR, B.TRANSLATOR, B.COVER_URL, B.PUBLISHER, B.CATEGORY_ID, C.CATEGORY_TAG, B.PRICE_STANDARD, B.PUB_DATE, B.DESCRIPTION, B.RANK FROM BOOK B JOIN CATEGORY C ON B.CATEGORY_ID = C.CATEGORY_ID WHERE C.CATEGORY_TAG = ? ORDER BY RANK ASC";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -164,7 +162,7 @@ public class BookDao {
 				book.setCategoryId(rs.getInt("CATEGORY_ID"));
 //				System.out.println("카테고리 태그 확인" + rs.getString("CATEGORY_TAG"));
 				book.setCategoryTag(rs.getString("CATEGORY_TAG"));
-				System.out.println("들어갔는지 확인 : " + book.getCategoryTag());
+				//System.out.println("들어갔는지 확인 : " + book.getCategoryTag());
 				book.setPriceStandard(rs.getLong("PRICE_STANDARD"));
 				book.setPubDate(rs.getString("PUB_DATE"));
 				book.setDescription(rs.getString("DESCRIPTION"));
@@ -198,8 +196,8 @@ public class BookDao {
 						" JOIN CATEGORY C" + 
 						" ON B.CATEGORY_ID = C.CATEGORY_ID";
 			
-			System.out.println("searchFilter : "+searchFilter);
-			System.out.println("bookSearchInput"+bookSearchInput);
+			//System.out.println("searchFilter : "+searchFilter);
+			//System.out.println("bookSearchInput : "+bookSearchInput);
 			
 			if(searchFilter.equals("제목")) {
 				sql += " WHERE B.TITLE = ?";
@@ -209,7 +207,7 @@ public class BookDao {
 				sql += " WHERE B.PUBLISHER = ?";
 			}
 			
-			System.out.println("sql 확인 : "+ sql);
+			//System.out.println("sql 확인 : "+ sql);
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bookSearchInput);
@@ -236,7 +234,7 @@ public class BookDao {
 				book.setDescription(rs.getString("DESCRIPTION"));
 				book.setRank(rs.getLong("RANK"));
 				
-				System.out.println("book 확인 : "+book);
+				//System.out.println("book 확인 : "+book);
 				bookList.add(book);	
 			}
 						

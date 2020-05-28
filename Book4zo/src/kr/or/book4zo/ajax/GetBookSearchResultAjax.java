@@ -44,8 +44,8 @@ public class GetBookSearchResultAjax extends HttpServlet {
 
 		BookDao dao = new BookDao();
 		
-		System.out.println("searchFilter"+searchFilter);
-		System.out.println("bookSearchInput"+bookSearchInput);
+		System.out.println("searchFilter : "+searchFilter);
+		System.out.println("bookSearchInput : "+bookSearchInput);
 		
 		List<BookDto> bookList = null;
 		
@@ -55,7 +55,7 @@ public class GetBookSearchResultAjax extends HttpServlet {
 			bookList = dao.getBookList(searchFilter, bookSearchInput);
 		}
 		
-		System.out.println("bookList 확인 : "+ bookList);
+		//System.out.println("bookList 확인 : "+ bookList);
 		
 		
 		

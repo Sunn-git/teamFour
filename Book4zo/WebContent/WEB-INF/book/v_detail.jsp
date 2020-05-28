@@ -69,6 +69,10 @@
         }
 
     </style>
+
+      <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 
 </head>
 
 <body class="focus-free">
@@ -112,7 +116,12 @@
                             <h1 class="PageBookDetail_BookTitle">${book.title}</h1>
                             <p class="PageBookDetail_BookElements">
                                 <span class="PageBookDetail_Authors">${book.author} 저</span>
-                                <span class="PageBookDetail_Publisher"> ·  ${book.translator} 역</span>
+
+								<!-- 역자가 null이 아닌 경우에만 출력 -->                                
+                                <c:if test="${book.translator != null}">
+                                	<span class="PageBookDetail_Publisher"> ·  ${book.translator} 역</span>                                
+                                </c:if>
+ 
                                 <span class="PageBookDetail_FileType">${book.publisher} 출판</span>
                                 <span class="PageBookDetail_FileSize"> · ${book.isbn}</span>
                             <p class="PageBookDetail_RatingSummary">
@@ -122,15 +131,16 @@
                                         <span class="StarRating_Icon_Foreground" style="width: 74px; height: 15px;"></span>
                                     </span>
                                 </span>
-                                <span class="PageBookDetail_RatingSummaryAverage">4.3점</span>
-                                <span class="PageBookDetail_RatingSummaryCount">(187명)</span>
+                                <!-- 평점이 들어가야 하는데 댓글 별점 평균을 실시간으로 반영해야해서 book객체에 점수를 저장할 수 없다.(아니면 평점 추가될 때마다 매번 reset돼야함..) 비동기로 하는게 낫겠다 -->
+                                <span class="PageBookDetail_RatingSummaryAverage">{request로 평점평균 받아오기}</span>
+                                <span class="PageBookDetail_RatingSummaryCount"> ( {리뷰 개수} 명 )</span>
                             </p>
                             <div class="PageBookDetail_DownloadWrapper">
                                 <!-- 포스트로 이동하는 경로 넣을 부분 -->
                                 <!-- <a class="RUIButton RUIButton-color-blue RUIButton-size-large PageBookDetail_DownloadButton PageBookDetail_DownloadButton-large" href="/intro" style="background-color: rgb(255, 255, 255); color: rgb(104, 17, 53); border-style: none;">  
                                     포스트 작성하기
                                 </a> -->
-                                <a href="javascript:;" class="btn btn-rose btn-lg" role="button" aria-disabled="true">템플릿 포스트 작성하기 버튼</a>
+                                <a href="javascript:;" class="btn btn-rose btn-lg" role="button" aria-disabled="true">포스트 작성하기</a>
 
                             </div>
                         </div>
@@ -214,7 +224,7 @@
                                     <div class="StarRatingForm">
                                         <div class="BuyerRatingSummary">
                                             <p class="AverageRating_Title">리뷰어 별점</p>
-                                            <div class="AverageRating_Score">4.3 <span class="a11y">점</span></div>
+                                            <div class="AverageRating_Score">{request로 평점평균 받아오기}<span class="a11y">점</span></div>
                                             <span class="StarRating_IconBox AverageRating_StarRating" style="width: 76px; height: 16px;">
                                                 <span class="StarRating_Icon_Background" style="width: 76px; height: 16px;"></span>
                                                 <span class="StarRating_Icon_Foreground_Mask" style="width: 65.36px; height: 16px;">
@@ -222,7 +232,7 @@
                                                 </span>
                                             </span>
                                                
-                                            <p class="ParticipantCount"><strong class="ParticipantCount_Num">187</strong>명이 평가함</p>
+                                            <p class="ParticipantCount"><strong class="ParticipantCount_Num">{리뷰 개수}</strong> 명이 평가함</p>
                                         </div>
                                     </div>
                                 </div>
@@ -248,6 +258,7 @@
                                         </div>
 
                                         <!-- 왕별점 부분 mouseover, mouseout 으로 클래스 줘서 별 채우는 이벤트 주기 -->
+                                        <!-- StarRatingInput_Label-filled 이거 반영되고있어 ?? -->
                                         <div class="StarRatingForm_Row" style="margin-top: -20px;">
                                             <div class="StarRatingInput StarRatingForm_Input">
                                                 <label for="MyStarRating1" class="StarRatingInput_Label" data-rating="1">
@@ -500,6 +511,34 @@
         </main>
 
    </div>
+
+   <script>
+       $(function() {
+
+            //리뷰 왕별 click하면 채워지게 만들기 
+        $('.StarRatingInput_Label').click(function() {
+            $('.StarRatingInput_Label').addClass('StarRatingInput_Label-filled');
+            $(this).nextAll('label').removeClass('StarRatingInput_Label-filled');
+            $('.StarRatingInput_Label').removeAttr('checked');
+            $(this).attr('checked', 'checked');
+        });
+
+            //리뷰 왕별 hover하면 채워지게 만들기 
+        $('.StarRatingInput_Label').hover(function() {
+            $('.StarRatingInput_Label').addClass('StarRatingInput_Label-filled');
+            $(this).nextAll('label').removeClass('StarRatingInput_Label-filled');
+        }, function() {
+            $('.StarRatingInput_Label').addClass('StarRatingInput_Label-filled');
+            $('label[checked]').nextAll().removeClass('StarRatingInput_Label-filled');
+        });
+
+
+        
+        
+     
+       });
+
+   </script>
    
     <!-- <script type="text/javascript" src="https://select.ridicdn.net/vendors.abe0308b14689e858b31.js"></script>  -->
     <!-- 여기에 접근막는거 + 댓글 들어있음 -->

@@ -36,6 +36,8 @@ public class Book_Detail_s implements Action{
 			BookDto book = dao.getABookByBookSeq(Integer.parseInt(request.getParameter("bookSeq")));
 			request.setAttribute("book", book);
 			
+			//댓글 dao를 여기 만들어서 리뷰 리스트, 리뷰 평점 평균을  request에 set하기
+			
 		    forward = new ActionForward();
 		    forward.setRedirect(false);
 		    forward.setPath("/WEB-INF/book/v_detail.jsp");
