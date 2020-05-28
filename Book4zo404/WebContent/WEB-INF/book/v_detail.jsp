@@ -239,7 +239,7 @@
 
                                 <div class="StarRatingForm_Row" style="float: right;">
                                     <div class="StarRatingForm">
-                                        <div class="StarRatingForm_Row" style="height: 100px; padding: 30px 0 10px 0;">
+                                        <div id="StarRatingForm_text"class="StarRatingForm_Row" style="height: 100px; padding: 30px 0 10px 0;">
                                                                                         
                                             <!-- 원래 내용 -->
                                             
@@ -258,7 +258,7 @@
                                         </div>
 
                                         <!-- 왕별점 부분 mouseover, mouseout 으로 클래스 줘서 별 채우는 이벤트 주기 -->
-                                        <!-- StarRatingInput_Label-filled 이거 반영되고있어 ?? -->
+                                        <!-- StarRatingInput_Label-filled -->
                                         <div class="StarRatingForm_Row" style="margin-top: -20px;">
                                             <div class="StarRatingInput StarRatingForm_Input">
                                                 <label for="MyStarRating1" class="StarRatingInput_Label" data-rating="1">
@@ -515,21 +515,54 @@
    <script>
        $(function() {
 
-            //리뷰 왕별 click하면 채워지게 만들기 
+           
         $('.StarRatingInput_Label').click(function() {
-            $('.StarRatingInput_Label').addClass('StarRatingInput_Label-filled');
-            $(this).nextAll('label').removeClass('StarRatingInput_Label-filled');
-            $('.StarRatingInput_Label').removeAttr('checked');
-            $(this).attr('checked', 'checked');
+             //리뷰 왕별 click하면 채워지게 만들기 (댓글에 들어가는 별점 여기서 적용되게 해야함)
+             $('.StarRatingInput_Label').removeClass('StarRatingInput_Label-filled');
+             $('label:lt('+$(this)[0].dataset.rating+')').addClass('StarRatingInput_Label-filled');
+             $('.StarRatingInput_Label').removeAttr('checked');
+             $(this).attr('checked', 'checked');
+
+
+             // 별점 클릭하면 상단에 내가 선택한 점수 출력
+            $('#StarRatingForm_text').empty();
+
+            let myRating = '<div class="MyStarRatingStatus">';
+                myRating += '<p class="MyStarRatingStatus_Description">내가 남긴 별점 ';
+                myRating += '<span class="MyStarRatingStatus_Rating">'+$(this).find('.a11y')[0].innerText+'</span></p>';
+                myRating += '<button id="MyStarRatingStatus_CancelButton" class="MyStarRatingStatus_CancelButton" type="button">취소</button></div>';
+    
+                $('#StarRatingForm_text').append(myRating);
+
         });
+
+            //별점 취소
+        $(document).on("click", "#MyStarRatingStatus_CancelButton", function() {
+            $('#StarRatingForm_text').empty();
+            $('#StarRatingForm_text').append('<p class="StarRatingTooltip_Guide" style="padding: 30px auto;">이 책을 평가해주세요!</p>');
+            $('.StarRatingInput_Label').removeAttr('checked');
+            $('.StarRatingInput_Label').removeClass('StarRatingInput_Label-filled');
+            
+        });
+
 
             //리뷰 왕별 hover하면 채워지게 만들기 
         $('.StarRatingInput_Label').hover(function() {
-            $('.StarRatingInput_Label').addClass('StarRatingInput_Label-filled');
-            $(this).nextAll('label').removeClass('StarRatingInput_Label-filled');
-        }, function() {
-            $('.StarRatingInput_Label').addClass('StarRatingInput_Label-filled');
-            $('label[checked]').nextAll().removeClass('StarRatingInput_Label-filled');
+                $('.StarRatingInput_Label').addClass('StarRatingInput_Label-filled');
+                $(this).nextAll('label').removeClass('StarRatingInput_Label-filled');
+            }, function() {
+                $('.StarRatingInput_Label').removeClass('StarRatingInput_Label-filled');
+                $('label:lt('+$('label[class=StarRatingInput_Label][checked=checked]')[0].dataset.rating+')').addClass('StarRatingInput_Label-filled');
+
+                // console.log(($(this)[0].dataset.rating));
+                // console.log($('label:lt('+$(this)[0].dataset.rating+')'));
+                // $('label:lt('+$(this)[0].dataset.rating+')').addClass('StarRatingInput_Label-filled');
+                // console.log($('label[class=StarRatingInput_Label][checked=checked]'));
+
+
+                //$('.StarRatingInput_Label').addClass('StarRatingInput_Label-filled');
+                // console.log( $('label[checked]'));
+               // $('label[class=StarRatingInput_Label][checked=checked]').nextAll().removeClass('StarRatingInput_Label-filled');
         });
 
 
