@@ -189,7 +189,7 @@ public class BookDao {
 	//도서 목록 조건 조회 : 나중에 조건 에 따라서 다르게 검색되도록 하기
 	public List<BookDto> getBookList(String searchFilter, String bookSearchInput){
 		List<BookDto> bookList = null;
-		
+		System.out.println("getBookList");
 		try {
 			conn = ds.getConnection();
 			String sql = "SELECT B.BOOK_SEQ, B.ISBN, B.TITLE, B.AUTHOR, NVL(B.TRANSLATOR, '국내도서') TRANSLATOR, B.COVER_URL, B.PUBLISHER," + 
@@ -197,6 +197,9 @@ public class BookDao {
 						" FROM BOOK B" + 
 						" JOIN CATEGORY C" + 
 						" ON B.CATEGORY_ID = C.CATEGORY_ID";
+			
+			System.out.println("searchFilter : "+searchFilter);
+			System.out.println("bookSearchInput"+bookSearchInput);
 			
 			if(searchFilter.equals("제목")) {
 				sql += " WHERE B.TITLE = ?";
@@ -206,7 +209,7 @@ public class BookDao {
 				sql += " WHERE B.PUBLISHER = ?";
 			}
 			
-			//System.out.println("sql 확인 : "+ sql);
+			System.out.println("sql 확인 : "+ sql);
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bookSearchInput);
@@ -233,12 +236,12 @@ public class BookDao {
 				book.setDescription(rs.getString("DESCRIPTION"));
 				book.setRank(rs.getLong("RANK"));
 				
-//				System.out.println("book 확인 : "+book);
+				System.out.println("book 확인 : "+book);
 				bookList.add(book);	
 			}
 						
 		} catch (Exception e) {
-			System.out.println("getAllBookList 에러 : "+e.getMessage());
+			System.out.println("getBookList 에러 : "+e.getMessage());
 			e.printStackTrace();			
 		}finally {
 			closed();
