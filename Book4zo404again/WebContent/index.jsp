@@ -75,7 +75,7 @@
 
         		$.each(data, function (index, item) {
                 let bl = "<li>"
-                bl += "<a>"
+                bl += "<a href='Detail.book?bookSeq="+ item.bookSeq +"'>"
                 bl += "<div class='image book-icon readingbook'>"
                 bl += "<img src='" + item.coverUrl +"'/> </div>"
                 bl += "<div class ='body'>"
@@ -125,7 +125,7 @@
 
     	        		$.each(data, function (index, item) {
     	                let bl = "<li>"
-    	                bl += "<a>"
+    	                bl += "<a href='Detail.book?bookSeq="+ item.bookSeq +"'>"
     	                bl += "<div class='image book-icon readingbook'>"
     	                bl += "<img src='" + item.coverUrl +"'/> </div>"
     	                bl += "<div class ='body'>"
@@ -172,7 +172,7 @@
 
     	        		$.each(data, function (index, item) {
     	                let bl = "<li>"
-    	                bl += "<a>"
+    	                bl += "<a href='Detail.book?bookSeq="+ item.bookSeq +"'>"
     	                bl += "<div class='image book-icon readingbook'>"
     	                bl += "<img src='" + item.coverUrl +"'/> </div>"
     	                bl += "<div class ='body'>"

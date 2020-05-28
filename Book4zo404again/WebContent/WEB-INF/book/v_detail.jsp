@@ -102,7 +102,7 @@
                     <span class="Left_GradientOverlay" style="background: linear-gradient(to right, rgb(139, 23, 71) 0%, rgba(255, 255, 255, 0) 100%);"></span>
                     <span class="Right_GradientOverlay" style="background: linear-gradient(to left, rgb(139, 23, 71) 0%, rgba(255, 255, 255, 0) 100%);"></span>
                 </span>
-                <div class="PageBookDetail_HeaderMask" style="background-color: rgba(139, 23, 71, 0.93); max-height: 400px; overflow: hidden;">
+                <div class="PageBookDetail_HeaderMask" style="background-color: rgba(139, 23, 71, 0.93); max-height: 450px; overflow: hidden;">
                     <div class="PageBookDetail_HeaderContent">
                         <div class="PageBookDetail_ThumbnailWrapper">
                             <button class="PageBookDetail_ThumbnailButton">
