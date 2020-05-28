@@ -307,7 +307,7 @@
                             </div>
             
                             <div class="ReviewForm">
-                                <textarea class="ReviewTextarea col-sm-12" name="reviewContent" title="리뷰 입력" placeholder="리뷰를 작성해주세요." style="height: 45.9844px;"></textarea>
+                                <textarea class="ReviewTextarea col-sm-12" id="reviewContent" name="reviewContent" title="리뷰 입력" placeholder="리뷰를 작성해주세요. (최대 150자 까지 작성할 수 있습니다)" style="height: 45.9844px;"></textarea>
                                 <div class="ReviewForm_ButtonsWrapper">
                                     <div style="display: inline-block;"></div>
                                     <button class="btn btn-rose btn-sm center">리뷰 남기기</button>
@@ -526,14 +526,18 @@
    <script>
        $(function() {
     	   
-    	   //책소개 계속보기
+    	   //책소개 계속보기. 근데 리디에는 접기가 없다. 안해도 될까?
     	   $('#BookDetail_ContentTruncButton').click(function(){
-    		   console.log('클릭 ');
     		   $('#BookDetail_Description').empty();
-    		   
     		   $('#BookDetail_Description').append('${book.description}');
-    		   
-    		   
+    	   	});
+    	   
+    	   
+    	   //리뷰 입력창 글자수 한글 150자 제한하기
+    	   $('#reviewContent').keyup(function(){
+    		   if($('#reviewContent').val().length > 150){
+    			   $('#reviewContent').val($('#reviewContent').val().substring(0,150));
+    		   }
     	   });
 
            

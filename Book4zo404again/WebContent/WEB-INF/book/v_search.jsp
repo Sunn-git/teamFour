@@ -33,6 +33,8 @@
     <script type="text/javascript">
 
     $(function () {
+    	
+    	//이거 쓸 수도 있어서 일단 남겨둠
         var isGrid = true
         $("#list-type-btn").on("click", function () {
           isGrid = !isGrid
@@ -289,6 +291,65 @@
 		//검색 기능 : 일단은 버튼 클릭으로 만들고 나중에 keyup으로 변경하기
 		$('#bookSearchInputButton').click(function() {
 
+			//console.log($('#searchFilter option:selected').val());
+			//console.log($('#bookSearchInput').val());
+
+			$.ajax({
+				url:"GetBookSearchResult.ajax",
+				type:"post",
+				dataType:"json",
+				data: {
+					searchFilter : $('#searchFilter option:selected').val(),
+					bookSearchInput : $('#bookSearchInput').val()
+				},
+				success: function(data){
+	        		console.log(data);
+	        		var totalCount=0;
+	        		
+	            $("#bookSearchResultCard").empty();
+	            $('#bookSearchResultCard').append('<ul id="book-list" class="book-list grid"></ul>');
+
+	        		$.each(data, function (index, item) {
+	                let bl = "<li>"
+	                bl += "<a href='Detail.book?bookSeq="+ item.bookSeq +"'>"
+	                bl += "<div class='image book-icon readingbook'>"
+	                bl += "<img src='" + item.coverUrl +"'/> </div>"
+	                bl += "<div class ='body'>"
+	                bl += "<span class = 'bedge-icon readingbook'>"
+	                bl += "<span>" +item.categoryTag + "</span>"
+	                bl += "</span>"
+	                bl += "<span class='title'>" +item.title + "</span>"
+	                
+	              //저자 길이 제한
+	                if(item.author.length > 10){
+	                	var shorten = item.author.substring(0,35)
+	                	bl += "<span class='author'>" + shorten +"..."+"</span>"
+	                }else{
+	                	bl += "<div><span class='author'>"+item.author+"</span>"
+	                }
+	                bl += "<span class='publisher'>" +item.publisher+"</span></div>"
+	                bl += "</div>"
+	                bl += "</a>"
+	                bl += "</li>"
+	              
+	              $('#book-list').append(bl)
+	              totalCount+=1;
+	              
+	            }); //each end
+	           $('#total-length').empty();
+	           $('#total-length').append(totalCount)
+				console.log(totalCount)
+	        	},
+				error: function() {
+					console.log("error");
+				}
+			});
+		});
+	
+	
+		//keyup 검색기능 bookSearchInput
+		$('#bookSearchInput').keyup(function() {
+
 			console.log($('#searchFilter option:selected').val());
 			console.log($('#bookSearchInput').val());
 
@@ -343,7 +404,6 @@
 				}
 			});
 		});
-		
 		
 	});
 </script>

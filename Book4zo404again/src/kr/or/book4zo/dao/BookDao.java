@@ -199,11 +199,11 @@ public class BookDao {
 			//System.out.println("bookSearchInput : "+bookSearchInput);
 			
 			if(searchFilter.equals("제목")) {
-				sql += " WHERE B.TITLE = ?";
+				sql += " WHERE B.TITLE LIKE '%' ||?|| '%'";
 			}else if(searchFilter.equals("저자")) {
-				sql += " WHERE B.AUTHOR = ?";
+				sql += " WHERE B.AUTHOR LIKE '%' ||?|| '%'";
 			}else if(searchFilter.equals("출판사")) {
-				sql += " WHERE B.PUBLISHER = ?";
+				sql += " WHERE B.PUBLISHER LIKE '%' ||?|| '%'";
 			}
 			
 			//System.out.println("sql 확인 : "+ sql);
