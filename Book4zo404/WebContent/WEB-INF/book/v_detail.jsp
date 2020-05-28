@@ -171,7 +171,7 @@
 
 
             <section class="PageBookDetail_Panel">
-                <h2 class="PageBookDetail_PanelTitle">포스트</h2>
+                <h2 class="PageBookDetail_PanelTitle"><strong>포스트</strong></h2>
                 <div class="PageBookDetail_PanelContent">
                     <div class="card text-left col-sm-10" style="border: 1px solid lightgray; margin: 10px auto 20px auto;">
                         <div class="card-body">
@@ -553,16 +553,6 @@
             }, function() {
                 $('.StarRatingInput_Label').removeClass('StarRatingInput_Label-filled');
                 $('label:lt('+$('label[class=StarRatingInput_Label][checked=checked]')[0].dataset.rating+')').addClass('StarRatingInput_Label-filled');
-
-                // console.log(($(this)[0].dataset.rating));
-                // console.log($('label:lt('+$(this)[0].dataset.rating+')'));
-                // $('label:lt('+$(this)[0].dataset.rating+')').addClass('StarRatingInput_Label-filled');
-                // console.log($('label[class=StarRatingInput_Label][checked=checked]'));
-
-
-                //$('.StarRatingInput_Label').addClass('StarRatingInput_Label-filled');
-                // console.log( $('label[checked]'));
-               // $('label[class=StarRatingInput_Label][checked=checked]').nextAll().removeClass('StarRatingInput_Label-filled');
         });
 
 
