@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.corba.se.spi.orbutil.fsm.Action;
-
+import kr.or.book4zo.action.Action;
 import kr.or.book4zo.action.ActionForward;
+import kr.or.book4zo.service.book.Book_SaveDataToDB_s;
 
 /**
  * Servlet implementation class Controller
@@ -66,6 +66,20 @@ public class BookController extends HttpServlet {
 			forward.setRedirect(false);
 			forward.setPath("/WEB-INF/book/v_detail.jsp");
 		}
+		
+		//---------------- action ------------------
+		
+		
+		///////////////////////////////////////////////////
+		//API 자료를 DB에 저장하기
+	    else if(urlCmd.equals("/SaveDataToDB.book")) {
+	       System.out.println("/SaveDataToDB.book 실행");
+	         
+	       action = new Book_SaveDataToDB_s();
+	       forward = action.execute(request, response);
+	       System.out.println("SaveDataToDB.book 끝");
+	         
+	    }
 
 		///////////////////////////////////////////////////////////////////////
 		//------------------------뷰로 실제로 보내주는 역할.-------------------------
@@ -74,7 +88,7 @@ public class BookController extends HttpServlet {
 		response.sendRedirect(forward.getPath());
 		}
 		else {
-		//이 새*가 뷰단을 진짜 지정해서 보내는거임. 나는 만들기만 하고 한번도 보낸적이 없다
+		//여기서 뷰단을 진짜 지정해서 보내는거임. 나는 만들기만 하고 한번도 보낸적이 없다
 		RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
 		dis.forward(request, response);
 		}

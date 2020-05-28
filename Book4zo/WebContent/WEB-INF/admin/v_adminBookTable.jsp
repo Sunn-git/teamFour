@@ -21,24 +21,21 @@
   <link href="${pageContext.request.contextPath}/admin_assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath}/admin_assets/demo/demo.css" rel="stylesheet" />
-  
+  <!-- 데이터테이블 CDN -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" crossorigin="anonymous">
 </head>
 
 <body class="">
   <div class="wrapper ">
       <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
-        <a href="https://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="Main.book" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="${pageContext.request.contextPath}/assets/img/logo-small.png">
+            <img src="${pageContext.request.contextPath}/admin_assets/img/logo-small.png">
           </div>
-          <!-- <p>CT</p> -->
         </a>
-        <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="Main.book" class="simple-text logo-normal">
           Review 4 Book
-          <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
         </a>
       </div>
       <div class="sidebar-wrapper">
@@ -61,7 +58,13 @@
               <p>도서 리스트</p>
             </a>
           </li>
-          
+          <li>
+            <a href="Main.book">
+                  <i class="nc-icon nc-air-baloon"></i>
+              <p>메인 돌아가기</p>
+            </a>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -77,122 +80,18 @@
               </div>
               <div class="card-body"><button class="btn btn-outline-primary"><a href="InsertBookView.admin">책 추가하기</a></button></div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
+                <div id="searchResult" class="table-responsive">
+                  <table id="myTable" class="myTable hover table">
                     <thead class=" text-primary">
-                      <th>
-                        Name
-                      </th>
-                      <th>
-                        Country
-                      </th>
-                      <th>
-                        City
-                      </th>
-                      <th class="text-right">
-                        Salary
-                      </th>
+                      <tr>
+                      	<th>책 이미지</th>
+                      	<th>책 제목</th>
+                      	<th>책 저자</th>
+                      	<th>출판사</th>
+                      	<th>번역가</th>
+                      	<th>정가</th>
+                      </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          Dakota Rice
-                        </td>
-                        <td>
-                          Niger
-                        </td>
-                        <td>
-                          Oud-Turnhout
-                        </td>
-                        <td class="text-right">
-                          $36,738
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Minerva Hooper
-                        </td>
-                        <td>
-                          Curaçao
-                        </td>
-                        <td>
-                          Sinaai-Waas
-                        </td>
-                        <td class="text-right">
-                          $23,789
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Sage Rodriguez
-                        </td>
-                        <td>
-                          Netherlands
-                        </td>
-                        <td>
-                          Baileux
-                        </td>
-                        <td class="text-right">
-                          $56,142
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Philip Chaney
-                        </td>
-                        <td>
-                          Korea, South
-                        </td>
-                        <td>
-                          Overland Park
-                        </td>
-                        <td class="text-right">
-                          $38,735
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Doris Greene
-                        </td>
-                        <td>
-                          Malawi
-                        </td>
-                        <td>
-                          Feldkirchen in Kärnten
-                        </td>
-                        <td class="text-right">
-                          $63,542
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Mason Porter
-                        </td>
-                        <td>
-                          Chile
-                        </td>
-                        <td>
-                          Gloucester
-                        </td>
-                        <td class="text-right">
-                          $78,615
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Jon Porter
-                        </td>
-                        <td>
-                          Portugal
-                        </td>
-                        <td>
-                          Gloucester
-                        </td>
-                        <td class="text-right">
-                          $98,615
-                        </td>
-                      </tr>
-                    </tbody>
                   </table>
                 </div>
               </div>
@@ -219,5 +118,74 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath}/admin_assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath}/admin_assets/demo/demo.js"></script>
+
+<!-- 제이쿼리 CDN -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 
+ 
+ <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript"></script>
+ 
+  <!-- 비동기 -->
+  <script type="text/javascript">
+	$(function(){		
+		var data = "";
+		console.log('작동?');
+		$.ajax(
+			{
+				url:"BookList.ajax",
+				type:"POST",
+				dataType:"json",
+				//data: "",
+				success:function(responsedata){
+					console.log(responsedata);
+					
+					
+			   		$('#myTable').dataTable(
+			   	   			{ 
+			   	   				ajax:{
+			   	   					'url':'BookList.ajax', //이건 왜 필요한거지..
+			   	   					'contentType': 'application/x-www-form-urlencoded; charset=UTF-8',
+			   	   					'dataSrc': {
+			   	   						"data": [responsedata]
+			   	   					}
+			   	   				},
+			   	   				columns:[
+			   	   					{"data": "coverUrl",
+			   	                        	 "render": function(data){
+			   	                             data = "<img alt='' src='"+ data +"' style='width: 160px; >";
+			   	                             return data;
+			   	                         	 },
+			   	                         	 "orderable":false
+			   						},
+			   	   					{"data": "title"},
+			   	   					{"data": "author"},
+			   	   					{"data": "publisher"},
+			   	   					{"data": "translator",
+			   	   							 "render" : function(data){
+			   	   								 if(data==null){
+			   	   									 data= "국내 도서";
+			   	   								 }
+			   	   								 return data;
+			   	   							 }
+			   	   					},
+			   	   					{"data": "priceStandard"}
+			   	   				]
+			   	   				
+			   	   			}		
+			   	   		);
+					
+					
+				},
+				error: function(){
+					console.log("에러");
+				}
+			}		
+		);	
+		
+	});
+	
+
+</script>
 </body>
 </html>

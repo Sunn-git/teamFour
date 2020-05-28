@@ -123,7 +123,7 @@ public class UserDao {
 	   }
 	//----------------- 전체 user List 조회 -----------------
 	
-	public List<UserDto> getEmpListByDeptno() {
+	public List<UserDto> getUserList() {
 		List<UserDto> userList = null;
 		
 		try { // 다중select던, 단일 select던, 쿼리문만 다르고 리스트로 받고 리스트로 출력하면 편하지않나? 내일 해보기
@@ -160,7 +160,7 @@ public class UserDao {
 	}
 	//----------------- user_id로 user List 조회 -----------------
 	
-		public List<UserDto> getEmpListByDeptno(String user_id) {
+		public List<UserDto> getUserListByUser_id(String user_id) {
 	        List<UserDto> userList = null;
 	        
 	        try { // 다중select던, 단일 select던, 쿼리문만 다르고 리스트로 받고 리스트로 출력하면 편하지않나? 내일 해보기

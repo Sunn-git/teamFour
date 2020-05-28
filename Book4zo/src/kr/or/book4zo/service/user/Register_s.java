@@ -18,6 +18,8 @@ public class Register_s implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8"); //제발 외워 한글 깨짐 방
+		
 		UserDto userdto = new UserDto();
 		UserDao userdao = new UserDao();
 		//파일 업로드 관련

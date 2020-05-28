@@ -28,7 +28,6 @@
 
 </head>
 <body class="register-page sidebar-collapse">
-
 	<div class="page-header header-filter"
 		style="background-image: url('${pageContext.request.contextPath}/assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
 		<div class="container">
