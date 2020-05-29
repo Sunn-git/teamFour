@@ -34,6 +34,40 @@ public class ReplyDao {
 	       
 	   }
 	   
+       //리플 개수
+       public int getListCount(int book_seq) {
+            // select count(*) from board
+            int rowcount = 0;
+            try {
+                conn = ds.getConnection();
+                pstmt = conn.prepareStatement("select count(*) from reply where depth = 0 and book_seq=?");
+                pstmt.setInt(1, book_seq);
+                rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    rowcount ++;
+                }
+            } catch (Exception e) {
+
+            } finally {
+                try {
+                    rs.close();
+                } catch (SQLException s) {
+                    s.printStackTrace();
+                }
+                try {
+                    pstmt.close();
+                } catch (SQLException s) {
+                    s.printStackTrace();
+                }
+                try {
+                    conn.close();
+                } catch (SQLException s) {
+                    s.printStackTrace();
+                }
+            }
+            return rowcount;
+        }
+	   
 	   
 	   //리플 리스트
 	   public List<ReplyDto> getReplyList(String book_seq) {
