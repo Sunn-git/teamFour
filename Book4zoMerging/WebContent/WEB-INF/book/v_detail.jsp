@@ -187,45 +187,37 @@
 
             <section class="PageBookDetail_Panel">
                 <h2 class="PageBookDetail_PanelTitle"><strong>포스트</strong></h2>
-                <div class="PageBookDetail_PanelContent">
-                    <div class="card text-left col-sm-10" style="border: 1px solid lightgray; margin: 10px auto 20px auto;">
-                        <div class="card-body">
-                            <div class="col-sm-3" style="float: left; width: 100%;">썸네일 영역</div>
-                            <div class="col-sm-9" style="float: left;">
-                                <h6 class="card-subtitle mt-1 text-muted">${book.title} - 저자 ${book.author}</h6>
-                                <h4 class="PageBookDetail_PanelTitle">포스트 제목 입니다</h4>
-                                
-                                <p class="card-text">포스트 내용 입니다. 포스트 내용 입니다. 포스트 내용 입니다.</p>
-      
-                                <a href="javascript:;" class="btn btn-rose btn-round" style="position: relative; margin: 0;"> {아이디} 님의 포스트 읽으러 가기</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card text-left col-sm-10" style="border: 1px solid lightgray; margin: 10px auto 20px auto;">
-                        <div class="card-body">
-                            <div class="col-sm-3" style="float: left; width: 100%;">썸네일 영역</div>
-                            <div class="col-sm-9" style="float: left;">
-                                <h6 class="card-subtitle mt-1 text-muted">${book.title} - 저자 ${book.author}</h6>
-                                <h4 class="PageBookDetail_PanelTitle">포스트 제목 입니다</h4>
-                                
-                                <p class="card-text">포스트 내용 입니다. 포스트 내용 입니다. 포스트 내용 입니다.</p>
-      
-                                <a href="javascript:;" class="btn btn-rose btn-round" style="position: relative; margin: 0;"> {아이디} 님의 포스트 읽으러 가기</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center">
-                        <button class="RUIButton RUIButton-color-gray RUIButton-size-large RUIButton-outline RUIButton-borderWidth-thick ReviewList_ShowMoreButton col-sm-10">
-                            <span class="ReviewList_ShowMoreButton_Count">n</span>개 더보기
-                            <svg class="RSGIcon RSGIcon-arrowDown RSGIcon-arrow1Down ReviewList_ShowMoreButton_Icon RUIButton_SVGIcon" viewBox="0 0 48 28" width="48" height="28">
-                                <path d="M48 .6H0l24 26.8z"></path>
-                            </svg>
-                        </button>
-                    </div>
-
-
-                </div>
+                
+                
+	                <div class="PageBookDetail_PanelContent">
+	                
+	                <c:forEach var="post" items="${requestScope.postList}">
+	                    <div class="card text-left col-sm-10" style="border: 1px solid lightgray; margin: 10px auto 20px auto;">
+	                        <div class="card-body">
+	                            <div class="col-sm-3" style="float: left; width: 100%;">
+	                            	<img alt="${book.title}" src="${book.coverUrl}">
+	                            </div>
+	                            <div class="col-sm-9" style="float: left;">
+	                                <h6 class="card-subtitle mt-1 text-muted">${book.title} - 저자 ${book.author}</h6>
+	                                <h4 class="PageBookDetail_PanelTitle">${post.post_title}</h4>
+	                                
+	                                <p class="card-text">${post.post_contents}</p>
+	      
+	                                <a href="javascript:;" class="btn btn-rose btn-round" style="position: relative; margin: 0;"> ${post.user_id} 님의 포스트 읽으러 가기</a>
+	                            </div>
+	                        </div>
+	                    </div>
+	                 </c:forEach>
+	                    <div class="text-center">
+	                        <button class="RUIButton RUIButton-color-gray RUIButton-size-large RUIButton-outline RUIButton-borderWidth-thick ReviewList_ShowMoreButton col-sm-10">
+	                            <span class="ReviewList_ShowMoreButton_Count">n</span>개 더보기
+	                            <svg class="RSGIcon RSGIcon-arrowDown RSGIcon-arrow1Down ReviewList_ShowMoreButton_Icon RUIButton_SVGIcon" viewBox="0 0 48 28" width="48" height="28">
+	                                <path d="M48 .6H0l24 26.8z"></path>
+	                            </svg>
+	                        </button>
+	                    </div>
+	                </div>
+                
             </section>
 
 

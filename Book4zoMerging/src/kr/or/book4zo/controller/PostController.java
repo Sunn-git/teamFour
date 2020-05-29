@@ -146,7 +146,16 @@ public class PostController extends HttpServlet {
 			forward = action.execute(request, response);
 			
 	 }
-		
+//		// 포스트 리스트 json 가져오기
+//	 else if (url_Command.equals("/GetList.post")) {
+//			
+//			System.out.println("GetList.post");
+//
+//			action = new PostDelete_s(); // 다형성
+//			forward = action.execute(request, response);
+//			
+//	 }
+//		
 		
 		
 		
