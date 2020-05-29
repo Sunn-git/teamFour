@@ -1,1 +1,27 @@
-ㅇㅇ
+PostWriteAction.post
+컨트롤러 탄다. 
+
+v_postWrite.jsp
+v_postWrite뷰 보러가자
+
+PostWrite_s.post
+컨트롤러 타러간다 
+
+PostWrite_s
+서비스를 타러 간다 
+
+PostList.post
+컨트롤러타러간다. 
+
+PostList_s
+서비스를 타러간다~
+
+PostListView.post
+컨트롤러 타러간다 
+
+v_postView.jsp
+v_postView뷰 보러가자 
+
+해야할거는 지금 글작성이 완료되면서 바로 상세보기가 되게 만들기 들어간다...ㅠㅠ
+
+수정 삭제하러가자...
