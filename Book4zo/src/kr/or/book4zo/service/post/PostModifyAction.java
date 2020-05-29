@@ -49,7 +49,7 @@ public class PostModifyAction implements Action {
 				   	 
 				   	 forward.setRedirect(true);
 				   	 forward.setPath(
-				   			 	"./PostDetailView.post?num="+postdto.getPost_seq());
+				   			 	"./PostModify.post?num="+postdto.getPost_seq());
 				   	 //return forward;
 			   	 }catch(Exception ex){
 			   			ex.printStackTrace();	 

@@ -109,28 +109,23 @@ public class PostController extends HttpServlet {
 			System.out.println("v_postView.jsp 여기까지는 가니??");
 		}
 //////////////////////////////////////		
-		//수정하기 테스트
+		//수정하기 테스트 
 		
-	 else if (url_Command.equals("/PostModify.post")) {
-		System.out.println("PostModify.post 타고서 포스트 수정화면가자");
-		
-		action = new PostModifyView_s(); // 다형성
-		try {
-			forward = action.execute(request, response);
-			System.out.println("포스트 수정 페이지 처리 완료");
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-	 }
 	 else if (url_Command.equals("/PostModifyAction.post")) {
+		System.out.println("PostModifyAction.post 타고서 포스트 수정화면가자");
+		//여기서 에러가 나오고 
+		action = new PostModifyAction(); // 다형성 여기는 타서 가고 
+		System.out.println("PostModifyView_s 가고있니??"); //여기도 타서 가고
+		forward = action.execute(request, response);
+	 }
+	 else if (url_Command.equals("/PostModify.post")) {
 			
-			System.out.println("PostModifyAction.post 타고서 포스트 수정화면가자");
-
-			action = new PostModifyAction(); // 다형성
+			System.out.println("PostModify.post 타고서 포스트 수정화면가자");
+			
+			action = new PostModifyView_s(); // 다형성
 			try {
 				forward = action.execute(request, response);
-				System.out.println("포스트 업데이트 완료");
+				System.out.println("수정화면으로 보내준다 ");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -32,6 +32,10 @@ public class PostWrite_s implements Action {
 		
 		
 		int result = 0;
+		
+		int postNum = 0;
+		
+		
 		try {
 			// MultipartRequest type의 mult 객체 초기화 설정
 			MultipartRequest multi = null;
@@ -49,6 +53,8 @@ public class PostWrite_s implements Action {
 			postdto.setPost_upload_file(multi.getFilesystemName((String) multi
 					.getFileNames().nextElement()));
 			
+			request.setAttribute(name, o);
+			
 			// ct +sh +x (대문자)
 			// insert 할 객체를 구성
 			result = postdao.postInsert(postdto);
@@ -61,6 +67,8 @@ public class PostWrite_s implements Action {
 			//여기서 값을 꺼내서 저장할거니까
 			
 			
+			
+			System.out.println("postdao값을보여줘 :" +postdao);
 			
 			request.setAttribute("postdto", postdto);
 			System.out.println("값을확인 :" + postdto); //여기는 값이 있고 
