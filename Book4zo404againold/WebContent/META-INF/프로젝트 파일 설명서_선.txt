@@ -1,0 +1,61 @@
+        BookDto
+        BookDao
+       
+       ================ [ v_search.jsp ] ==================
+       
+        //동적으로 추천도서목록 생성해주는 부분 : 준수 script코드에서 ajax 부분, 저자 class 주는 부분 수정
+        var ajax =$.ajax({
+	      	  url: "http://book.interpark.com/api/recommend.api",
+	    	  data: {
+	    		  key: 'ECF73A29EE9688587F70A785201AB95DE352C2284B870EEE927ECAC11048DEDE',
+	    		  categoryId: '101',
+	    		  output: 'json'        		  
+	    	  },
+			  dataType: 'jsonp',
+        	success : function(data){//korBookList
+        		        		
+        		var totalCount=0;
+           		$("#book-list").empty();
+           		
+           		let dataArr = data.item;
+
+        		$.each(dataArr, function (index, item) {
+        			console.log(item);
+        			
+                let bl = "<li>"
+                bl += "<a>"
+                bl += "<div class='image book-icon readingbook'>"
+                bl += "<img src='" + item.coverLargeUrl +"'/> </div>"
+                bl += "<div class ='body'>"
+                bl += "<span class = 'bedge-icon readingbook'>"
+                bl += "<span>" +item.categoryName + "</span>"
+                bl += "</span>"
+                bl += "<span class='title'>" + item.title + "</span>"
+                
+              	//저자 길이 제한
+                if(item.author.length > 10){
+                	var shorten = item.author.substring(0,35)
+                	bl += "<span class='author'>" + shorten +"..."+"</span>"
+                }else{
+                	bl += "<div><span class='author'>"+item.author+"</span>"
+                }
+                bl += "<span class='publisher'>" +item.publisher+"</span></div>"
+                bl += "</div>"
+                bl += "</a>"
+                bl += "</li>"
+              
+              $('#book-list').append(bl)
+              totalCount+=1;
+              
+            }); //each end
+           $('#total-length').empty();
+           $('#total-length').append(totalCount)
+			console.log(totalCount)
+        	}
+        });
+        
+        
+        =======================================================================================
+        
+        
+        
