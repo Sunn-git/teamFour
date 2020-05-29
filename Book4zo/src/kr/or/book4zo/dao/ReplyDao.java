@@ -40,26 +40,33 @@ public class ReplyDao {
 		      List<ReplyDto> replyList = null;
 //		      NVL(image,'default.png')
 		      try {
-		           conn = ds.getConnection();
-		           String sql="select  NVL(image,'default.png') image,empno,ename,job,mgr,hiredate,sal,comm,deptno,  image from emp";
-		           pstmt = conn.prepareStatement(sql);
-		            
-		            rs = pstmt.executeQuery();
-		            replyList = new ArrayList<ReplyDto>();
-		            while(rs.next()) {
-		               ReplyDto reply = new ReplyDto();
-		               reply.setReply_seq(rs.getInt("reply_seq"));
-		               reply.setBook_seq(Integer.parseInt(book_seq));
-		               reply.setReply_like(rs.getInt("reply_like"));
-		               reply.setRefer(rs.getInt("refer"));
-		               reply.setDepth(rs.getInt("depth"));
-		               reply.setStep(rs.getInt("step"));
-		               reply.setUser_id(rs.getString("user_id"));
-		               reply.setReply_content(rs.getString("reply_content"));
-		               reply.setReply_date(rs.getString("reply_date"));
-		               
-		               replyList.add(reply);
-		            }
+		    	  conn = ds.getConnection();
+					pstmt = conn.prepareStatement("select ? from book");
+					pstmt.setInt(1,Integer.parseInt(book_seq));
+					rs = pstmt.executeQuery();
+					
+					while(rs.next()) {
+						String sql="select REPLY_SEQ,USER_ID,BOOK_SEQ,REPLY_STAR_RATE,REPLY_CONTENT, REPLY_DATE, REPLY_LIKE,REFER,DEPTH,STEP from reply";
+						pstmt = conn.prepareStatement(sql);
+						
+						rs = pstmt.executeQuery();
+						replyList = new ArrayList<ReplyDto>();
+						while(rs.next()) {
+							ReplyDto reply = new ReplyDto();
+							reply.setReply_seq(rs.getInt("reply_seq"));
+							reply.setBook_seq(Integer.parseInt(book_seq));
+							reply.setReply_like(rs.getInt("reply_like"));
+							reply.setRefer(rs.getInt("refer"));
+							reply.setDepth(rs.getInt("depth"));
+							reply.setStep(rs.getInt("step"));
+							reply.setUser_id(rs.getString("user_id"));
+							reply.setReply_content(rs.getString("reply_content"));
+							reply.setReply_date(rs.getString("reply_date"));
+							
+							replyList.add(reply);
+						}
+					}
+		    	  
 		      }catch (Exception e) {
 		         System.out.println("오류 :" + e.getMessage());
 		      }finally {
@@ -74,7 +81,7 @@ public class ReplyDao {
 		      return replyList;
 		   }
 	   //리플 인서트
-	   public boolean replyWrite(ReplyDto reply) {
+	   public boolean replyWrite(String book_seq, String reply_content, String user_id, String reply_star_rate) {
 		   //String user_id,int book_seq, int reply_star_rate, String reply_content, String reply_date, int reply_like, int refer, int depth, int step
 			int num = 0;
 			String sql = "";
@@ -83,8 +90,8 @@ public class ReplyDao {
 
 			try {
 				conn = ds.getConnection();
-				pstmt = conn.prepareStatement("select ? from board");
-				pstmt.setInt(1,reply.getBook_seq());
+				pstmt = conn.prepareStatement("select ? from book");
+				pstmt.setInt(1,Integer.parseInt(book_seq));
 				rs = pstmt.executeQuery();
 
 				if (rs.next()) { System.out.println("pstmt.executeQuery() : "+ rs);}
@@ -92,25 +99,29 @@ public class ReplyDao {
 				
 				sql = "insert into reply (REPLY_SEQ,USER_ID,BOOK_SEQ,REPLY_STAR_RATE,";
 				sql += "REPLY_CONTENT, REPLY_DATE, REPLY_LIKE,"
-						+ "REFER,DEPTH,STEP) values(REPLY_SEQ.NEXTVAL,?,?,?,?,sysdate,?,?,?,?)";
-
+						+ "REFER,DEPTH,STEP) values(REPLY_SEQ.NEXTVAL,?,?,?,?,sysdate,0,?,?,?)";
+				System.out.println("별점 출력 : " +reply_star_rate);
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, reply.getUser_id());
-				pstmt.setInt(2, reply.getBook_seq());
-				pstmt.setInt(3, reply.getReply_star_rate());
-				pstmt.setString(4, reply.getReply_content());
-				pstmt.setInt(5, reply.getReply_like());
-				pstmt.setInt(6, reply.getRefer());
-				pstmt.setInt(7, reply.getDepth());
-				pstmt.setInt(8, reply.getStep());
+				pstmt.setString(1, user_id);
+				pstmt.setInt(2, Integer.parseInt(book_seq));
+				pstmt.setInt(3, Integer.parseInt(reply_star_rate));
+				pstmt.setString(4, reply_content);
+//				pstmt.setInt(5, reply.getReply_like());
+				pstmt.setInt(5, 0);
+				pstmt.setInt(6, 0);
+				pstmt.setInt(7, 0);
 
 				result = pstmt.executeUpdate();
+				
+				//레퍼를 seq로 업데이트 치는 쿼리문 필요함. 레퍼만 치면됨!
+				
+				
 				if (result == 0)
 					return false;
 
 				return true;
 			} catch (Exception ex) {
-				System.out.println("boardInsert 에러 : " + ex);
+				System.out.println("reply Insert 에러 : " + ex);
 			} finally {
 				if (rs != null)
 					try {

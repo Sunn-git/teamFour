@@ -31,28 +31,28 @@ public class ReplyWriteAjax extends HttpServlet {
     	
     	System.out.println("BookList.ajax 타니?");
     	request.setCharacterEncoding("UTF-8");	
-		int result = 0;
+		boolean result = false;
 		
 		try {
 			String book_seq = request.getParameter("book_seq");
-			String reply_writer = request.getParameter("reply_writer");
 			String reply_content = request.getParameter("reply_content");
-			String reply_pass = request.getParameter("reply_pass");
+			String user_id = request.getParameter("user_id");
+			String reply_star_rate = request.getParameter("reply_star_rate");
 			
 			System.out.println("== parameter 확인 ==");
 			System.out.println(book_seq);
-			System.out.println(reply_writer);
 			System.out.println(reply_content);
-			System.out.println(reply_pass);
+			System.out.println(user_id);
+			System.out.println(reply_star_rate);
 			System.out.println("========");
 			
 			ReplyDao replydao = new ReplyDao();
-			result = replydao.replyWrite(); //수정해야함 
+			result = replydao.replyWrite(book_seq,reply_content,user_id,reply_star_rate); //수정해야함 
 			
-			if(result == 0) {
-				System.out.println("댓글 등록 실패");
-			}else {
+			if(result == true) {
 				System.out.println("댓글 등록 성공");
+			}else {
+				System.out.println("댓글 등록 실패");
 			}
 			
 			List<ReplyDto> replyList = replydao.getReplyList(book_seq);

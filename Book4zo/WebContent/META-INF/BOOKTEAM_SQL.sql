@@ -365,13 +365,14 @@ INSERT INTO BOOK(BOOK_SEQ, ISBN, TITLE, AUTHOR, TRANSLATOR, COVER_URL, PUBLISHER
 SELECT* FROM BOOK;
 
 
+commit;
 
+delete BOOK where category_id=110;
 
+delete users where user_id='admin';
 
-
-
-
-
+select * from  users;
+select * from reply;
 
 
 

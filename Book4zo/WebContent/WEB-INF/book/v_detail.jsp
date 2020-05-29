@@ -212,9 +212,7 @@
 
                 </div>
             </section>
-
-
-            <section class="PageBookDetail_Panel Reviews_Wrapper">
+		    <section class="PageBookDetail_Panel Reviews_Wrapper">
                 <div class="Reviews"><span class="a11y">리뷰</span>
                     <div class="ReviewsHeader" style="margin-bottom: 50px;">
                         <div class="ReviewsHeader_Right" style="text-align: center;">
@@ -256,11 +254,11 @@
                                             </div>
                                            -->
                                         </div>
-											
+
                                         <!-- 왕별점 부분 mouseover, mouseout 으로 클래스 줘서 별 채우는 이벤트 주기 -->
                                         <!-- StarRatingInput_Label-filled -->
                                         <div class="StarRatingForm_Row" style="margin-top: -20px;">
-                                            <div class="StarRatingInput StarRatingForm_Input">
+                                            <div id="choiceStarRating" class="StarRatingInput StarRatingForm_Input">
                                                 <label for="MyStarRating1" class="StarRatingInput_Label" data-rating="1">
                                                     <span class="a11y">1점</span>
                                                     <span class="StarRatingInput_Separator"></span>
@@ -289,12 +287,18 @@
                                         </div>
                                     </div>
                                 </div>
+                                
+
+
+
                             </div>
-                            <div class="ReviewForm">
-                                <textarea class="ReviewTextarea col-sm-12" id="replyContent" name="replyContent" title="리뷰 입력" placeholder="리뷰를 작성해주세요." style="height: 45.9844px;"/>
+            
+                            <div class="ReviewForm" userid="${user_id}">
+                                <textarea class="ReviewTextarea col-sm-12" id="replyContent" name="replyContent" title="리뷰 입력" placeholder="리뷰를 작성해주세요." style="height: 45.9844px;"></textarea>
                                 <div class="ReviewForm_ButtonsWrapper">
                                     <div style="display: inline-block;"></div>
                                     <button id="reviewWriteBtn" class="btn btn-rose btn-sm center">리뷰 남기기</button>
+
                                 </div>
                             </div>
                         </div>
@@ -510,12 +514,24 @@
        $(function() {
     	   // 리뷰 남기기
     	$('#reviewWriteBtn').click(function(){
+    		console.log($('#replyContent').val());
+    		console.log($('.ReviewForm').attr('userid'));
+    		console.log($('#choiceStarRating').children('input:checked').val());
     		$.ajax({
     			url:"ReplyWrite.ajax",
 				type:"POST",
 				dataType:"json",
+				data:{
+					book_seq : 171,
+					reply_content : $('#replyContent').val(),
+					user_id : $('.ReviewForm').attr('userid'),
+					reply_star_rate : $('#choiceStarRating').children('input:checked').val()
+				},
 				success:function(){
-					
+					console.log("성공");
+					/* 확실치 않은데 해야할거같아서 일단 넣어놓음 */
+					window.opener.location.reload();
+		            self.close();
 				},
 				error: function(){
 					console.log("에러");
