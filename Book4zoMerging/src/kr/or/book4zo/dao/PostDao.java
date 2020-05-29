@@ -200,7 +200,8 @@ public class PostDao {
 								pstmt = conn.prepareStatement(sql);
 								//pstmt.setInt(1, num);
 								pstmt.setString(1, "aa"); // postdto.getUser_id()
-								pstmt.setInt(2, 37); //postdto.getBook_Seq()
+								System.out.println("postdto.getBook_seq()"+postdto.getBook_seq());
+								pstmt.setInt(2, postdto.getBook_seq()); //postdto.getBook_Seq()
 								pstmt.setString(3, postdto.getPost_title());
 								pstmt.setString(4, postdto.getPost_contents());
 								//pstmt.setString(5, postdto.getPost_date());

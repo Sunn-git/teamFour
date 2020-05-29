@@ -141,7 +141,7 @@
                                 <!-- <a class="RUIButton RUIButton-color-blue RUIButton-size-large PageBookDetail_DownloadButton PageBookDetail_DownloadButton-large" href="/intro" style="background-color: rgb(255, 255, 255); color: rgb(104, 17, 53); border-style: none;">  
                                     포스트 작성하기
                                 </a> -->
-                                <a href="PostWriteAction.post" class="btn btn-rose btn-lg" role="button" aria-disabled="true">포스트 작성하기</a>
+                                <a href="PostWriteAction.post?bookSeq=${book.bookSeq}" class="btn btn-rose btn-lg" role="button" aria-disabled="true">포스트 작성하기</a>
 
                             </div>
                         </div>
@@ -334,13 +334,21 @@
                         </ul>
                     </div>
                     <div class="ReviewsList_Wrapper">
+                    
+                    
                         <ul class="ReviewList">
+
+
+
+
                             <li class="ReviewItem">
-                                <div class="ReviewItem_Left"><span class="StarRating_IconBox"
-                                        style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background"
-                                            style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask"
-                                            style="width: 60px; height: 12px;"><span class="StarRating_Icon_Foreground"
-                                                style="width: 60px; height: 12px;"></span></span></span>
+                                <div class="ReviewItem_Left">
+                                    <span class="StarRating_IconBox" style="width: 60px; height: 12px;">
+                                        <span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span>
+                                        <span class="StarRating_Icon_Foreground_Mask" style="width: 60px; height: 12px;">
+                                            <span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span>
+                                        </span>
+                                    </span>
                                     <ul class="ReviewerMetadata_List">
                                         <!-- 유저 아이디 들어가는 부분 -->
                                         <li class="ReviewerMetadata_UserId">nic***</li>
@@ -350,29 +358,33 @@
                                         <li class="ReviewMetadata_Date">2020.04.22.</li>
                                     </ul>
                                 </div>
+
                                 <div class="ReviewItem_Right">
+                                    
                                     <div class="ReviewItem_Right_Top">
                                         <!-- 댓글 작성 내용 -->
-                                        <div class="ReviewContent"><span width="0"><span><span>너무 재밌습니다.반전에 반전 결말을
-                                                        예측하기어렵네요~</span></span><span
-                                                    style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span
-                                                        class="Review_Ellipsis">...<button class="Review_ReadMoreButton">계속
-                                                            읽기</button></span></span></span></div>
+                                        <div class="ReviewContent">
+                                            <span width="0">
+                                                <span>
+                                                    <span>너무 재밌습니다.반전에 반전 결말을 예측하기어렵네요~</span>
+                                                </span>
+                                                <span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">
+                                                    <span class="Review_Ellipsis">...<button class="Review_ReadMoreButton">계속 읽기</button></span>
+                                                </span>
+                                            </span>
+                                        </div>
+
                                         <ul class="ReviewButtons_List">
                                             <li class="ReviewButtons_OpenCommentsButtonItem">
-                                                <button
-                                                    class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_OpenCommentsButton">
-                                                    <svg
-                                                        class="RSGIcon RSGIcon-speechbubble RSGIcon-speechbubble2 ReviewButtons_CommentIcon"
-                                                        viewBox="0 0 56 48" width="56" height="48">
-                                                        <path
-                                                            d="M36.6 0H19.4C8.9 0 .4 8.5.4 18.9c0 9.2 6.7 16.9 15.5 18.5v7.2c0 1.4.8 2.6 2.1 3.2.5.1.9.2 1.4.2.9 0 1.8-.3 2.4-1l9.6-9.3h5.2c10.4 0 18.9-8.5 18.9-18.9C55.6 8.5 47.1 0 36.6 0z">
-                                                        </path>
+                                                <button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_OpenCommentsButton">
+                                                    <svg class="RSGIcon RSGIcon-speechbubble RSGIcon-speechbubble2 ReviewButtons_CommentIcon" viewBox="0 0 56 48" width="56" height="48">
+                                                        <path d="M36.6 0H19.4C8.9 0 .4 8.5.4 18.9c0 9.2 6.7 16.9 15.5 18.5v7.2c0 1.4.8 2.6 2.1 3.2.5.1.9.2 1.4.2.9 0 1.8-.3 2.4-1l9.6-9.3h5.2c10.4 0 18.9-8.5 18.9-18.9C55.6 8.5 47.1 0 36.6 0z"></path>
                                                     </svg>
                                                     <span class="ReviewButtons_CommentLabel">댓글</span>
                                                     <!-- 댓글 갯수 > 0 일때 표시되는 부분 -->
                                                     <span class="ReviewButtons_CommentCount">1</span>
-                                                </button></li>
+                                                </button>
+                                            </li>
 
                                                     <!-- 좋아요 버튼.. 시간 없으면 빼기  -->
                                             <!-- <li class="ReviewButtons_LikeButtonItem"><button
@@ -419,6 +431,17 @@
 
                                 </div>
                             </li>
+
+
+
+
+
+
+
+
+
+
+
 
                             <li class="ReviewItem">
                                 <div class="ReviewItem_Left"><span class="StarRating_IconBox"

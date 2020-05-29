@@ -34,8 +34,6 @@ request.setCharacterEncoding("UTF-8");
 
 <c:set var="user_id" value="${sessionScope.user_id}"/>
 <c:set var="currentPost" value="${requestScope.CurrentPost}"/>
-${currentPost }
-
 
 <!-- 게시판 수정 -->
 <form class="form" method="post" action="PostDetailView.post"

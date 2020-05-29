@@ -40,12 +40,15 @@
 				<td style="font-family: 돋음; font-size: 12" height="16">
 					<div align="center">글쓴이</div> <!-- 수정되어야함 -->
 				</td>
-				<td> <input type="text" class="form-control" name="user_id"
-               size="10" maxlength="10" placeholder="글쓴이" value="${user_id }" readOnly /></td>
+				<td> 
+					<input type="text" class="form-control" name="user_id" size="10" maxlength="10" placeholder="글쓴이" value="${user_id }" readOnly />
+               		<input type="text" name="bookSeq" value="${param.bookSeq}" hidden/>
+               </td>
+              
 			</tr>
 			<tr>
 				<td style="font-family: 돋음; font-size: 12" height="16">
-					<div align="center">제 목</div>
+					<div align="center"></div>
 				</td>
 				<td>
 					<div>

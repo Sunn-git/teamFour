@@ -58,6 +58,7 @@ public class PostWrite_s implements Action {
 //					new DefaultFileRenamePolicy() // 파일 중복 처리 객체
 //			);
 			
+			System.out.println("bookSeq : "+multi.getParameter("bookSeq"));
 			
 			System.out.println("filename : " + filename);
 			
@@ -66,6 +67,7 @@ public class PostWrite_s implements Action {
 			postdto.setPost_contents(multi.getParameter("post_contents")
 					.replace("\r\n", "<br>"));
 			postdto.setPost_upload_file(filename);
+			postdto.setBook_seq(Integer.parseInt(multi.getParameter("bookSeq")));
 			
 			// ct +sh +x (대문자)
 			// insert 할 객체를 구성
