@@ -92,7 +92,7 @@ public class BookController extends HttpServlet {
 		response.sendRedirect(forward.getPath());
 		}
 		else {
-		//이 새*가 뷰단을 진짜 지정해서 보내는거임. 나는 만들기만 하고 한번도 보낸적이 없다
+		//여기서 뷰단을 진짜 지정해서 보내는거임. 나는 만들기만 하고 한번도 보낸적이 없다
 		RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
 		dis.forward(request, response);
 		}
