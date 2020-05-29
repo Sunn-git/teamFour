@@ -43,6 +43,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
 
+            <!-- 핵심 CSS -->
+    <link href="https://select.ridicdn.net/app.a00239db55301aa1cd30.css" rel="stylesheet">
+
 
 <!-- 시간되면 ajax 코드 정리하기 ........... 알아보기 힘들다  -->
     <script type="text/javascript">
@@ -233,41 +236,111 @@
         <div class="row">
           <div class="col-md-10 mr-auto ml-auto">
             <!-- Carousel Card -->
+
             <div class="card card-raised card-carousel">
-              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="300000">
                 <ol class="carousel-indicators">
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                   <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                   <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
+
+
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img class="d-block w-100" src="./assets/img/bg2.jpg" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h4>
-                        <i class="material-icons">location_on</i>
-                        Yellowstone National Park, United States
-                      </h4>
+
+
+                  <div class="carousel-item active">                    
+                    <div class="PageBookDetail_Header PageBookDetail_Header-dark" style="background: rgb(0, 0, 0);">
+                        <!-- 배경 책 표지 사진 들어가는 부분 -->
+                        <span class="PageBookDetail_HeaderBackground" style="background-image: url(&quot;https://www.hwanil.ms.kr/wp-content/uploads/kboard_attached/38/202004/5e97c41f3bb946634846.jpg&quot;);">
+                            <span class="Left_GradientOverlay" style="background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);"></span>
+                            <span class="Right_GradientOverlay" style="background: linear-gradient(to left, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);"></span>
+                        </span>
+                        <div class="PageBookDetail_HeaderMask" style="background-color: rgba(0, 0, 0, 0.603);">
+                            <div class="PageBookDetail_HeaderContent" style="padding: 50px 150px;">
+                                <div class="PageBookDetail_ThumbnailWrapper">
+                                    <button class="PageBookDetail_ThumbnailButton">
+                                        <!-- 책 썸네일 들어가는 부분 -->
+                                        <img class="PageBookDetail_Thumbnail" src="https://www.hwanil.ms.kr/wp-content/uploads/kboard_attached/38/202004/5e97c41f3bb946634846.jpg" alt="${book.title}">
+                                    </button>
+                                </div>
+                                <div class="PageBookDetail_Meta" style="width:100% !important; word-break:break-all !important; word-wrap:break-word !important;">
+                                    <h1 class="PageBookDetail_BookTitle" style="font-size: 48px;">제목</h1>
+                                    <p class="PageBookDetail_BookElements">
+                                        <span class="PageBookDetail_Authors">${book.author} 저</span>
+
+                                         <!-- 역자가 null이 아닌 경우에만 출력 -->                                
+                                        <c:if test="${book.translator != null}">
+                                          <span class="PageBookDetail_Publisher"> ·  ${book.translator} 역</span>                                
+                                        </c:if>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
                   </div>
+
+
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="./assets/img/bg3.jpg" alt="Second slide">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h4>
-                        <i class="material-icons">location_on</i>
-                        Somewhere Beyond, United States
-                      </h4>
+                    <div class="PageBookDetail_Header PageBookDetail_Header-dark" style="background: rgb(0, 0, 0);">
+                        <!-- 배경 책 표지 사진 들어가는 부분 -->
+                        <span class="PageBookDetail_HeaderBackground" style="background-image: url(&quot;https://www.hwanil.ms.kr/wp-content/uploads/kboard_attached/38/202004/5e97c41f3bb946634846.jpg&quot;);">
+                            <span class="Left_GradientOverlay" style="background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);"></span>
+                            <span class="Right_GradientOverlay" style="background: linear-gradient(to left, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);"></span>
+                        </span>
+                        <div class="PageBookDetail_HeaderMask" style="background-color: rgba(0, 0, 0, 0.603);">
+                            <div class="PageBookDetail_HeaderContent" style="padding: 50px 150px;">
+                                <div class="PageBookDetail_ThumbnailWrapper">
+                                    <button class="PageBookDetail_ThumbnailButton">
+                                        <!-- 책 썸네일 들어가는 부분 -->
+                                        <img class="PageBookDetail_Thumbnail" src="https://www.hwanil.ms.kr/wp-content/uploads/kboard_attached/38/202004/5e97c41f3bb946634846.jpg" alt="${book.title}">
+                                    </button>
+                                </div>
+                                <div class="PageBookDetail_Meta" style="width:100% !important; word-break:break-all !important; word-wrap:break-word !important;">
+                                    <h1 class="PageBookDetail_BookTitle" style="font-size: 48px;">제목</h1>
+                                    <p class="PageBookDetail_BookElements">
+                                        <span class="PageBookDetail_Authors">${book.author} 저</span>
+
+                                         <!-- 역자가 null이 아닌 경우에만 출력 -->                                
+                                        <c:if test="${book.translator != null}">
+                                          <span class="PageBookDetail_Publisher"> ·  ${book.translator} 역</span>                                
+                                        </c:if>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                   </div>
+
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="./assets/img/bg.jpg" alt="Third slide">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h4>
-                        <i class="material-icons">location_on</i>
-                        Yellowstone National Park, United States
-                      </h4>
-                    </div>
+                    <div class="PageBookDetail_Header PageBookDetail_Header-dark" style="background: rgb(0, 0, 0);">
+                      <!-- 배경 책 표지 사진 들어가는 부분 -->
+                      <span class="PageBookDetail_HeaderBackground" style="background-image: url(&quot;https://www.hwanil.ms.kr/wp-content/uploads/kboard_attached/38/202004/5e97c41f3bb946634846.jpg&quot;);">
+                          <span class="Left_GradientOverlay" style="background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);"></span>
+                          <span class="Right_GradientOverlay" style="background: linear-gradient(to left, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);"></span>
+                      </span>
+                      <div class="PageBookDetail_HeaderMask" style="background-color: rgba(0, 0, 0, 0.603);">
+                          <div class="PageBookDetail_HeaderContent" style="padding: 50px 150px;">
+                              <div class="PageBookDetail_ThumbnailWrapper">
+                                  <button class="PageBookDetail_ThumbnailButton">
+                                      <!-- 책 썸네일 들어가는 부분 -->
+                                      <img class="PageBookDetail_Thumbnail" src="https://www.hwanil.ms.kr/wp-content/uploads/kboard_attached/38/202004/5e97c41f3bb946634846.jpg" alt="${book.title}">
+                                  </button>
+                              </div>
+                              <div class="PageBookDetail_Meta" style="width:100% !important; word-break:break-all !important; word-wrap:break-word !important;">
+                                  <h1 class="PageBookDetail_BookTitle" style="font-size: 48px;">제목</h1>
+                                  <p class="PageBookDetail_BookElements">
+                                      <span class="PageBookDetail_Authors">${book.author} 저</span>
+
+                                       <!-- 역자가 null이 아닌 경우에만 출력 -->                                
+                                      <c:if test="${book.translator != null}">
+                                        <span class="PageBookDetail_Publisher"> ·  ${book.translator} 역</span>                                
+                                      </c:if>
+                              </div>
+                          </div>
+                      </div>
                   </div>
+                  </div>
+
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                   <i class="material-icons">keyboard_arrow_left</i>
