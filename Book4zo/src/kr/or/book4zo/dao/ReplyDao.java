@@ -46,7 +46,7 @@ public class ReplyDao {
 					rs = pstmt.executeQuery();
 					
 					while(rs.next()) {
-						String sql="select REPLY_SEQ,USER_ID,BOOK_SEQ,REPLY_STAR_RATE,REPLY_CONTENT, REPLY_DATE, REPLY_LIKE,REFER,DEPTH,STEP from reply";
+						String sql="select REPLY_SEQ,USER_ID,BOOK_SEQ,REPLY_STAR_RATE,REPLY_CONTENT, REPLY_DATE, REPLY_LIKE,REFER,DEPTH,STEP from reply ORDER BY REPLY_SEQ DESC";
 						pstmt = conn.prepareStatement(sql);
 						
 						rs = pstmt.executeQuery();
@@ -54,14 +54,15 @@ public class ReplyDao {
 						while(rs.next()) {
 							ReplyDto reply = new ReplyDto();
 							reply.setReply_seq(rs.getInt("reply_seq"));
+							reply.setUser_id(rs.getString("user_id"));
 							reply.setBook_seq(Integer.parseInt(book_seq));
+							reply.setReply_star_rate(rs.getInt("reply_star_rate"));
+							reply.setReply_content(rs.getString("reply_content"));
+							reply.setReply_date(rs.getString("reply_date"));
 							reply.setReply_like(rs.getInt("reply_like"));
 							reply.setRefer(rs.getInt("refer"));
 							reply.setDepth(rs.getInt("depth"));
 							reply.setStep(rs.getInt("step"));
-							reply.setUser_id(rs.getString("user_id"));
-							reply.setReply_content(rs.getString("reply_content"));
-							reply.setReply_date(rs.getString("reply_date"));
 							
 							replyList.add(reply);
 						}
@@ -113,8 +114,13 @@ public class ReplyDao {
 
 				result = pstmt.executeUpdate();
 				
-				//레퍼를 seq로 업데이트 치는 쿼리문 필요함. 레퍼만 치면됨!
-				
+				//레퍼를 seq로 업데이트 치는 쿼리!
+				sql = " UPDATE reply SET refer = reply_seq "
+						+ " WHERE reply_seq = (select MAX(reply_seq) from reply)";
+				pstmt = conn.prepareStatement(sql);
+
+				result = pstmt.executeUpdate();
+
 				
 				if (result == 0)
 					return false;

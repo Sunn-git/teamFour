@@ -1,6 +1,7 @@
 package kr.or.book4zo.ajax;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -63,7 +64,8 @@ public class ReplyWriteAjax extends HttpServlet {
 			System.out.println(jsonReplyList);
 			
 			response.setContentType("application/x-json; charset=UTF-8");
-			response.getWriter().print(jsonReplyList);
+			PrintWriter out = response.getWriter(); 
+			out.print(jsonReplyList);
 			
 		} catch (Exception e) {
 			System.out.println("ServiceCommentWriteAction 오류발생");

@@ -30,7 +30,7 @@ public class GetUserListAjax extends HttpServlet {
 
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    	System.out.println("BookList.ajax 타니?");
+    	System.out.println("UserList.ajax 타니?");
 		try {
   		  	BookDao bookdao = new BookDao();
   		  	List<BookDto> data = bookdao.getAllBookList(); //사원 목록 조회
