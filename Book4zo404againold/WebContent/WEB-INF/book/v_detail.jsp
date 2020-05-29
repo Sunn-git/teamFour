@@ -271,7 +271,7 @@
                                         <!-- 왕별점 부분 mouseover, mouseout 으로 클래스 줘서 별 채우는 이벤트 주기 -->
                                         <!-- StarRatingInput_Label-filled -->
                                         <div class="StarRatingForm_Row" style="margin-top: -20px;">
-                                            <div class="StarRatingInput StarRatingForm_Input">
+                                            <div id="choiceStarRating" class="StarRatingInput StarRatingForm_Input">
                                                 <label for="MyStarRating1" class="StarRatingInput_Label" data-rating="1">
                                                     <span class="a11y">1점</span>
                                                     <span class="StarRatingInput_Separator"></span>
@@ -306,11 +306,11 @@
 
                             </div>
             
-                            <div class="ReviewForm">
+                            <div class="ReviewForm" userid="${user_id}">
                                 <textarea class="ReviewTextarea col-sm-12" id="reviewContent" name="reviewContent" title="리뷰 입력" placeholder="리뷰를 작성해주세요. (최대 150자 까지 작성할 수 있습니다)" style="height: 45.9844px;"></textarea>
                                 <div class="ReviewForm_ButtonsWrapper">
                                     <div style="display: inline-block;"></div>
-                                    <button class="btn btn-rose btn-sm center">리뷰 남기기</button>
+                                    <button id="reviewWriteBtn" class="btn btn-rose btn-sm center">리뷰 남기기</button>
 
                                 </div>
                             </div>
@@ -526,6 +526,36 @@
    <script>
        $(function() {
     	   
+    	   // 리뷰 남기기
+	       	$('#reviewWriteBtn').click(function(){
+	       		console.log($('#replyContent').val());
+	       		console.log($('.ReviewForm').attr('userid'));
+	       		console.log($('#choiceStarRating').children('input:checked').val());
+	       		$.ajax({
+	       			url:"ReplyWrite.ajax",
+	   				type:"POST",
+	   				dataType:"json",
+	   				data:{
+	   					book_seq : 171,
+	   					reply_content : $('#replyContent').val(),
+	   					user_id : $('.ReviewForm').attr('userid'),
+	   					reply_star_rate : $('#choiceStarRating').children('input:checked').val()
+	   				},
+	   				success:function(){
+	   					console.log("성공");
+	   					/* 확실치 않은데 해야할거같아서 일단 넣어놓음 */
+	   					window.opener.location.reload();
+	   		            self.close();
+	   				},
+	   				error: function(){
+	   					console.log("에러");
+	   				}
+	       		});
+	       	});
+    	   
+    	   
+    	   
+    	   
     	   //책소개 계속보기. 근데 리디에는 접기가 없다. 안해도 될까?
     	   $('#BookDetail_ContentTruncButton').click(function(){
     		   $('#BookDetail_Description').empty();
@@ -587,9 +617,6 @@
        });
 
    </script>
-   
-    <!-- <script type="text/javascript" src="https://select.ridicdn.net/vendors.abe0308b14689e858b31.js"></script>  -->
-    <!-- 여기에 접근막는거 + 댓글 들어있음 -->
 
     <!--   Core JS Files   -->
     <script src="${pageContext.request.contextPath}/assets/js/core/jquery.min.js" type="text/javascript"></script>

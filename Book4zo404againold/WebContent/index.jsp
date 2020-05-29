@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -12,9 +14,7 @@
   <title>
     Review 4 Book
   </title>
-  <!-- 
-  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-   -->
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
@@ -28,9 +28,6 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
   
-  
-  
-  
 	<!-- 준수 페이지 -->
 	    <!-- CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/swiper.4.1.6.min.css" />
@@ -43,11 +40,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
 
-            <!-- 핵심 CSS -->
+    <!-- 핵심 CSS -->
     <link href="https://select.ridicdn.net/app.a00239db55301aa1cd30.css" rel="stylesheet">
 
-
-<!-- 시간되면 ajax 코드 정리하기 ........... 알아보기 힘들다  -->
+	<!-- 시간되면 ajax 코드 정리하기 ........... 알아보기 힘들다  -->
     <script type="text/javascript">
       $(function () {
         var isGrid = true
@@ -216,20 +212,28 @@
 
 </head>
 <body class="index-page sidebar-collapse">
+
+
 <header>
-<c:set var="userid" value="${sessionScope.userid}"/>
+<c:set var="user_id" value="${sessionScope.user_id}"/>
 <c:choose>
-	<c:when test="${userid != null}">
-	<c:if test="${userid == 'admin'}">
-		<jsp:include page="/WEB-INF/common/v_navAdmin.jsp"/>
-	</c:if>
-		<jsp:include page="/WEB-INF/common/v_navMember.jsp"/>
+	<c:when test="${user_id != null}">
+		<c:choose>
+			<c:when test="${user_id == 'admin'}">
+				<jsp:include page="/WEB-INF/common/v_navAdmin.jsp"/>
+			</c:when>
+			<c:otherwise>
+				<jsp:include page="/WEB-INF/common/v_navMember.jsp"/>
+			</c:otherwise>
+		</c:choose>
 	</c:when>
 	<c:otherwise>
 		<jsp:include page="/WEB-INF/common/v_navNonmember.jsp"/>
 	</c:otherwise>
 </c:choose>
 </header>
+
+
 <div class="container wrapper"> <!-- style="background-color:white;" -->
     <!--         carousel  -->
     <div class="" id="carousel">
@@ -371,72 +375,6 @@
 <!-- 준수오빠...어케해요... -->
 <main id="contents" class="result_depth" style="">
       <div class="select-box pb12" id="selectBox">
-      
-      <!-- 
-        <div class="search-sort">
-         <p style="margin: 0 0 0 10px;">총 <span><span id="total-length">0</span>건</span>의 검색결과</p>
-          <div>
-            <span>
-              <button type="button" id="list-type-btn" class="">
-                <span class="ir"></span>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="grid-btn"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M5 10.2C5 10.421 5.17909 10.6 5.4 10.6H10.2C10.4209 10.6 10.6 10.421 10.6 10.2V5.4C10.6 5.17909 10.4209 5 10.2 5H5.4C5.17909 5 5 5.17909 5 5.4V10.2Z"
-                    stroke="#666666"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M13.4003 10.2C13.4003 10.421 13.5794 10.6 13.8003 10.6H18.6003C18.8212 10.6 19.0003 10.421 19.0003 10.2V5.4C19.0003 5.17909 18.8212 5 18.6003 5H13.8003C13.5794 5 13.4003 5.17909 13.4003 5.4V10.2Z"
-                    stroke="#666666"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M5 18.5988C5 18.8198 5.17909 18.9988 5.4 18.9988H10.2C10.4209 18.9988 10.6 18.8198 10.6 18.5988V13.7988C10.6 13.5779 10.4209 13.3988 10.2 13.3988H5.4C5.17909 13.3988 5 13.5779 5 13.7988V18.5988Z"
-                    stroke="#666666"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M13.4004 18.5988C13.4004 18.8198 13.5795 18.9988 13.8004 18.9988H18.6004C18.8213 18.9988 19.0004 18.8198 19.0004 18.5988V13.7988C19.0004 13.5779 18.8213 13.3988 18.6004 13.3988H13.8004C13.5795 13.3988 13.4004 13.5779 13.4004 13.7988V18.5988Z"
-                    stroke="#666666"
-                  />
-                </svg>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="list-btn"
-                  style="margin: 1px 0 0 0; padding: 0;"
-                  >
-                  <path d="M5 7H7" stroke="#666666" stroke-linecap="round" />
-                  <path d="M5 12H7" stroke="#666666" stroke-linecap="round" />
-                  <path d="M5 17H7" stroke="#666666" stroke-linecap="round" />
-                  <path d="M10 7H19" stroke="#666666" stroke-linecap="round" />
-                  <path d="M10 12H19" stroke="#666666" stroke-linecap="round" />
-                  <path d="M10 17H19" stroke="#666666" stroke-linecap="round" />
-                </svg>
-              </button>
-            </span>
-            <div id="order-select" class="select">
-              <ul></ul>
-            </div>
-          </div>
-        </div>
-        
-         -->
         
         <div class="curation-nav swipe">
           <ul class="swiper-wrap">
@@ -472,57 +410,13 @@
             </div></a
           >
         </li>
-        <li>
-          <a href="/viewfinder/book_detail.html?book_seq=15599279"
-            ><div class="image book-icon readingbook">
-              <img
-                src="https://img.millie.co.kr/200x/service/cover/15599279/ea654d25ef014b00b9475cbb4c0e8247.jpg"
-                alt=""
-              />
-            </div>
-            <div class="body">
-              <span class="bedge-icon readingbook"><i>오디오북</i><span>전문성우</span></span
-              ><span class="title">싸울 때마다 투명해진다</span>
-              <p>오디오북으로 듣는 여성들의 서사</p>
-              <div><span class="author">은유</span><span class="publisher">서해문집</span></div>
-            </div></a
-          >
-        </li>
-        <li>
-          <a href="/viewfinder/book_detail.html?book_seq=15599279"
-            ><div class="image book-icon readingbook">
-              <img
-                src="https://img.millie.co.kr/200x/service/cover/15599279/ea654d25ef014b00b9475cbb4c0e8247.jpg"
-                alt=""
-              />
-            </div>
-            <div class="body">
-              <span class="bedge-icon readingbook"><i>오디오북</i><span>전문성우</span></span
-              ><span class="title">싸울 때마다 투명해진다</span>
-              <p>오디오북으로 듣는 여성들의 서사</p>
-              <div><span class="author">은유</span><span class="publisher">서해문집</span></div>
-            </div></a
-          >
-        </li>
-        <li>
-          <a href="/viewfinder/book_detail.html?book_seq=15599279"
-            ><div class="image book-icon readingbook">
-              <img
-                src="https://img.millie.co.kr/200x/service/cover/15599279/ea654d25ef014b00b9475cbb4c0e8247.jpg"
-                alt=""
-              />
-            </div>
-            <div class="body">
-              <span class="bedge-icon readingbook"><i>오디오북</i><span>전문성우</span></span
-              ><span class="title">싸울 때마다 투명해진다</span>
-              <p>오디오북으로 듣는 여성들의 서사</p>
-              <div><span class="author">은유</span><span class="publisher">서해문집</span></div>
-            </div></a
-          >
-        </li>
+
       </ul>
       <!-- <div class="listmore_wrap"><a href="javascript:;" class="btn_listmore"><span>더보기</span></a></div> -->
     </main>
+    
+    
+    
     <!-- 준수오빠...어케해요... -->
     <h3>MD's Pick Post</h3>
     <div class="card card-body">여기에 포스트카드</div>

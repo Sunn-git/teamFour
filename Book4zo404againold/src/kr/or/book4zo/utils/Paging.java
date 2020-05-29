@@ -1,4 +1,4 @@
-package kr.or.book4zo.dao;
+package kr.or.book4zo.utils;
 
 public class Paging {
 	 //화면에 보여질 게시글의 개수를 지정

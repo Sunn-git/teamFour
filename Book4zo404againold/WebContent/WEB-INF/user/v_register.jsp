@@ -28,54 +28,14 @@
 
 </head>
 <body class="register-page sidebar-collapse">
-
-	<div class="collapse navbar-collapse">
-		<ul class="navbar-nav ml-auto">
-			<li class="dropdown nav-item"><a href="#"
-				class="dropdown-toggle nav-link" data-toggle="dropdown"> <i
-					class="material-icons">apps</i> Components
-			</a>
-				<div class="dropdown-menu dropdown-with-icons">
-					<a href="../index.html" class="dropdown-item"> <i
-						class="material-icons">layers</i> All Components
-					</a> <a
-						href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html"
-						class="dropdown-item"> <i class="material-icons">content_paste</i>
-						Documentation
-					</a>
-				</div></li>
-			<li class="nav-item"><a class="nav-link"
-				href="https://www.creative-tim.com/product/material-kit-pro"
-				target="_blank"> <i class="material-icons">unarchive</i> Upgrade
-					to PRO
-			</a></li>
-			<li class="nav-item"><a class="nav-link" rel="tooltip" title=""
-				data-placement="bottom" href="https://twitter.com/CreativeTim"
-				target="_blank" data-original-title="Follow us on Twitter"
-				rel="nofollow"> <i class="fa fa-twitter"></i>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" rel="tooltip" title=""
-				data-placement="bottom" href="https://www.facebook.com/CreativeTim"
-				target="_blank" data-original-title="Like us on Facebook"
-				rel="nofollow"> <i class="fa fa-facebook-square"></i>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" rel="tooltip" title=""
-				data-placement="bottom"
-				href="https://www.instagram.com/CreativeTimOfficial" target="_blank"
-				data-original-title="Follow us on Instagram" rel="nofollow"> <i
-					class="fa fa-instagram"></i>
-			</a></li>
-		</ul>
-	</div>
-
 	<div class="page-header header-filter"
-		style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
+		style="background-image: url('${pageContext.request.contextPath}/assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 col-md-6 ml-auto mr-auto">
 					<div class="card card-login">
-						<form class="form" method="" action="">
-							<div class="card-header card-header-primary text-center">
+						<form id="fileUpload" enctype="multipart/form-data" class="form" method="post" action="RegisterAction.user">
+							<div class="card-header card-header-rose text-center">
 								<h4 class="card-title">Register</h4>
 							
 							</div>
@@ -87,7 +47,7 @@
 											class="material-icons">perm_identity</i>
 										</span>
 									</div>
-									<input type="text" class="form-control" placeholder="아이디">
+									<input type="text" id="user_id" name="user_id" class="form-control" placeholder="아이디">
 								</div>
 								<div class="input-group">
 									<div class="input-group-prepend">
@@ -95,7 +55,7 @@
 											class="material-icons">lock_outline</i>
 										</span>
 									</div>
-									<input type="password" class="form-control" placeholder="비밀번호">
+									<input type="password" id="user_pwd" name="user_pwd"  class="form-control" placeholder="비밀번호">
 								</div>
 
 								<div class="input-group">
@@ -104,40 +64,44 @@
 											class="material-icons">lock</i>
 										</span>
 									</div>
-									<input type="password" class="form-control"
+									<input type="password" id="user_pwdCheck" name="user_pwdCheck"  class="form-control"
 										placeholder="비밀번호 확인">
 								</div>
-
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<span class="input-group-text"> <i
-											class="material-icons">email</i>
-										</span>
-									</div>
-									<input type="password" class="form-control"
-										placeholder="이메일 주소">
-								</div>
-
+								
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text"> <i
 											class="material-icons">face</i>
 										</span>
 									</div>
-									<input type="password" class="form-control" placeholder="이름">
+									<input type="text" id="user_name" name="user_name" class="form-control" placeholder="이름">
+								</div>
+								
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text"> <i
+											class="material-icons">email</i>
+										</span>
+									</div>
+									<input type="email" id="user_email" name="user_email"  class="form-control"
+										placeholder="이메일 주소">
+								</div>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text"> <i
+											class="material-icons">profile</i>
+										</span>
+									</div>
+									<input type="file" id="user_image" name="user_image"  class="form-control">
 								</div>
 
 
 
+
 								<div class="row">
-									<div class="col-md-6 mx-auto">
-										<button class="btn btn-primary btn-round" href="#pablo">
-											<i class="material-icons">cancel</i> 동의안함
-										</button>
-										<button class="btn btn-primary btn-round" href="#pablo">
-											<i class="material-icons">person_add</i> 회원가입
-										</button>
-										
+									<div class="col-md-9 ml-auto mr-4 mt-4 mb-4">
+										<input class="btn btn-white btn-round" type="reset" value="입력취소">
+										<input class="btn btn-rose btn-round" type="submit" id="submit" value="회원가입"> 
 									</div>
 								</div>
 							</div>

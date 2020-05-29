@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +13,7 @@
   <title>
     Review 4 Book
   </title>
+  
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -105,29 +108,33 @@
   
 </head>
 <body>
-
-
-	<c:set var="userid" value="${sessionScope.userid}"/>
+	<c:set var="user_id" value="${sessionScope.user_id}"/>
+	<header>
 	<c:choose>
-		<c:when test="${userid != null}">
-		<c:if test="${userid == 'admin'}">
-			<jsp:include page="/WEB-INF/common/v_navAdmin.jsp"/>
-		</c:if>
-			<jsp:include page="/WEB-INF/common/v_navMember.jsp"/>
+		<c:when test="${user_id != null}">
+			<c:choose>
+				<c:when test="${user_id == 'admin'}">
+					<jsp:include page="/WEB-INF/common/v_navAdmin.jsp"/>
+				</c:when>
+				<c:otherwise>
+					<jsp:include page="/WEB-INF/common/v_navMember.jsp"/>
+				</c:otherwise>
+			</c:choose>
 		</c:when>
 		<c:otherwise>
 			<jsp:include page="/WEB-INF/common/v_navNonmember.jsp"/>
 		</c:otherwise>
 	</c:choose>
+	</header>
 	
-	<!-- header -->
+	
 	<div class="header" style="height:240px; background-color:#b8a7a7; color : white; padding-top: 120px;">
 		<div class="container">
 		<h2 style="margin:0;">Review 4 Book과 함께하는 독서 이야기</h2>
 		<p>rakaskdf asdfasdfqlsdfjasd qwdfjs qwsd fs dfa sd wdfas dfasdfa asdfqwdf sf</p>
 		</div>
 	</div>
-	<!-- header end -->
+	
 	
 	<!-- 검색  -->
 	<div class="container">
@@ -181,22 +188,7 @@
 				              <div><span class="author">은유</span><span class="publisher">서해문집</span></div>
 				            </div></a>
 				        </li>
-				        <li>
-				          <a href="/viewfinder/book_detail.html?book_seq=15599279"
-				            ><div class="image book-icon readingbook">
-				              <img
-				                src="https://img.millie.co.kr/200x/service/cover/15599279/ea654d25ef014b00b9475cbb4c0e8247.jpg"
-				                alt=""
-				              />
-				            </div>
-				            <div class="body">
-				              <span class="bedge-icon readingbook"><i>오디오북</i><span>전문성우</span></span
-				              ><span class="title">싸울 때마다 투명해진다</span>
-				              <p>오디오북으로 듣는 여성들의 서사</p>
-				              <div><span class="author">은유</span><span class="publisher">서해문집</span></div>
-							</div>
-							</a>
-				        </li>   
+   
 					</ul>
 				</div>
 				
@@ -206,31 +198,9 @@
 		    </div>
 		  </div>
 		</div>
-		
-		
-		
-		
-			<c:if test="${'.search-input' == null})">
-				<jsp:include page="/WEB-INF/book/v_searchRecommendBook.jsp"/>
-			</c:if>
-			
-			
 			
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -288,7 +258,7 @@
 		
 		
 
-		//검색 기능 : 일단은 버튼 클릭으로 만들고 나중에 keyup으로 변경하기
+		//검색 기능 : 버튼클릭 
 		$('#bookSearchInputButton').click(function() {
 
 			//console.log($('#searchFilter option:selected').val());
@@ -347,7 +317,7 @@
 		});
 	
 	
-		//keyup 검색기능 bookSearchInput
+		// 검색 기능 : keyup
 		$('#bookSearchInput').keyup(function() {
 
 			console.log($('#searchFilter option:selected').val());
