@@ -262,30 +262,30 @@
                                         <!-- StarRatingInput_Label-filled -->
                                         <div class="StarRatingForm_Row" style="margin-top: -20px;">
                                             <div id="choiceStarRating" class="StarRatingInput StarRatingForm_Input">
-                                                <label for="MyStarRating1" class="StarRatingInput_Label" data-rating="1">
+                                                <label for="MyStarRating1" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="1">
                                                     <span class="a11y">1점</span>
                                                     <span class="StarRatingInput_Separator"></span>
                                                 </label>
                                                 <input id="MyStarRating1" class="a11y" name="MyStarRating" type="radio" value="1">
-                                                <label for="MyStarRating2" class="StarRatingInput_Label" data-rating="2">
+                                                <label for="MyStarRating2" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="2">
                                                     <span class="a11y">2점</span>
                                                     <span class="StarRatingInput_Separator"></span>
                                                 </label>
                                                 <input id="MyStarRating2" class="a11y" name="MyStarRating" type="radio" value="2">
-                                                <label for="MyStarRating3" class="StarRatingInput_Label" data-rating="3">
+                                                <label for="MyStarRating3" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="3">
                                                     <span class="a11y">3점</span>
                                                     <span class="StarRatingInput_Separator"></span>
                                                 </label>
                                                 <input id="MyStarRating3" class="a11y" name="MyStarRating" type="radio" value="3">
-                                                <label for="MyStarRating4" class="StarRatingInput_Label" data-rating="4">
+                                                <label for="MyStarRating4" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="4">
                                                     <span class="a11y">4점</span>
                                                     <span class="StarRatingInput_Separator"></span>
                                                 </label>
                                                 <input id="MyStarRating4" class="a11y" name="MyStarRating" type="radio" value="4">
-                                                <label for="MyStarRating5" class="StarRatingInput_Label" data-rating="5">
+                                                <label for="MyStarRating5" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="5" >
                                                     <span class="a11y">5점</span>
                                                 </label>
-                                                <input id="MyStarRating5" class="a11y" name="MyStarRating" type="radio" value="5">
+                                                <input id="MyStarRating5" class="a11y" name="MyStarRating" type="radio" value="5" checked>
                                             </div>
                                         </div>
                                     </div>
@@ -476,10 +476,6 @@
 						reply += '<path d="M36.6 0H19.4C8.9 0 .4 8.5.4 18.9c0 9.2 6.7 16.9 15.5 18.5v7.2c0 1.4.8 2.6 2.1 3.2.5.1.9.2 1.4.2.9 0 1.8-.3 2.4-1l9.6-9.3h5.2c10.4 0 18.9-8.5 18.9-18.9C55.6 8.5 47.1 0 36.6 0z"></path></svg>';
 						reply += '<span class="ReviewButtons_CommentLabel">댓글</span>';
 						reply += '<span class="ReviewButtons_CommentCount">1</span></button></li>';
-						reply += '<c:if test="${user_id == '+item.user_id+'}">';
-						reply += '<li class="ReviewButtons_LikeButtonItem">';
-                     	reply += '<button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton">';
-                        reply += '<span class="ReviewButtons_LikeCount">수정</span></button></li></c:if>';
 						reply += '<li class="ReviewButtons_LikeButtonItem">';
 						reply += '<button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton">';
 						reply += '<svg class="RSGIcon RSGIcon-thumbUp RSGIcon-thumbUp1 ReviewButtons_LikeIcon RUIButton_SVGIcon"';
@@ -487,9 +483,9 @@
 						reply += '<g><path d="M41.7 32.7s2.3-1.3 2.1-4.3c-.1-1.9-2.4-3.7-2.4-3.7s1-1.8 1-2.6 0-2.9-2.1-4-12.1.4-12.1.4 1-5.8 1.1-6.6c.1-.8 1-1.7 1.1-4.4.2-3.5-1.2-7.6-4.2-7.5C23.1.1 24 5 24 5.8c0 .8-2.2 5.8-4.2 9-1.9 3.2-4.2 4.6-4.9 7.8-.6 2.7-3.6 3.8-3.6 3.8-.9.2-.9 1-.8 1.7 1.9 11.7 3.8 18 3.8 18s5 1.1 6.8 1.2c1.8.1 1.5.2 3.3.6 1.8.3 5.5 0 8.5 0s4.2-.7 7.1-2.8c2.9-2.1.8-5 .8-5s2.4-.6 2.4-3.8c0-2.8-1.5-3.6-1.5-3.6zM7.7 28.1c-.2-.9-1.1-1.6-2-1.6H2c-.9 0-1.7.7-1.8 1.6v18c0 .9.8 1.6 1.7 1.6h8.2c.9 0 1.3-1.2 1.1-2.2L7.7 28.1z"></path></g></svg>';
 						reply += '<span class="ReviewButtons_LikeCount">0</span></button></li>';
 						reply += '<li class="ReviewButtons_LikeButtonItem">';
-                     	reply += '<button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton">';
+                     	reply += '<button id="replyMore" class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton">';
                         reply += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-7c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>';
-                     	reply += '<span class="ReviewButtons_LikeCount">수정</span></button></li>';
+                     	reply += '<span class="ReviewButtons_LikeCount"></span></button></li>';
 						reply += '</ul></div>';
 						reply += '<div class="Comments collapse" id="comment" style="background-color: rgba(210, 210, 210, 0.19)">';
 						reply += '<ul class="CommentList"><li class="CommentItem">';
@@ -515,6 +511,8 @@
     		console.log($('#replyContent').val());
     		console.log($('.ReviewForm').attr('userid'));
     		console.log($('#choiceStarRating').children('input:checked').val());
+    		console.log($('label[class=StarRatingInput_Label][checked=checked]').length);
+    		
     		$.ajax({
     			url:"ReplyWrite.ajax",
 				type:"POST",
@@ -532,23 +530,6 @@
 					
 					let reply = ""
 					$.each(data, function(index, item){
-						/* reply += "<ul class='CommentList'>";
-						reply += "<li class='CommentItem'>";
-						reply += "<div class='CommentItem_Content'>";
-						reply += "<p>"+item.reply_content+"</p></div>";
-						reply += "<div class='CommentItem_Metadata'>";
-						reply += "<span class='CommentItem_MaskedUId'>";
-						reply += "<span class='a11y'>작성자</span>";
-						reply += item.user_id+"</span>";
-						reply += "<span class='CommentItem_CommentDate'>";
-						reply += "<span class='a11y'>작성일</span>";
-						reply += item.reply_date + "</span></div></li></ul>";
-						
-						reply += "<div class='CommentForm_Wrapper'>";
-						reply += "<div class='CommentForm'>"
-						reply += "<textarea class='CommentForm_Textarea' name='commentContent' title='댓글 입력' placeholder='이 곳에 댓글을 남겨주세요.' style='height: 30px!important;'></textarea>"
-						reply += "<button class='btn btn-rose btn-sm' style='margin: auto 10px auto 0;'>댓글 달기</button></div></div>" */
-						
 						reply += '<ul class="ReviewList"><li class="ReviewItem"><div class="ReviewItem_Left">';
 						reply += '<span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span>';
 						reply += '<span class="StarRating_Icon_Foreground_Mask" style="width: 60px; height: 12px;">';
@@ -574,7 +555,12 @@
 						reply += '<svg class="RSGIcon RSGIcon-thumbUp RSGIcon-thumbUp1 ReviewButtons_LikeIcon RUIButton_SVGIcon"';
 						reply += 'viewBox="0 0 44 49" width="44" height="49">';
 						reply += '<g><path d="M41.7 32.7s2.3-1.3 2.1-4.3c-.1-1.9-2.4-3.7-2.4-3.7s1-1.8 1-2.6 0-2.9-2.1-4-12.1.4-12.1.4 1-5.8 1.1-6.6c.1-.8 1-1.7 1.1-4.4.2-3.5-1.2-7.6-4.2-7.5C23.1.1 24 5 24 5.8c0 .8-2.2 5.8-4.2 9-1.9 3.2-4.2 4.6-4.9 7.8-.6 2.7-3.6 3.8-3.6 3.8-.9.2-.9 1-.8 1.7 1.9 11.7 3.8 18 3.8 18s5 1.1 6.8 1.2c1.8.1 1.5.2 3.3.6 1.8.3 5.5 0 8.5 0s4.2-.7 7.1-2.8c2.9-2.1.8-5 .8-5s2.4-.6 2.4-3.8c0-2.8-1.5-3.6-1.5-3.6zM7.7 28.1c-.2-.9-1.1-1.6-2-1.6H2c-.9 0-1.7.7-1.8 1.6v18c0 .9.8 1.6 1.7 1.6h8.2c.9 0 1.3-1.2 1.1-2.2L7.7 28.1z"></path></g></svg>';
-						reply += '<span class="ReviewButtons_LikeCount">0</span></button></li></ul></div>';
+						reply += '<span class="ReviewButtons_LikeCount">0</span></button></li>';
+						reply += '<li class="ReviewButtons_LikeButtonItem">';
+                     	reply += '<button id="replyModify" replySeq="'+item.reply_seq+'" class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton">';
+                        reply += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-7c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>';
+                     	reply += '<span class="ReviewButtons_LikeCount">수정</span></button></li>';
+						reply += '</ul></div>';
 						reply += '<div class="Comments collapse" id="comment" style="background-color: rgba(210, 210, 210, 0.19)">';
 						reply += '<ul class="CommentList"><li class="CommentItem">';
 						reply += '<div class="CommentItem_Content"><p>리리플 뿌리는 방법 찾기</p></div>';
@@ -585,7 +571,6 @@
 						reply += '<textarea class="CommentForm_Textarea" name="commentContent" title="댓글 입력"';
 						reply += 'placeholder="이 곳에 댓글을 남겨주세요." style="height: 30px!important;"></textarea>';
 						reply += '<button class="btn btn-rose btn-sm" style="margin: auto 10px auto 0;">댓글 달기</button></div></div></div></div></li>';
-                      
 					});
 					$('#reply').append(reply);
 					
@@ -597,6 +582,8 @@
     		});
     	});
            
+    	   
+    	   
         $('.StarRatingInput_Label').click(function() {
              //리뷰 왕별 click하면 채워지게 만들기 (댓글에 들어가는 별점 여기서 적용되게 해야함)
             $('.StarRatingInput_Label').addClass('StarRatingInput_Label-filled');
