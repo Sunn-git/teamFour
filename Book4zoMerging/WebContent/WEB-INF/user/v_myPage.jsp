@@ -197,8 +197,6 @@
           	<c:forEach var="reply" items="${requestScope.replyList}">
           	<c:forEach var="book" items="${requestScope.bookList}">
           	<c:if test="${reply.book_seq == book.bookSeq}">
-          	${reply}
-          	${book}
             <div class="row">
               <div class="col-md-8 m-auto">
               	<div class ="card card-body">

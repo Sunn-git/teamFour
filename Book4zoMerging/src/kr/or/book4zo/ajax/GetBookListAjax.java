@@ -18,6 +18,9 @@ import net.sf.json.JSONArray;
  */
 @WebServlet("/UserList.ajax")
 public class GetBookListAjax extends HttpServlet {
+	
+//	이거 안쓰는 파일 같은데 일단 남겨둠......... 뭐야
+	
 	private static final long serialVersionUID = 1L;
 
     public GetBookListAjax() {
