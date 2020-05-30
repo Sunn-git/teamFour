@@ -25,24 +25,22 @@ public class PostDetail_s implements Action {
 
 
 			PostDao postdao = new PostDao();
-			PostDto postdto = new PostDto();
-			
-		
-			
+
 			int num = Integer.parseInt(request.getParameter("post_seq"));
-			System.out.println("뭐가나오냐 :" + num);
-			postdto = postdao.getDetail(num);
-			System.out.println("뭐가나오냐 :" + postdto);
-			if (postdto == null) {
+			PostDto currentPost = postdao.getDetail(num);
+			
+			System.out.println("post_seq값 :" + num);
+			System.out.println("CurrentPost :" + currentPost);
+			if (currentPost == null) {
 				System.out.println("상세보기 실패");
 				return null;
 			}
 			System.out.println("상세보기 성공");
 
-			request.setAttribute("postdto", postdto);
+			request.setAttribute("CurrentPost", currentPost);
 			ActionForward forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("PostDetailView.post");
+			forward.setPath("PostDetail.post");
 			System.out.println("디테일서비스 뷰여기까지 온거니??");
 			//자 도전이다==  여기까지 못옴
 			return forward;

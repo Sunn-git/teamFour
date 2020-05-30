@@ -18,58 +18,68 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <!-- CSS Files -->
 <link
-	href="${pageContext.request.contextPath}/assets/css/material-kit.css?v=2.0.7"
-	rel="stylesheet" />
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+	rel="stylesheet">
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/assets/css/material-kit.css?v=2.0.7"
+	rel="stylesheet" />
 </head>
 <!-- 게시판 등록 -->
 <body>
 <c:set var="user_id" value="${sessionScope.user_id}"/>
-
-	<div class= "col-md-12 ml-auto mr-auto">
-	<form class="form" method="post" action="PostWrite_s.post"
+<header>
+<c:choose>
+	<c:when test="${user_id != null}">
+		<c:choose>
+			<c:when test="${user_id == 'admin'}">
+				<jsp:include page="/WEB-INF/common/v_navAdmin.jsp"/>
+			</c:when>
+			<c:otherwise>
+				<jsp:include page="/WEB-INF/common/v_navMember.jsp"/>
+			</c:otherwise>
+		</c:choose>
+	</c:when>
+	<c:otherwise>
+		<jsp:include page="/WEB-INF/common/v_navNonmember.jsp"/>
+	</c:otherwise>
+</c:choose>
+</header>
+	<div style="height: 10px;"></div>
+	<div class="row">
+	<div class= "col-md-9 ml-auto mr-auto">
+	<form class="form form-row" method="post" action="PostWrite_s.post"
 		enctype="multipart/form-data" name="postform">
-		<table >
+		<table class="col" >
 	
 			<tr>
-				<td style="font-family: 돋음; font-size: 12" height="16">
-					<div align="center">글쓴이</div> <!-- 수정되어야함 -->
-				</td>
+				
 				<td> 
-					<input type="text" class="form-control" name="user_id" size="10" maxlength="10" placeholder="글쓴이" value="${user_id }" readOnly />
+					<input type="text" class="form-control" name="user_id" size="10" maxlength="10" placeholder="글쓴이" value="${user_id}" hidden />
                		<input type="text" name="bookSeq" value="${param.bookSeq}" hidden/>
                </td>
               
 			</tr>
 			<tr>
-				<td style="font-family: 돋음; font-size: 12" height="16">
-					<div align="center"></div>
-				</td>
+				
 				<td>
-					<div>
+					<div style="margin-bottom:8px;">
 						<input type="text" class="form-control" name="post_title"
 							placeholder="제목을 입력하세요" value="" required />
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td style="font-family: 돋음; font-size: 12">
-					<div align="center">내 용</div>
-				</td>
+				
 				<td><textarea id="summernote" name="post_contents" cols="67"
 						rows="20"  required></textarea>
 				</td>
 			</tr>
 			<tr>
-				<td style="font-family: 돋음; font-size: 12">
-					<div align="center">파일 첨부</div>
-				</td>
-				<td><input name="file" type="file" /></td>
+				
+				<td><input name="file" type="file"/><br></td>
 			</tr>
 			<tr bgcolor="cccccc">
 				<td colspan="2" style="height: 1px;"></td>
@@ -77,11 +87,15 @@
 			<tr>
 				<td colspan="2">&nbsp;</td>
 			</tr>
-
-		</table>
-		<a href="javascript:history.go(-1)" class="btn btn-round btn-white">뒤로</a>
-		<a href="javascript:addpost()" class="btn btn-round btn-rose">등록</a>
+			<tr>
+				<td align="center">
+					<a href="javascript:history.go(-1)" class="btn btn-round btn-white">&nbsp;&nbsp;뒤로&nbsp;&nbsp;</a>
+					<a href="javascript:addpost()" class="btn btn-round btn-rose">&nbsp;&nbsp;등록&nbsp;&nbsp;</a>
+				</td>
+			</tr>
+		</table><br>
 	</form>
+	</div>
 	</div>
 	<!-- 게시판 등록 -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

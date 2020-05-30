@@ -203,7 +203,7 @@
 	                                
 	                                <p class="card-text">${post.post_contents}</p>
 	      
-	                                <a href="javascript:;" class="btn btn-rose btn-round" style="position: relative; margin: 0;"> ${post.user_id} 님의 포스트 읽으러 가기</a>
+	                                <a href="PostDetailView.post?post_seq=${post.post_seq}" class="btn btn-rose btn-round" style="position: relative; margin: 0;"> ${post.user_id} 님의 포스트 읽으러 가기</a>
 	                            </div>
 	                        </div>
 	                    </div>
