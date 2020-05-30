@@ -16,24 +16,23 @@ public class PostModifyView_s implements Action {
 		 	
 		 	request.setCharacterEncoding("utf-8");
 		 	PostDao postdao = new PostDao();
-		   	PostDto postdto = new PostDto();
-		   	
-		 	request.setAttribute("postdto", postdto);
+
+		 	int num =Integer.parseInt(request.getParameter("post_seq"));
+		 	PostDto postdto =postdao.getDetail(num);
 		 	
-		 	int num =Integer.parseInt(request.getParameter("num"));
-		 	postdto =postdao.getDetail(num);
 		 	System.out.println("값" + num);
-		  
 		 	
-		 	//postdto =postdao.getDetail(num);
-		 	
-		 	//request.setAttribute("postdto", postdto);
+			if(postdto == null){
+				System.out.println("수정 상세보기 실패");
+				return null;
+			}
+			System.out.println("수정 상세보기 성공");
+			request.setAttribute("CurrentPost", postdto);
+			
 		 	ActionForward forward = new ActionForward();
 		 	forward.setRedirect(false);
-		 	forward.setPath("PostModifyAction.post");
-		   	System.out.println("postdto:"+postdto);
-			System.out.println("PostModifyAction.post 뷰여기까지 온거니??");
-			//자 도전이다==  여기까지 못옴
+		 	forward.setPath("/WEB-INF/post/v_postModify.jsp");
+		 	
 			return forward;
 	 }
 	 

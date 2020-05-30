@@ -18,7 +18,7 @@
 <c:set var="user_id" value="${sessionScope.user_id}" />
 <c:set var="user_image" value="${sessionScope.user_image}" /> 
 
-<nav class="navbar navbar-default navbar-expand-lg" role="navigation-demo">
+<nav class="navbar navbar-default navbar-expand-lg" role="navigation-demo" style="margin-bottom:0;">
             <div class="container">
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-translate">

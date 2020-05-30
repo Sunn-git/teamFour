@@ -293,7 +293,7 @@ public class PostDao {
 
 								pstmt = conn.prepareStatement(sql);
 								//pstmt.setInt(1, num);
-								pstmt.setString(1, "aa"); // postdto.getUser_id()
+								pstmt.setString(1, postdto.getUser_id()); // postdto.getUser_id()
 								System.out.println("postdto.getBook_seq()"+postdto.getBook_seq());
 								pstmt.setInt(2, postdto.getBook_seq()); //postdto.getBook_Seq()
 								pstmt.setString(3, postdto.getPost_title());
@@ -349,19 +349,36 @@ public class PostDao {
 			
 			
 			public boolean PostModify(PostDto modifyPost) throws Exception {
-
-				String sql = "update post set post_contents=?,post_title=? where post_seq=?";
-
+				
+				String sql="";
 				try {
+					int number;
+					sql= "update post set POST_CONTENTS=?,POST_TITLE=?";
+					if(modifyPost.getPost_upload_file()!=null) {
+						System.out.println("getPost_upload_file()값 null");
+						sql+= ", POST_UPLOAD_FILE=? ";
+						number=4;
+					}else {
+						number=3;
+					}
+					sql+= "where POST_SEQ=?";
+					
+					System.out.println(sql);
+
 					conn = ds.getConnection();
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, modifyPost.getPost_contents());
 					pstmt.setString(2, modifyPost.getPost_title());
-					pstmt.setInt(3, modifyPost.getPost_seq());
+					pstmt.setInt(number, modifyPost.getPost_seq());
+					if(modifyPost.getPost_upload_file()!=null) {
+						pstmt.setString(3, modifyPost.getPost_upload_file());
+					}
 					pstmt.executeUpdate();
+					System.out.println("executeUpdate 완료");
 					return true;
 				} catch (Exception ex) {
 					System.out.println("postModify 에러 : " + ex);
+					ex.printStackTrace();
 				} finally {
 					closed();
 				}
@@ -401,6 +418,7 @@ public class PostDao {
 					return true;
 				} catch (Exception ex) {
 					System.out.println("postDelete 에러 : " + ex);
+					ex.printStackTrace();
 				} finally {
 					closed();
 				}
