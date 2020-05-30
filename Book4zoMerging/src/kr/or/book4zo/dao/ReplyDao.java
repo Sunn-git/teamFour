@@ -232,6 +232,40 @@ public class ReplyDao {
 			}
 			return false;
 		}
+	   public boolean replyUpdate(int reply_seq, String reply_content) {
+		   int num = 0;
+			String sql = "";
+
+			int result = 0;
+			try {
+				conn = ds.getConnection();
+				pstmt = conn.prepareStatement("select * from reply where reply_seq=?");
+				pstmt.setInt(1,reply_seq);
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+					sql += "UPDATE reply SET reply_content=?";
+					sql += "WHERE reply_seq = ?";
+					pstmt = conn.prepareStatement(sql);
+					
+					pstmt.setString(1, reply_content);
+					pstmt.setInt(2, reply_seq);
+					
+					result = pstmt.executeUpdate();
+					
+					if(result ==0) {
+						return false;
+					}else {
+						return true;
+					}
+					
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		   
+		   return false;
+	   }
 	   
 }
 
