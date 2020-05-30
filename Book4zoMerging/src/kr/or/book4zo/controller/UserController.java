@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.book4zo.action.Action;
 import kr.or.book4zo.action.ActionForward;
 import kr.or.book4zo.service.user.Login_s;
+import kr.or.book4zo.service.user.Mypage_s;
 import kr.or.book4zo.service.user.Register_s;
 
 /**
@@ -71,10 +72,10 @@ public class UserController extends HttpServlet {
 		//마이페이지 연결 
 		else if(urlCmd.equals("/Mypage.user")) {
 			System.out.println("/Mypage.book 실행");
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/user/v_myPage.jsp");
+			action = new Mypage_s();
+			forward = action.execute(request, response);
 		}
+		
 		//내 정보 수정 연결 
 		else if(urlCmd.equals("/InfoEdit.user")) {
 			System.out.println("/InfoEdit.book 실행");

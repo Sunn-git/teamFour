@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <!DOCTYPE html>
 <html>
@@ -21,6 +22,16 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
 
+
+     <!-- 리디 폰트-->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&amp;display=swap&amp;subset=korean"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500,700&amp;display=swap&amp;text=1234567890,/%"
+        rel="stylesheet">
+
+        <!-- 핵심 CSS -->
+    <link href="https://select.ridicdn.net/app.a00239db55301aa1cd30.css" rel="stylesheet">
+	
 
 </head>
 <body>
@@ -55,7 +66,7 @@
                       	</div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                      <h6 class="dropdown-header">누구누구님 반갑습니다 :)</h6>
+                      <h6 class="dropdown-header">${param.userId}님 반갑습니다 :)</h6>
                       <a href="Mypage.book" class="dropdown-item">내 도서함</a>
                       <a href="InfoEdit.book" class="dropdown-item">내 계정 관리</a>
                       <a href="javascript:;" class="dropdown-item">로그아웃</a>
@@ -65,12 +76,18 @@
       </div>
     </div>
   </nav>
+
+
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/city-profile.jpg');">
   </div>
+
+
   <div class="main main-raised">
     <div class="profile-content">
-  <h3>누구누구님의 소중한 책장</h3>
+      <h3>${param.userId} 님의 소중한 책장</h3>
       <div class="container">
+
+        <!-- 프로필 영역 -->
         <div class="row">
           <div class="col-md-6 ml-auto mr-auto">
             <div class="profile">
@@ -83,6 +100,9 @@
             </div>
           </div>
         </div>
+
+
+        <!-- 탭 아이콘 영역 -->
         <div class="row">
           <div class="col-md-8 ml-0">
             <div class="profile-tabs">
@@ -106,7 +126,12 @@
             </div>
           </div>
         </div>
+
+        
+        <!-- 탭 컨텐츠 영역 -->
         <div class="tab-content tab-space">
+
+          <!-- 찜목록 영역 -->
           <div class="tab-pane active text-center gallery" id="favorite">
             <div class="row">
               <div class="col-md-8 m-auto">
@@ -133,27 +158,41 @@
               </div>
             </div>
           </div>
+
+
+          <!-- 내 포스트 목록 영역 -->
+   
           <div class="tab-pane text-center gallery" id="post">
+          
+          	<c:forEach var="post" items="${requestScope.postList}">
+          	 <c:forEach var="book" items="${requestScope.bookList}">
+          	 ${book}
+          	 <c:if test="${post.book_seq == 0}">
             <div class="row">
               <div class="col-md-8 m-auto">
               	<div class ="card card-body">
               		<a href="#">
               		<div class="mydipsbooks row mt-3">
               			<div class="col-md-3 mb-4">
-	              			<a href="#"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
+	              			<a href="#"><img class="dipsbook" src="${book.coverUrl}" alt="${book.title}" style="width:140px; margin:0 8px 0 8px;"></a>
 	            
               			</div>
               			<div class="col-md-9" align="left">
-              				<span>책제목</span> - <span>저자</span>
-              				<h3>포스트제목</h3>
-              				<p>아~~~~~~~~프론트지옥이다~~~~~~배고프다 오늘 유부초밥인데 빨리 먹고싶다 제발제발</p>
+              				<span>${book.title}</span> - <span>저자 ${book.author}</span>
+              				<h3>${post.post_title}</h3>
+              				<p>${post.post_contents}</p>
               			</div>
               		</div>
               		</a>
               	</div>
               </div>
             </div>
+            </c:if>
+            </c:forEach>
+            </c:forEach>
           </div>
+
+          <!-- 내 댓글 영역 -->
           <div class="tab-pane text-center gallery" id="reply">
             <div class="row">
               <div class="col-md-8 m-auto">
@@ -177,7 +216,13 @@
               </div>
             </div>
           </div>
+
+
         </div>
+        <!-- 탭 컨텐츠 end -->
+
+
+
       </div>
     </div>
   </div>

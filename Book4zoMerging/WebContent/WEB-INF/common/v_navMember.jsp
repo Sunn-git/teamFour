@@ -55,7 +55,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                       <h6 class="dropdown-header">${user_id} 님 반갑습니다 :)</h6>
-                      <a href="Mypage.user" class="dropdown-item">내 도서함</a>
+                      <a href="Mypage.user?userId=${user_id}" class="dropdown-item">내 도서함</a>
                       <a href="InfoEdit.user" class="dropdown-item">내 정보 수정</a>
                       <a href="Logout.user" class="dropdown-item">로그아웃</a>
                     </div>

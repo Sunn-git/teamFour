@@ -134,7 +134,7 @@ public class PostDao {
 				return null;
 			}
 			
-			//포스트 목록 전체 가져오기
+			//책번호로 포스트 목록 가져오기
 			public List<PostDto> getPostList(int bookSeq){
 				List<PostDto> list = new ArrayList<PostDto>();
 				
@@ -148,6 +148,49 @@ public class PostDao {
 							"POST_VIEWS, POST_UPLOAD_FILE FROM POST WHERE BOOK_SEQ = ?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setInt(1, bookSeq);
+					rs = pstmt.executeQuery();
+					
+					PostDto post = new PostDto();
+					
+					while(rs.next()) {
+						post.setPost_seq(rs.getInt("POST_SEQ"));
+						post.setUser_id(rs.getString("USER_ID"));
+						post.setBook_seq(rs.getInt("BOOK_SEQ"));
+						post.setPost_title(rs.getString("POST_TITLE"));
+						post.setPost_contents(rs.getString("POST_CONTENTS"));
+						post.setPost_date(rs.getString("POST_DATE"));
+						post.setPost_views(rs.getInt("POST_VIEWS"));
+						post.setPost_upload_file(rs.getString("POST_UPLOAD_FILE"));
+						
+						list.add(post);
+					}
+					
+					System.out.println("list 확인 : "+ list);
+					
+				} catch (Exception e) {
+					System.out.println("========== getPostList 에러 ==========");
+					e.printStackTrace();
+				}finally {
+					closed();
+				}
+				
+				return list;				
+			}
+			
+			//아이디로 포스트 목록 가져오기
+			public List<PostDto> getPostList(String userId){
+				List<PostDto> list = new ArrayList<PostDto>();
+				
+				String sql = "";
+				
+				try {
+					conn = ds.getConnection();
+					
+					sql = "SELECT POST_SEQ, USER_ID, BOOK_SEQ," + 
+							"POST_TITLE, POST_CONTENTS, POST_DATE," + 
+							"POST_VIEWS, POST_UPLOAD_FILE FROM POST WHERE USER_ID = ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, userId);
 					rs = pstmt.executeQuery();
 					
 					PostDto post = new PostDto();

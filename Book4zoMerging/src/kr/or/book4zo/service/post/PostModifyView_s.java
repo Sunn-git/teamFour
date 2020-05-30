@@ -17,7 +17,9 @@ public class PostModifyView_s implements Action {
 		 	request.setCharacterEncoding("utf-8");
 		 	PostDao postdao = new PostDao();
 		   	PostDto postdto = new PostDto();
+		   	
 		 	request.setAttribute("postdto", postdto);
+		 	
 		 	int num =Integer.parseInt(request.getParameter("num"));
 		 	postdto =postdao.getDetail(num);
 		 	System.out.println("값" + num);
