@@ -10,9 +10,11 @@ import kr.or.book4zo.action.Action;
 import kr.or.book4zo.action.ActionForward;
 import kr.or.book4zo.dao.BookDao;
 import kr.or.book4zo.dao.PostDao;
+import kr.or.book4zo.dao.ReplyDao;
 import kr.or.book4zo.dao.UserDao;
 import kr.or.book4zo.dto.BookDto;
 import kr.or.book4zo.dto.PostDto;
+import kr.or.book4zo.dto.ReplyDto;
 import kr.or.book4zo.dto.UserDto;
 
 public class Mypage_s implements Action {
@@ -28,9 +30,6 @@ public class Mypage_s implements Action {
 		try {
 			
 			UserDao userDao = new UserDao();
-			//이걸 설정해줄 필요가 있을까?
-//			UserDto user = (userDao.getUserListByUser_id(userId)).get(0);
-//			request.setAttribute("CurrentUser", user);
 			
 			PostDao postDao = new PostDao();
 			List<PostDto> postList = postDao.getPostList(userId);
@@ -40,6 +39,8 @@ public class Mypage_s implements Action {
 			BookDao bookDao = new BookDao();
 			List<BookDto> bookList = bookDao.getAllBookList();
 			request.setAttribute("bookList", bookList);
+			
+			ReplyDao replyDao = new ReplyDao();
 			
 			
 		} catch (Exception e) {

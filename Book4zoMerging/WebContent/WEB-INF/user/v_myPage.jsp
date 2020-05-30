@@ -169,21 +169,20 @@
           	 <c:if test="${post.book_seq == book.bookSeq}">
             <div class="row">
               <div class="col-md-8 m-auto">
-              	<div class ="card card-body">
-              		<a href="#">
+              	<div class ="card card-body" onclick="location.href='PostDetailView.post?post_seq=${post.post_seq}';">
               		<div class="mydipsbooks row mt-3">
               			<div class="col-md-3 mb-4">
-	              			<a href="#"><img class="dipsbook" src="${book.coverUrl}" alt="${book.title}" style="width:140px; margin:0 8px 0 8px;"></a>
-	            
-              			</div>
+							<a href="Detail.book?bookSeq=${post.book_seq}">
+              					<img class="dipsbook" src="${book.coverUrl}" alt="${book.title}" style="width:140px; margin:0 8px 0 8px;">
+           					</a>
+						</div>
               			<div class="col-md-9" align="left">
               				<span>${book.title}</span> - <span>저자 ${book.author}</span>
               				<h3>${post.post_title}</h3>
               				<p>${post.post_contents}</p>
               			</div>
               		</div>
-              		</a>
-              	</div>
+				</div>
               </div>
             </div>
             </c:if>

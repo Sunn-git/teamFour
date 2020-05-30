@@ -115,6 +115,12 @@ public class ReplyDao {
 		      }
 		      return replyList;
 		   }
+	   
+	   
+	   
+	   
+	   
+	   
 	   //리플 인서트
 	   public boolean replyWrite(String book_seq, String reply_content, String user_id, String reply_star_rate) {
 		   //String user_id,int book_seq, int reply_star_rate, String reply_content, String reply_date, int reply_like, int refer, int depth, int step
