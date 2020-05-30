@@ -225,103 +225,99 @@
             <section class="PageBookDetail_Panel Reviews_Wrapper">
                 <div class="Reviews"><span class="a11y">리뷰</span>
                 
-                <c:if test="${sessionScope.user_id != null}">
-                
-                                    <div class="ReviewsHeader" style="margin-bottom: 50px;">
-                        <div class="ReviewsHeader_Right" style="text-align: center;">
-                            <div class="StarRatingForm" style="display: inline-block;">
+                    <c:if test="${sessionScope.user_id != null}">
+                    
+                        <div class="ReviewsHeader" style="margin-bottom: 50px;">
+                            <div class="ReviewsHeader_Right" style="text-align: center;">
+                                <div class="StarRatingForm" style="display: inline-block;">
 
-                                <div class="StarRatingForm_Row" style="margin-right: 30px; position: relative;">
-                                    <div class="StarRatingForm">
-                                        <div class="BuyerRatingSummary">
-                                            <p class="AverageRating_Title">리뷰어 별점</p>
-                                            <div class="AverageRating_Score">{request로 평점평균 받아오기}<span class="a11y">점</span></div>
-                                            <span class="StarRating_IconBox AverageRating_StarRating" style="width: 76px; height: 16px;">
-                                                <span class="StarRating_Icon_Background" style="width: 76px; height: 16px;"></span>
-                                                <span class="StarRating_Icon_Foreground_Mask" style="width: 65.36px; height: 16px;">
-                                                    <span class="StarRating_Icon_Foreground" style="width: 76px; height: 16px;"></span>
+                                    <div class="StarRatingForm_Row" style="margin-right: 30px; position: relative;">
+                                        <div class="StarRatingForm">
+                                            <div class="BuyerRatingSummary">
+                                                <p class="AverageRating_Title">리뷰어 별점</p>
+                                                <div class="AverageRating_Score">{request로 평점평균 받아오기}<span class="a11y">점</span></div>
+                                                <span class="StarRating_IconBox AverageRating_StarRating" style="width: 76px; height: 16px;">
+                                                    <span class="StarRating_Icon_Background" style="width: 76px; height: 16px;"></span>
+                                                    <span class="StarRating_Icon_Foreground_Mask" style="width: 65.36px; height: 16px;">
+                                                        <span class="StarRating_Icon_Foreground" style="width: 76px; height: 16px;"></span>
+                                                    </span>
                                                 </span>
-                                            </span>
-                                               
-                                            <p class="ParticipantCount"><strong class="ParticipantCount_Num">{리뷰 개수}</strong> 명이 평가함</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="StarRatingForm_Row" style="float: right;">
-                                    <div class="StarRatingForm">
-                                        <div id="StarRatingForm_text"class="StarRatingForm_Row" style="height: 100px; padding: 30px 0 10px 0;">
-                                                                                        
-                                            <!-- 원래 내용 -->
-                                            
-                                            <p class="StarRatingTooltip_Guide" style="padding: 30px auto;">이 책을 평가해주세요!</p>
-                                                    
-
-                                            <!-- 별점 클릭 시 보일 부분 -->
-                                            <!--
-                                            <div class="MyStarRatingStatus">
-                                                <p class="MyStarRatingStatus_Description">내가 남긴 별점
-                                                    <span class="MyStarRatingStatus_Rating">3.0</span>
-                                                </p>
-                                                <button class="MyStarRatingStatus_CancelButton" type="button">취소</button>
-                                            </div>
-                                           -->
-                                        </div>
-
-                                        <!-- 왕별점 부분 mouseover, mouseout 으로 클래스 줘서 별 채우는 이벤트 주기 -->
-                                        <!-- StarRatingInput_Label-filled -->
-                                        <div class="StarRatingForm_Row" style="margin-top: -20px;">
-                                            <div id="choiceStarRating" class="StarRatingInput StarRatingForm_Input">
-                                                <label for="MyStarRating1" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="1">
-                                                    <span class="a11y">1점</span>
-                                                    <span class="StarRatingInput_Separator"></span>
-                                                </label>
-                                                <input id="MyStarRating1" class="a11y" name="MyStarRating" type="radio" value="1">
-                                                <label for="MyStarRating2" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="2">
-                                                    <span class="a11y">2점</span>
-                                                    <span class="StarRatingInput_Separator"></span>
-                                                </label>
-                                                <input id="MyStarRating2" class="a11y" name="MyStarRating" type="radio" value="2">
-                                                <label for="MyStarRating3" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="3">
-                                                    <span class="a11y">3점</span>
-                                                    <span class="StarRatingInput_Separator"></span>
-                                                </label>
-                                                <input id="MyStarRating3" class="a11y" name="MyStarRating" type="radio" value="3">
-                                                <label for="MyStarRating4" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="4">
-                                                    <span class="a11y">4점</span>
-                                                    <span class="StarRatingInput_Separator"></span>
-                                                </label>
-                                                <input id="MyStarRating4" class="a11y" name="MyStarRating" type="radio" value="4">
-                                                <label for="MyStarRating5" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="5">
-                                                    <span class="a11y">5점</span>
-                                                </label>
-                                                <input id="MyStarRating5" class="a11y" name="MyStarRating" type="radio" value="5" checked>
+                                                
+                                                <p class="ParticipantCount"><strong class="ParticipantCount_Num">{리뷰 개수}</strong> 명이 평가함</p>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="StarRatingForm_Row" style="float: right;">
+                                        <div class="StarRatingForm">
+                                            <div id="StarRatingForm_text"class="StarRatingForm_Row" style="height: 100px; padding: 30px 0 10px 0;">
+                                                                                            
+                                                <!-- 원래 내용 -->
+                                                
+                                                <p class="StarRatingTooltip_Guide" style="padding: 30px auto;">이 책을 평가해주세요!</p>
+                                                        
+
+                                                <!-- 별점 클릭 시 보일 부분 -->
+                                                <!--
+                                                <div class="MyStarRatingStatus">
+                                                    <p class="MyStarRatingStatus_Description">내가 남긴 별점
+                                                        <span class="MyStarRatingStatus_Rating">3.0</span>
+                                                    </p>
+                                                    <button class="MyStarRatingStatus_CancelButton" type="button">취소</button>
+                                                </div>
+                                            -->
+                                            </div>
+
+                                            <!-- 왕별점 부분 mouseover, mouseout 으로 클래스 줘서 별 채우는 이벤트 주기 -->
+                                            <!-- StarRatingInput_Label-filled -->
+                                            <div class="StarRatingForm_Row" style="margin-top: -20px;">
+                                                <div id="choiceStarRating" class="StarRatingInput StarRatingForm_Input">
+                                                    <label for="MyStarRating1" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="1">
+                                                        <span class="a11y">1점</span>
+                                                        <span class="StarRatingInput_Separator"></span>
+                                                    </label>
+                                                    <input id="MyStarRating1" class="a11y" name="MyStarRating" type="radio" value="1">
+                                                    <label for="MyStarRating2" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="2">
+                                                        <span class="a11y">2점</span>
+                                                        <span class="StarRatingInput_Separator"></span>
+                                                    </label>
+                                                    <input id="MyStarRating2" class="a11y" name="MyStarRating" type="radio" value="2">
+                                                    <label for="MyStarRating3" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="3">
+                                                        <span class="a11y">3점</span>
+                                                        <span class="StarRatingInput_Separator"></span>
+                                                    </label>
+                                                    <input id="MyStarRating3" class="a11y" name="MyStarRating" type="radio" value="3">
+                                                    <label for="MyStarRating4" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="4">
+                                                        <span class="a11y">4점</span>
+                                                        <span class="StarRatingInput_Separator"></span>
+                                                    </label>
+                                                    <input id="MyStarRating4" class="a11y" name="MyStarRating" type="radio" value="4">
+                                                    <label for="MyStarRating5" class="StarRatingInput_Label StarRatingInput_Label-filled" data-rating="5">
+                                                        <span class="a11y">5점</span>
+                                                    </label>
+                                                    <input id="MyStarRating5" class="a11y" name="MyStarRating" type="radio" value="5" checked>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+
+
                                 </div>
-                                
+                
+                                <div class="ReviewForm" userid="${user_id}">
+                                    <textarea class="ReviewTextarea col-sm-12" id="replyContent" name="replyContent" title="리뷰 입력" placeholder="리뷰를 작성해주세요." style="height: 45.9844px;"></textarea>
+                                    <div class="ReviewForm_ButtonsWrapper">
+                                        <div style="display: inline-block;"></div>
+                                        <button id="reviewWriteBtn" class="btn btn-rose btn-sm center">리뷰 남기기</button>
 
-
-
-                            </div>
-            
-                            <div class="ReviewForm" userid="${user_id}">
-                                <textarea class="ReviewTextarea col-sm-12" id="replyContent" name="replyContent" title="리뷰 입력" placeholder="리뷰를 작성해주세요." style="height: 45.9844px;"></textarea>
-                                <div class="ReviewForm_ButtonsWrapper">
-                                    <div style="display: inline-block;"></div>
-                                    <button id="reviewWriteBtn" class="btn btn-rose btn-sm center">리뷰 남기기</button>
-
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                
-                
-                
-                
-                </c:if>
+                    </c:if>
 
                     <div class="ReviewListHeader">
                         <!-- 이거 리스트 사라지면 구분선 사라짐 -->
@@ -330,7 +326,6 @@
                             <li class="RSGTab_List_Item"></li>
                         </ul>
 
-
                         <ul class="PipeDelimitedList">
                             <li class="PipeDelimitedList_Item active"><button type="button">최신순<span class="a11y">리스트
                                         보기</span></button></li>
@@ -338,113 +333,13 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="ReviewsList_Wrapper" id = "reply">
-                        <ul class="ReviewList">
-                        
-                        <!-- 
-                            <li class="ReviewItem">
-                                <div class="ReviewItem_Left">
-                                <span class="StarRating_IconBox" style="width: 60px; height: 12px;">
-	                                <span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span>
-	                                <span class="StarRating_Icon_Foreground_Mask" style="width: 60px; height: 12px;">
-	                                	<span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span>
-	                                </span>
-	                             </span>
-                                 <ul class="ReviewerMetadata_List">
-                                     
-                                     <li class="ReviewerMetadata_UserId">nic***</li>
-                                 </ul>
-                                 <ul class="ReviewMetadata_List">
-                                     
-                                     <li class="ReviewMetadata_Date">2020.04.22.</li>
-                                 </ul>
-                             </div>
-                                
-                                
-                                <div class="ReviewItem_Right" >
-                                    <div class="ReviewItem_Right_Top" >
-                                        
-                                        <div class="ReviewContent"><span width="0"><span><span>너무 재밌습니다.반전에 반전 결말을
-                                                        예측하기어렵네요~</span></span><span
-                                                    style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span
-                                                        class="Review_Ellipsis">...<button class="Review_ReadMoreButton">계속
-                                                            읽기</button></span></span></span></div>
-                                        <ul class="ReviewButtons_List">
-                                            <li class="ReviewButtons_OpenCommentsButtonItem">
-                                                <button data-toggle="collapse" data-target="#comment" aria-expanded="false" aria-controls="comment"
-                                                    class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_OpenCommentsButton">
-                                                    <svg
-                                                        class="RSGIcon RSGIcon-speechbubble RSGIcon-speechbubble2 ReviewButtons_CommentIcon"
-                                                        viewBox="0 0 56 48" width="56" height="48">
-                                                        <path
-                                                            d="M36.6 0H19.4C8.9 0 .4 8.5.4 18.9c0 9.2 6.7 16.9 15.5 18.5v7.2c0 1.4.8 2.6 2.1 3.2.5.1.9.2 1.4.2.9 0 1.8-.3 2.4-1l9.6-9.3h5.2c10.4 0 18.9-8.5 18.9-18.9C55.6 8.5 47.1 0 36.6 0z">
-                                                        </path>
-                                                    </svg>
-                                                    <span class="ReviewButtons_CommentLabel">댓글</span>
-                                                    
-                                                    <span class="ReviewButtons_CommentCount">1</span>
-                                                </button></li>
 
-                                                    
-                                             <li class="ReviewButtons_LikeButtonItem"><button
-                                                    class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton"><svg
-                                                        class="RSGIcon RSGIcon-thumbUp RSGIcon-thumbUp1 ReviewButtons_LikeIcon RUIButton_SVGIcon"
-                                                        viewBox="0 0 44 49" width="44" height="49">
-                                                        <g>
-                                                            <path
-                                                                d="M41.7 32.7s2.3-1.3 2.1-4.3c-.1-1.9-2.4-3.7-2.4-3.7s1-1.8 1-2.6 0-2.9-2.1-4-12.1.4-12.1.4 1-5.8 1.1-6.6c.1-.8 1-1.7 1.1-4.4.2-3.5-1.2-7.6-4.2-7.5C23.1.1 24 5 24 5.8c0 .8-2.2 5.8-4.2 9-1.9 3.2-4.2 4.6-4.9 7.8-.6 2.7-3.6 3.8-3.6 3.8-.9.2-.9 1-.8 1.7 1.9 11.7 3.8 18 3.8 18s5 1.1 6.8 1.2c1.8.1 1.5.2 3.3.6 1.8.3 5.5 0 8.5 0s4.2-.7 7.1-2.8c2.9-2.1.8-5 .8-5s2.4-.6 2.4-3.8c0-2.8-1.5-3.6-1.5-3.6zM7.7 28.1c-.2-.9-1.1-1.6-2-1.6H2c-.9 0-1.7.7-1.8 1.6v18c0 .9.8 1.6 1.7 1.6h8.2c.9 0 1.3-1.2 1.1-2.2L7.7 28.1z">
-                                                            </path>
-                                                        </g>
-                                                    </svg><span class="ReviewButtons_LikeCount">0</span></button></li>
-                                            <c:if test="${user_id == ''}">
-                                             <li class="ReviewButtons_LikeButtonItem">
-                                             	<button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton">
-                                                <span class="ReviewButtons_LikeCount">수정</span></button>
-                                             </li>
-                                             </c:if>
-                                        </ul>
-                                    </div>
-                                    
-                                    
-                                    <div class="Comments collapse" id="comment" style="background-color: rgba(210, 210, 210, 0.19);">
-                                        
-                                        <ul class="CommentList">
-                                            <li class="CommentItem">
-                                                <div class="CommentItem_Content">
-                                                    <p>내가 이걸 3천원이나 주고 대여했다니ㅠㅠ</p>
-                                                </div>
-                                                <div class="CommentItem_Metadata">
-                                                    <span class="CommentItem_MaskedUId">
-                                                        <span class="a11y">작성자</span>ceo***
-                                                    </span>
-                                                    <span class="CommentItem_CommentDate">
-                                                        <span class="a11y">작성일</span>2019.05.10. 19:22
-                                                    </span>
-                                                </div>
-                                            </li>
-                                        </ul>
-
-                                        
-                                        <div class="CommentForm_Wrapper">
-                                            <div class="CommentForm">
-                                                <textarea class="CommentForm_Textarea" name="commentContent" title="댓글 입력" placeholder="이 곳에 댓글을 남겨주세요." style="height: 30px!important;"></textarea>
-                                                <button class="btn btn-rose btn-sm" style="margin: auto 10px auto 0;">댓글 달기</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </li>
-                            
-                             -->
-                            
-            
+                    <div class="ReviewsList_Wrapper" id="replyList_Warpper">
+                        <ul class="ReviewList" id="replyList">
+                            <!-- 비동기 댓글 자리 -->
                         </ul>
-                        	<button class="RUIButton RUIButton-color-gray RUIButton-size-large RUIButton-outline RUIButton-borderWidth-thick ReviewList_ShowMoreButton">
-                        		<span class="ReviewList_ShowMoreButton_Count">10</span>개 더보기<svg class="RSGIcon RSGIcon-arrowDown RSGIcon-arrow1Down ReviewList_ShowMoreButton_Icon RUIButton_SVGIcon" viewBox="0 0 48 28" width="48" height="28">
-                        															 <path d="M48 .6H0l24 26.8z"></path></svg>
-							 </button>
+
+                        <!-- 더보기 버튼 자리 -->
                     </div>
             
                 </div>
@@ -458,6 +353,48 @@
 
    <script>
        $(function() {
+
+            function ReplyListSuccessAjax(data) {
+
+                console.log("성공");
+					console.log(data);
+					$('#reply').empty();
+					
+					let reply = "";
+                    let seeMoreButton = "";
+
+					$.each(data, function(index, item){
+						/* if depth ==1 continue?? */
+						/* if depth == 0 {... } if depth == 1{...} */
+
+						reply += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: 12px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
+                        
+                        reply += '<ul class="ReviewerMetadata_List"><li class="ReviewerMetadata_UserId">'+item.user_id+'</li><li class="ReviewerMetadata_IsBuyerBadge"><svg class="RSGIcon RSGIcon-badgeBuyer RSGIcon-badgeBuyer1 ReviewerMetadata_IsBuyer_Icon" viewBox="0 0 30 11" width="30" height="11"><path d="M8.35 5.29h1.583v1.115h-4.15v4.438H4.381V6.406H.279V5.29h6.74c.192-.923.288-2.123.288-3.43h-5.84V.733h7.232C8.698 2.46 8.591 4.067 8.35 5.29zM14.712 8.061h-4.33V1.44h4.33v6.621zM13.393 2.52h-1.691v4.462h1.691V2.52zm4.414 8.323V5.482h-.863v4.869h-1.32V.349h1.32v4.006h.863V.157h1.343v10.686h-1.343zM25.512 8.361c-.984-.492-2.256-1.871-2.566-2.902-.265 1.092-1.344 2.519-2.592 3.131l-.864-1.045c1.775-.972 2.711-2.615 2.711-4.857V2.4h-2.159V1.248h5.697V2.4h-2.087v.276c0 2.255 1.031 3.779 2.639 4.666l-.779 1.019zm2.686-4.09h1.523v1.164h-1.523v5.409h-1.402V.157h1.402v4.114z"></path></svg></li></ul>';
+                        
+                        reply += '<ul class="ReviewMetadata_List"><li class="ReviewMetadata_Date">'+item.reply_date+'</li><li class="ReviewMetadata_Report"><button class="ReviewMetadata_ReportButton" type="button">수정</button><button class="ReviewMetadata_ReportButton" type="button">삭제</button></li></ul></div>';
+                        
+                        reply += '<div class="ReviewItem_Right"><div class="ReviewItem_Right_Top"><div class="ReviewContent"><span width="0"><span><span>'+item.reply_content+'</span></span></span></div>';
+                        
+                        reply += ' <ul class="ReviewButtons_List"><li class="ReviewButtons_OpenCommentsButtonItem"><button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_OpenCommentsButton pressed"><svg class="RSGIcon RSGIcon-speechbubble RSGIcon-speechbubble2 ReviewButtons_CommentIcon" viewBox="0 0 56 48" width="56" height="48"><path d="M36.6 0H19.4C8.9 0 .4 8.5.4 18.9c0 9.2 6.7 16.9 15.5 18.5v7.2c0 1.4.8 2.6 2.1 3.2.5.1.9.2 1.4.2.9 0 1.8-.3 2.4-1l9.6-9.3h5.2c10.4 0 18.9-8.5 18.9-18.9C55.6 8.5 47.1 0 36.6 0z"></path></svg><span class="ReviewButtons_CommentLabel">댓글</span><span class="ReviewButtons_CommentCount">'+'대댓 몇개인지 5'+'</span></button></li>';
+                        
+                        reply += ' <li class="ReviewButtons_LikeButtonItem"><button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton"><svg class="RSGIcon RSGIcon-thumbUp RSGIcon-thumbUp1 ReviewButtons_LikeIcon RUIButton_SVGIcon" viewBox="0 0 44 49" width="44" height="49"><g><path d="M41.7 32.7s2.3-1.3 2.1-4.3c-.1-1.9-2.4-3.7-2.4-3.7s1-1.8 1-2.6 0-2.9-2.1-4-12.1.4-12.1.4 1-5.8 1.1-6.6c.1-.8 1-1.7 1.1-4.4.2-3.5-1.2-7.6-4.2-7.5C23.1.1 24 5 24 5.8c0 .8-2.2 5.8-4.2 9-1.9 3.2-4.2 4.6-4.9 7.8-.6 2.7-3.6 3.8-3.6 3.8-.9.2-.9 1-.8 1.7 1.9 11.7 3.8 18 3.8 18s5 1.1 6.8 1.2c1.8.1 1.5.2 3.3.6 1.8.3 5.5 0 8.5 0s4.2-.7 7.1-2.8c2.9-2.1.8-5 .8-5s2.4-.6 2.4-3.8c0-2.8-1.5-3.6-1.5-3.6zM7.7 28.1c-.2-.9-1.1-1.6-2-1.6H2c-.9 0-1.7.7-1.8 1.6v18c0 .9.8 1.6 1.7 1.6h8.2c.9 0 1.3-1.2 1.1-2.2L7.7 28.1z"></path></g></svg><span class="ReviewButtons_LikeCount">'+'좋아요 몇개인지 10'+'</span></button></li></ul></div>';
+                        
+                        reply += '<div class="Comments"><ul class="CommentList"><li class="CommentItem"><div class="CommentItem_Content"><p>대댓글 내용</p></div><div class="CommentItem_Metadata"><span class="CommentItem_MaskedUId"><span class="a11y">작성자</span>'+'대댓 작성자'+'</span><span class="CommentItem_CommentDate"><span class="a11y">작성일</span>'+'대댓 작성일'+'</span></div></li></ul>';
+                        
+                        reply += '<div class="CommentForm_Wrapper"><div class="CommentForm"><textarea class="CommentForm_Textarea" name="commentContent" title="댓글 입력" placeholder="이 곳에 댓글을 남겨주세요." style="height: 30px;"></textarea><button class="RUIButton RUIButton-color-blue RUIButton-size-small CommentForm_SubmitButton" disabled="">댓글 달기</button></div></div></div></div></li>';
+
+                      });
+                      
+
+                    seeMoreButton += '<button class="RUIButton RUIButton-color-gray RUIButton-size-large RUIButton-outline RUIButton-borderWidth-thick ReviewList_ShowMoreButton"><span class="ReviewList_ShowMoreButton_Count">'+'n'+'</span>개 더보기<svg class="RSGIcon RSGIcon-arrowDown RSGIcon-arrow1Down ReviewList_ShowMoreButton_Icon RUIButton_SVGIcon" viewBox="0 0 48 28" width="48" height="28"><path d="M48 .6H0l24 26.8z"></path></svg></button>';
+
+
+					$('#replyList').append(reply);
+                    $('#replyList_Warpper').append(seeMoreButton);
+                
+            }
+
+
     	   //리뷰 리스트
     	   $.ajax({
     			url:"GetReplyList.ajax",
@@ -471,55 +408,42 @@
 					console.log(data);
 					$('#reply').empty();
 					
-					let reply = ""
+					let reply = "";
+                    let seeMoreButton = "";
+
 					$.each(data, function(index, item){
 						/* if depth ==1 continue?? */
 						/* if depth == 0 {... } if depth == 1{...} */
-						
-						reply += '<ul class="ReviewList"><li class="ReviewItem"><div class="ReviewItem_Left">';
-						reply += '<span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span>';
-						reply += '<span class="StarRating_Icon_Foreground_Mask" style="width: 60px; height: 12px;">';
-						reply += '<span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
-						reply += '<ul class="ReviewerMetadata_List"><li class="ReviewerMetadata_UserId">'+item.user_id+'</li></ul>';
-						reply += '<ul class="ReviewMetadata_List"><li class="ReviewMetadata_Date">'+item.reply_date+'</li></ul></div>';
-						reply += '<div class="ReviewItem_Right" >';
-						reply += '<div class="ReviewItem_Right_Top" >';
-						reply += '<div class="ReviewContent"><span width="0"><span><span>'+item.reply_content+'</span></span>';
-						reply += '<span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">';
-						reply += '<span class="Review_Ellipsis">...<button class="Review_ReadMoreButton">';
-						reply += '계속 읽기</button></span></span></span></div>';
-						reply += '<ul class="ReviewButtons_List"><li class="ReviewButtons_OpenCommentsButtonItem">';
-						reply += '<button data-toggle="collapse" data-target="#comment" aria-expanded="false" aria-controls="comment"';
-						reply += 'class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_OpenCommentsButton">';
-						reply += '<svg class="RSGIcon RSGIcon-speechbubble RSGIcon-speechbubble2 ReviewButtons_CommentIcon"';
-						reply += 'viewBox="0 0 56 48" width="56" height="48">';
-						reply += '<path d="M36.6 0H19.4C8.9 0 .4 8.5.4 18.9c0 9.2 6.7 16.9 15.5 18.5v7.2c0 1.4.8 2.6 2.1 3.2.5.1.9.2 1.4.2.9 0 1.8-.3 2.4-1l9.6-9.3h5.2c10.4 0 18.9-8.5 18.9-18.9C55.6 8.5 47.1 0 36.6 0z"></path></svg>';
-						reply += '<span class="ReviewButtons_CommentLabel">댓글</span>';
-						reply += '<span class="ReviewButtons_CommentCount">1</span></button></li>';
-						
-						reply += '<li class="ReviewButtons_LikeButtonItem">';
-						reply += '<button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton">';
-						reply += '<svg class="RSGIcon RSGIcon-thumbUp RSGIcon-thumbUp1 ReviewButtons_LikeIcon RUIButton_SVGIcon"';
-						reply += 'viewBox="0 0 44 49" width="44" height="49">';
-						reply += '<g><path d="M41.7 32.7s2.3-1.3 2.1-4.3c-.1-1.9-2.4-3.7-2.4-3.7s1-1.8 1-2.6 0-2.9-2.1-4-12.1.4-12.1.4 1-5.8 1.1-6.6c.1-.8 1-1.7 1.1-4.4.2-3.5-1.2-7.6-4.2-7.5C23.1.1 24 5 24 5.8c0 .8-2.2 5.8-4.2 9-1.9 3.2-4.2 4.6-4.9 7.8-.6 2.7-3.6 3.8-3.6 3.8-.9.2-.9 1-.8 1.7 1.9 11.7 3.8 18 3.8 18s5 1.1 6.8 1.2c1.8.1 1.5.2 3.3.6 1.8.3 5.5 0 8.5 0s4.2-.7 7.1-2.8c2.9-2.1.8-5 .8-5s2.4-.6 2.4-3.8c0-2.8-1.5-3.6-1.5-3.6zM7.7 28.1c-.2-.9-1.1-1.6-2-1.6H2c-.9 0-1.7.7-1.8 1.6v18c0 .9.8 1.6 1.7 1.6h8.2c.9 0 1.3-1.2 1.1-2.2L7.7 28.1z"></path></g></svg>';
-						reply += '<span class="ReviewButtons_LikeCount">0</span></button></li>';
-						reply += '<li class="ReviewButtons_LikeButtonItem">';
-                     	reply += '<button  id="replyMore" class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton">';
-                        reply += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-7c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>';
-                     	reply += '<span class="ReviewButtons_LikeCount"></span></button></li>';
-						reply += '</ul></div>';
-						reply += '<div class="Comments collapse" id="comment" style="background-color: rgba(210, 210, 210, 0.19)">';
-						reply += '<ul class="CommentList"><li class="CommentItem">';
-						reply += '<div class="CommentItem_Content"><p>리리플 뿌리는 방법 찾기</p></div>';
-						reply += '<div class="CommentItem_Metadata">';
-						reply += '<span class="CommentItem_MaskedUId"> <span class="a11y">작성자</span>'+item.user_id+'</span>';
-						reply += '<span class="CommentItem_CommentDate"><span class="a11y">작성일</span>'+item.reply_date+'</span></div></li></ul>';
-						reply += '<div class="CommentForm_Wrapper"><div class="CommentForm">';
-						reply += '<textarea class="CommentForm_Textarea" name="commentContent" title="댓글 입력"';
-						reply += 'placeholder="이 곳에 댓글을 남겨주세요." style="height: 30px!important;"></textarea>';
-						reply += '<button class="btn btn-rose btn-sm" style="margin: auto 10px auto 0;">댓글 달기</button></div></div></div></div></li>';
+
+						reply += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: 12px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
+                        
+                        reply += '<ul class="ReviewerMetadata_List"><li class="ReviewerMetadata_UserId">'+item.user_id+'</li><li class="ReviewerMetadata_IsBuyerBadge"><svg class="RSGIcon RSGIcon-badgeBuyer RSGIcon-badgeBuyer1 ReviewerMetadata_IsBuyer_Icon" viewBox="0 0 30 11" width="30" height="11"><path d="M8.35 5.29h1.583v1.115h-4.15v4.438H4.381V6.406H.279V5.29h6.74c.192-.923.288-2.123.288-3.43h-5.84V.733h7.232C8.698 2.46 8.591 4.067 8.35 5.29zM14.712 8.061h-4.33V1.44h4.33v6.621zM13.393 2.52h-1.691v4.462h1.691V2.52zm4.414 8.323V5.482h-.863v4.869h-1.32V.349h1.32v4.006h.863V.157h1.343v10.686h-1.343zM25.512 8.361c-.984-.492-2.256-1.871-2.566-2.902-.265 1.092-1.344 2.519-2.592 3.131l-.864-1.045c1.775-.972 2.711-2.615 2.711-4.857V2.4h-2.159V1.248h5.697V2.4h-2.087v.276c0 2.255 1.031 3.779 2.639 4.666l-.779 1.019zm2.686-4.09h1.523v1.164h-1.523v5.409h-1.402V.157h1.402v4.114z"></path></svg></li></ul>';
+                        
+                        reply += '<ul class="ReviewMetadata_List"><li class="ReviewMetadata_Date">'+item.reply_date+'</li><li class="ReviewMetadata_Report"><button class="ReviewMetadata_ReportButton" type="button">수정</button><button class="ReviewMetadata_ReportButton" type="button">삭제</button></li></ul></div>';
+                        
+                        reply += '<div class="ReviewItem_Right"><div class="ReviewItem_Right_Top"><div class="ReviewContent"><span width="0"><span><span>'+item.reply_content+'</span></span></span></div>';
+                        
+                        reply += ' <ul class="ReviewButtons_List"><li class="ReviewButtons_OpenCommentsButtonItem"><button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_OpenCommentsButton pressed"><svg class="RSGIcon RSGIcon-speechbubble RSGIcon-speechbubble2 ReviewButtons_CommentIcon" viewBox="0 0 56 48" width="56" height="48"><path d="M36.6 0H19.4C8.9 0 .4 8.5.4 18.9c0 9.2 6.7 16.9 15.5 18.5v7.2c0 1.4.8 2.6 2.1 3.2.5.1.9.2 1.4.2.9 0 1.8-.3 2.4-1l9.6-9.3h5.2c10.4 0 18.9-8.5 18.9-18.9C55.6 8.5 47.1 0 36.6 0z"></path></svg><span class="ReviewButtons_CommentLabel">댓글</span><span class="ReviewButtons_CommentCount">'+'대댓 몇개인지 5'+'</span></button></li>';
+                        
+                        reply += ' <li class="ReviewButtons_LikeButtonItem"><button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton"><svg class="RSGIcon RSGIcon-thumbUp RSGIcon-thumbUp1 ReviewButtons_LikeIcon RUIButton_SVGIcon" viewBox="0 0 44 49" width="44" height="49"><g><path d="M41.7 32.7s2.3-1.3 2.1-4.3c-.1-1.9-2.4-3.7-2.4-3.7s1-1.8 1-2.6 0-2.9-2.1-4-12.1.4-12.1.4 1-5.8 1.1-6.6c.1-.8 1-1.7 1.1-4.4.2-3.5-1.2-7.6-4.2-7.5C23.1.1 24 5 24 5.8c0 .8-2.2 5.8-4.2 9-1.9 3.2-4.2 4.6-4.9 7.8-.6 2.7-3.6 3.8-3.6 3.8-.9.2-.9 1-.8 1.7 1.9 11.7 3.8 18 3.8 18s5 1.1 6.8 1.2c1.8.1 1.5.2 3.3.6 1.8.3 5.5 0 8.5 0s4.2-.7 7.1-2.8c2.9-2.1.8-5 .8-5s2.4-.6 2.4-3.8c0-2.8-1.5-3.6-1.5-3.6zM7.7 28.1c-.2-.9-1.1-1.6-2-1.6H2c-.9 0-1.7.7-1.8 1.6v18c0 .9.8 1.6 1.7 1.6h8.2c.9 0 1.3-1.2 1.1-2.2L7.7 28.1z"></path></g></svg><span class="ReviewButtons_LikeCount">'+'좋아요 몇개인지 10'+'</span></button></li></ul></div>';
+                        
+                        reply += '<div class="Comments"><ul class="CommentList"><li class="CommentItem"><div class="CommentItem_Content"><p>대댓글 내용</p></div><div class="CommentItem_Metadata"><span class="CommentItem_MaskedUId"><span class="a11y">작성자</span>'+'대댓 작성자'+'</span><span class="CommentItem_CommentDate"><span class="a11y">작성일</span>'+'대댓 작성일'+'</span></div></li></ul>';
+                        
+                        reply += '<div class="CommentForm_Wrapper"><div class="CommentForm"><textarea class="CommentForm_Textarea" name="commentContent" title="댓글 입력" placeholder="이 곳에 댓글을 남겨주세요." style="height: 30px;"></textarea><button class="RUIButton RUIButton-color-blue RUIButton-size-small CommentForm_SubmitButton" disabled="">댓글 달기</button></div></div></div></div></li>';
+
                       });
-					$('#reply').append(reply);
+
+
+                    seeMoreButton += '<button class="RUIButton RUIButton-color-gray RUIButton-size-large RUIButton-outline RUIButton-borderWidth-thick ReviewList_ShowMoreButton"><span class="ReviewList_ShowMoreButton_Count">'+'n'+'</span>개 더보기<svg class="RSGIcon RSGIcon-arrowDown RSGIcon-arrow1Down ReviewList_ShowMoreButton_Icon RUIButton_SVGIcon" viewBox="0 0 48 28" width="48" height="28"><path d="M48 .6H0l24 26.8z"></path></svg></button>';
+
+
+					$('#replyList').append(reply);
+                    $('#replyList_Warpper').append(seeMoreButton);
+
+                    $('#reply').append(reply);
+					$('#replyContent').val("");
+
+
 				},
 				error : function(){
 					console.log("GetReplyList.ajax 에러");
@@ -545,49 +469,9 @@
 					reply_star_rate : $('#choiceStarRating').children('input:checked').val()
 				},
 				success:function(data){
-					console.log("성공");
-					console.log(data);
-					$('#reply').empty();
 					
-					let reply = ""
-					$.each(data, function(index, item){
+                    ReplyListSuccessAjax(data);
 
-						reply += '<ul class="ReviewList"><li class="ReviewItem"><div class="ReviewItem_Left">';
-						reply += '<span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span>';
-						reply += '<span class="StarRating_Icon_Foreground_Mask" style="width: 60px; height: 12px;">';
-						reply += '<span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
-						reply += '<ul class="ReviewerMetadata_List"><li class="ReviewerMetadata_UserId">'+item.user_id+'</li></ul>';
-						reply += '<ul class="ReviewMetadata_List"><li class="ReviewMetadata_Date">'+item.reply_date+'</li></ul></div>';
-						reply += '<div class="ReviewItem_Right" >';
-						reply += '<div class="ReviewItem_Right_Top" >';
-						reply += '<div class="ReviewContent"><span width="0"><span><span>'+item.reply_content+'</span></span>';
-						reply += '<span style="position: fixed; visibility: hidden; top: 0px; left: 0px;">';
-						reply += '<span class="Review_Ellipsis">...<button class="Review_ReadMoreButton">';
-						reply += '계속 읽기</button></span></span></span></div>';
-						reply += '<ul class="ReviewButtons_List"><li class="ReviewButtons_OpenCommentsButtonItem">';
-						reply += '<button data-toggle="collapse" data-target="#comment" aria-expanded="false" aria-controls="comment"';
-						reply += 'class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_OpenCommentsButton">';
-						reply += '<svg class="RSGIcon RSGIcon-speechbubble RSGIcon-speechbubble2 ReviewButtons_CommentIcon"';
-						reply += 'viewBox="0 0 56 48" width="56" height="48">';
-						reply += '<path d="M36.6 0H19.4C8.9 0 .4 8.5.4 18.9c0 9.2 6.7 16.9 15.5 18.5v7.2c0 1.4.8 2.6 2.1 3.2.5.1.9.2 1.4.2.9 0 1.8-.3 2.4-1l9.6-9.3h5.2c10.4 0 18.9-8.5 18.9-18.9C55.6 8.5 47.1 0 36.6 0z"></path></svg>';
-						reply += '<span class="ReviewButtons_CommentLabel">댓글</span>';
-						reply += '<span class="ReviewButtons_CommentCount">1</span></button></li>';
-						reply += '<li class="ReviewButtons_LikeButtonItem">';
-						reply += '<button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton">';
-						reply += '<svg class="RSGIcon RSGIcon-thumbUp RSGIcon-thumbUp1 ReviewButtons_LikeIcon RUIButton_SVGIcon"';
-						reply += 'viewBox="0 0 44 49" width="44" height="49">';
-						reply += '<g><path d="M41.7 32.7s2.3-1.3 2.1-4.3c-.1-1.9-2.4-3.7-2.4-3.7s1-1.8 1-2.6 0-2.9-2.1-4-12.1.4-12.1.4 1-5.8 1.1-6.6c.1-.8 1-1.7 1.1-4.4.2-3.5-1.2-7.6-4.2-7.5C23.1.1 24 5 24 5.8c0 .8-2.2 5.8-4.2 9-1.9 3.2-4.2 4.6-4.9 7.8-.6 2.7-3.6 3.8-3.6 3.8-.9.2-.9 1-.8 1.7 1.9 11.7 3.8 18 3.8 18s5 1.1 6.8 1.2c1.8.1 1.5.2 3.3.6 1.8.3 5.5 0 8.5 0s4.2-.7 7.1-2.8c2.9-2.1.8-5 .8-5s2.4-.6 2.4-3.8c0-2.8-1.5-3.6-1.5-3.6zM7.7 28.1c-.2-.9-1.1-1.6-2-1.6H2c-.9 0-1.7.7-1.8 1.6v18c0 .9.8 1.6 1.7 1.6h8.2c.9 0 1.3-1.2 1.1-2.2L7.7 28.1z"></path></g></svg>';
-                        reply += '<span class="ReviewButtons_LikeCount">0</span></button></li>';
-                        reply += '<li class="ReviewButtons_LikeButtonItem">';
-                         reply += '<button id="replyModify" replySeq="'+item.reply_seq+'" class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton">';
-                        reply += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-7c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>';
-                         reply += '<span class="ReviewButtons_LikeCount">수정</span></button></li>';
-                        reply += '</ul></div>';						reply += '<div class="Comments collapse" id="comment" style="background-color: rgba(210, 210, 210, 0.19)">';
-						reply += '<ul class="CommentList"><li class="CommentItem">';
-						reply += '<div class="CommentItem_Content"><p>리리플 뿌리는 방법 찾기</p></div>';
-
-                      
-					});
 					$('#reply').append(reply);
 					$('#replyContent').val("");
 					
