@@ -81,6 +81,7 @@ public class ReplyDao {
 					
 					
 					replyList = new ArrayList<ReplyDto>();
+					
 					while(rs.next()) {
 						
 						ReplyDto reply = new ReplyDto();

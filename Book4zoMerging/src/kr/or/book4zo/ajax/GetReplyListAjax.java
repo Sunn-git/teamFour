@@ -39,46 +39,11 @@ public class GetReplyListAjax extends HttpServlet {
   		  	ReplyDao replydao = new ReplyDao();
   		  	List<ReplyDto> replyList = replydao.getReplyList(book_seq);
   		  	System.out.println("replyList 확인 : "+ replyList);
-//  		  	죽을거같아요
-//  		  	List<ReplyDto> replyOriginList = null;
-//  		  	List<ReplyDto> reReplyList = null;
+
   		  	System.out.println("여기까지 되니?");
-//			for (ReplyDto reply : replyList) {
-//				
-//				if(reply.getDepth() == 0) {
-//					ReplyDto origin = new ReplyDto();
-//					origin.setBook_seq(reply.getBook_seq());
-//					origin.setReply_seq(reply.getReply_seq());
-//					origin.setUser_id(reply.getUser_id());
-//					origin.setReply_content(reply.getReply_content());
-//					origin.setReply_date(reply.getReply_date());
-//					origin.setReply_like(reply.getReply_like());
-//					origin.setReply_star_rate(reply.getReply_star_rate());
-//					origin.setRefer(reply.getRefer());
-//					origin.setDepth(reply.getDepth());
-//					origin.setStep(reply.getStep());
-//					replyOriginList.add(origin);
-//				}
-//				if(reply.getDepth() == 1) {
-//					ReplyDto reReply = new ReplyDto();
-//					reReply.setBook_seq(reply.getBook_seq());
-//					reReply.setReply_seq(reply.getReply_seq());
-//					reReply.setUser_id(reply.getUser_id());
-//					reReply.setReply_content(reply.getReply_content());
-//					reReply.setReply_date(reply.getReply_date());
-//					reReply.setReply_like(reply.getReply_like());
-//					reReply.setReply_star_rate(reply.getReply_star_rate());
-//					reReply.setRefer(reply.getRefer());
-//					reReply.setDepth(reply.getDepth());
-//					reReply.setStep(reply.getStep());
-//					reReplyList.add(reply);
-//				}
-//				
-//			}
+
   		  	
 			JSONArray jsonReplyList = JSONArray.fromObject(replyList);
-//			JSONArray jsonReplyOriginList = JSONArray.fromObject(replyOriginList);
-//			JSONArray jsonReRePlyList = JSONArray.fromObject(reReplyList);
 			
 			System.out.println("== ServiceCommentWriteAction ==");
 			System.out.println("jsonReplyList : "+jsonReplyList);
@@ -86,13 +51,11 @@ public class GetReplyListAjax extends HttpServlet {
 			response.setContentType("application/x-json; charset=UTF-8");
 			PrintWriter out = response.getWriter(); 
 			out.print(jsonReplyList);
-			
-//			out.print(jsonReplyOriginList);
-//			out.print(jsonReRePlyList);
 
 		 }catch(Exception e){
 			 
 		  		System.out.println("오류터짐 " + e.getMessage());
+		  		e.printStackTrace();
 		 }
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
