@@ -21,52 +21,46 @@ request.setCharacterEncoding("UTF-8");
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <!-- CSS Files -->
 <link
-	href="${pageContext.request.contextPath}/assets/css/material-kit.css?v=2.0.7"
-	rel="stylesheet" />
-<link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
-	rel="stylesheet">
+	href="${pageContext.request.contextPath}/assets/css/material-kit.css?v=2.0.7"
+	rel="stylesheet" />
+	
+
 </head>
 <body>
 
 <c:set var="user_id" value="${sessionScope.user_id}"/>
 <c:set var="currentPost" value="${requestScope.CurrentPost}"/>
 
+<header>
+<c:choose>
+	<c:when test="${user_id != null}">
+		<c:choose>
+			<c:when test="${user_id == 'admin'}">
+				<jsp:include page="/WEB-INF/common/v_navAdmin.jsp"/>
+			</c:when>
+			<c:otherwise>
+				<jsp:include page="/WEB-INF/common/v_navMember.jsp"/>
+			</c:otherwise>
+		</c:choose>
+	</c:when>
+	<c:otherwise>
+		<jsp:include page="/WEB-INF/common/v_navNonmember.jsp"/>
+	</c:otherwise>
+</c:choose>
+</header>
 <!-- 게시판 수정 -->
+<div style="max-width:1000px; margin:0 auto; padding: 100px 80px 170px 80px;background-color:white;">
 <form class="form" method="post" action="PostDetailView.post"
 enctype="multipart/form-data" name="postform">
-<table cellpadding="0" cellspacing="0">
-	<tr align="center" valign="middle">
-		<td colspan="5">POST</td>
-	</tr>
-		
-		<!-- sessionScope로 들어왔는데 아래 코드가 있어야하는건가용?? -->
-		<tr>
-			<td>
-			
-			<c:if test="${currentPost.user_id == user_id }"><!-- 내가 구현해야하는거란다... -->
-				<img> <!-- 땡땡땡 아이콘 넣어야하는 곳 드롭박스로 열리게 해서 아이디값이랑 WRITER가 같으면 수정가능하게 --> 
-				<button class="btn btn-rose btn-round" href="postModify.post?num=${currentPost.post_seq}">
-				&nbsp;수정&nbsp; <!-- svg를 클릭해서 드롭다운 메뉴가 나온다 -->
-				</button> 
-				<button class="btn btn-rose btn-round" href="postDelete.post?num=${currentPost.post_seq}">
-				&nbsp;삭제&nbsp;
-				</button>
-			</c:if>
-		</td>
-	</tr>
-	
-	
+<table cellpadding="0" cellspacing="0" >
+	<tr style="color:tomato;">
+		<td colspan="5">${currentPost.user_id}님의 포스트 이야기</td>
 	<tr>
-		<td style="font-family:돋음; font-size:12" height="16">
-			<div align="center">제 목&nbsp;&nbsp;</div>
-		</td>
-		
 		<td style="font-family:돋음; font-size:12">
-			${currentPost.post_title}
+			<h2><b>${currentPost.post_title}</b></h2>
 		</td>
 	</tr>
 	
@@ -79,30 +73,23 @@ enctype="multipart/form-data" name="postform">
 	
 	<tr>
 		<td style="font-family:돋음; font-size:12">
-			<div align="center">내 용</div>
-		</td>
-		<td style="font-family:돋음; font-size:12">
-			<table border=0 width=490 height=250 style="table-layout:fixed">
+			<table border=0 width=100% style="table-layout:fixed;min-height:280px;">
 				<tr>
-					<td valign=top style="font-family:돋음; font-size:12">
-						${currentPost.post_contents}
+					<td valign=top style="font-family:돋음; font-size:12;">
+						<div style="margin:40px 40px 80px 40px;">${currentPost.post_contents}</div>
 					</td>
 				</tr>
 			</table>
 			
 		</td>
 	</tr>
-	
+
 	<!-- 첨부파일 안나오는거 발견   -->
 	<tr>
 		<td style="font-family:돋음; font-size:12">
-			<div align="center">첨부파일</div>
-		</td>
-		
-		<td style="font-family:돋음; font-size:12">
 			<c:choose>
 				<c:when test="${currentPost.post_upload_file == 'N'}">
-					&nbsp;&nbsp;첨부파일이 없습니다
+					<p style="color:#a7a7a7;">&nbsp;&nbsp;첨부파일이 없습니다</p>
 				</c:when>
 				<c:otherwise>
 					<a href="./postUpload/${currentPost.post_upload_file}">
@@ -119,29 +106,41 @@ enctype="multipart/form-data" name="postform">
 	<tr><td colspan="2">&nbsp;</td></tr>
 	<tr align="center" valign="middle">
 		<td colspan="5">
-			<font size=2>			
-			<a href="./PostModify.post?num=${currentPost.post_seq}">
-			[임시수정]
-			</a>&nbsp;&nbsp;
-			<a href="./Delete.post?num=${currentPost.post_seq}"
-			>
-			[임시삭제]
-			</a>&nbsp;&nbsp;
-			<a href="javascript:history.go(-2)">[처음부터]</a>&nbsp;&nbsp;
-			</font>
+			<c:if test="${currentPost.user_id == user_id }">
+				<a class="btn btn-rose btn-round" href="./PostModify.post?post_seq=${currentPost.post_seq}">
+					&nbsp;수정&nbsp;
+				</a> 
+				<a id="confirmDelete" class="btn btn-white btn-round" href="./Delete.post?post_seq=${currentPost.post_seq}">
+					&nbsp;삭제&nbsp;
+				</a>
+			</c:if>
+		</td>
+		
+	</tr>
+	<tr align="center" valign="middle">
+		<td colspan="5">
+			<br>
+			<a class="btn btn-block btn-gray btn-round" href="/Detail.book?bookSeq=">
+					&nbsp;&nbsp;&nbsp;뒤로 가기&nbsp;&nbsp;&nbsp;
+				</a>
 		</td>
 	</tr>
 	
 	
 	
 </table>
-
-<div class="">
-<img alt="" src=""> <!-- 수정되어야함  세션스코프 유저 이미지로 받아오기--> 
-회원 프로필 뿌려질 곳
-
-
 </div>
 </form>
+<script>
+$('#confirmDelete').click(function() {
+	/* var result = confirm('정말로 삭제하시겠습니까?'); 
+	if(result) { //yes 
+		location.replace('./Delete.post?post_seq='+${currentPost.post_seq}); 
+	} else {
+		//no 
+	}  */
+});
+
+</script>
 </body>
 </html>

@@ -80,16 +80,17 @@ public class PostWrite_s implements Action {
 			// ////////////////////////////////////
 			//여기서 값을 꺼내서 저장할거니까
 			
-			
-			
 
 			System.out.println("postNum 값을확인 :" + result); //여기는 값이 있고
+			request.setAttribute("currentPostNum", result);
 			
-			PostDto CurrentPost = postdao.getDetail(result);
+			//////////////////////////////////////////////////////////////////이거 서비스 따로 분리해줘야겠다
+			
+			PostDto currentPost = postdao.getDetail(result);
 			
 			
-			System.out.println("CurrentPost 확인 : " + CurrentPost);
-			request.setAttribute("CurrentPost", CurrentPost);
+			System.out.println("CurrentPost 확인 : " + currentPost);
+			request.setAttribute("CurrentPost", currentPost);
 			
 			ActionForward forward = new ActionForward();
 			forward.setRedirect(false);

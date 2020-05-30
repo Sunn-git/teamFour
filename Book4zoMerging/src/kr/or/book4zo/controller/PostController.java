@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.book4zo.action.Action;
 import kr.or.book4zo.action.ActionForward;
+import kr.or.book4zo.service.post.PostDeleteAction_s;
 import kr.or.book4zo.service.post.PostDelete_s;
 import kr.or.book4zo.service.post.PostDetail_s;
 import kr.or.book4zo.service.post.PostList_s;
-import kr.or.book4zo.service.post.PostModifyAction;
+import kr.or.book4zo.service.post.PostModifyAction_s;
 import kr.or.book4zo.service.post.PostModifyView_s;
 import kr.or.book4zo.service.post.PostWrite_s;
 
@@ -50,25 +51,9 @@ public class PostController extends HttpServlet {
 
 /////////////////// 여기부터 수정하면 됨////////////////////////////
 
-// 포스트 상세보기 보자~
-// 
-		if (url_Command.equals("/PostList.post")) {
-			System.out.println("PostList여기에 타고있니??");
-			action = new PostList_s();
-			forward = action.execute(request, response);
-		}
-
-		else if (url_Command.equals("/PostListView.post")) {
-			System.out.println("/PostListView.post 실행");
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/WEB-INF/post/v_postView.jsp");
-			System.out.println("v_postView.jsp 쀼 실행시켜");
-
-		}
 
 // 포스트에 글쓰러 가자
-		else if (url_Command.equals("/PostWrite_s.post")) {
+		 if (url_Command.equals("/PostWrite_s.post")) {
 			System.out.println("POST 글쓰기하러 온거니??");
 			action = new PostWrite_s(); // 다형성
 			try {
@@ -128,7 +113,7 @@ public class PostController extends HttpServlet {
 			
 			System.out.println("PostModifyAction.post 타고서 포스트 수정화면가자");
 
-			action = new PostModifyAction(); // 다형성
+			action = new PostModifyAction_s(); // 다형성
 			try {
 				forward = action.execute(request, response);
 				System.out.println("포스트 업데이트 완료");
@@ -145,17 +130,17 @@ public class PostController extends HttpServlet {
 			action = new PostDelete_s(); // 다형성
 			forward = action.execute(request, response);
 			
-	 }
-//		// 포스트 리스트 json 가져오기
-//	 else if (url_Command.equals("/GetList.post")) {
-//			
-//			System.out.println("GetList.post");
-//
-//			action = new PostDelete_s(); // 다형성
-//			forward = action.execute(request, response);
-//			
-//	 }
-//		
+	 }else if(url_Command.equals("/DeleteAction.post")) {
+		 System.out.println("/DeleteAction.post");
+
+			action = new PostDeleteAction_s(); // 다형성
+			try {
+				forward = action.execute(request, response);
+				System.out.println("포스트 업데이트 완료");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	 }	
 		
 		
 		
