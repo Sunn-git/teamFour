@@ -224,7 +224,10 @@
 
             <section class="PageBookDetail_Panel Reviews_Wrapper">
                 <div class="Reviews"><span class="a11y">리뷰</span>
-                    <div class="ReviewsHeader" style="margin-bottom: 50px;">
+                
+                <c:if test="${sessionScope.user_id != null}">
+                
+                                    <div class="ReviewsHeader" style="margin-bottom: 50px;">
                         <div class="ReviewsHeader_Right" style="text-align: center;">
                             <div class="StarRatingForm" style="display: inline-block;">
 
@@ -314,10 +317,15 @@
                         </div>
                     </div>
 
+                
+                
+                
+                
+                </c:if>
 
                     <div class="ReviewListHeader">
                         <!-- 이거 리스트 사라지면 구분선 사라짐 -->
-                        <ul class="RSGTab_List">
+                        <ul class="RSGTab_List" style="margin-top: 40px;">
                             <li class="RSGTab_List_Item"></li>
                             <li class="RSGTab_List_Item"></li>
                         </ul>
@@ -332,26 +340,30 @@
                     </div>
                     <div class="ReviewsList_Wrapper" id = "reply">
                         <ul class="ReviewList">
+                        
+                        <!-- 
                             <li class="ReviewItem">
-                                <div class="ReviewItem_Left"><span class="StarRating_IconBox"
-                                        style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background"
-                                            style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask"
-                                            style="width: 60px; height: 12px;"><span class="StarRating_Icon_Foreground"
-                                                style="width: 60px; height: 12px;"></span></span></span>
-                                    <ul class="ReviewerMetadata_List">
-                                        <!-- 유저 아이디 들어가는 부분 -->
-                                        <li class="ReviewerMetadata_UserId">nic***</li>
-                                    </ul>
-                                    <ul class="ReviewMetadata_List">
-                                        <!-- 작성 날짜 -->
-                                        <li class="ReviewMetadata_Date">2020.04.22.</li>
-                                    </ul>
-                                </div>
+                                <div class="ReviewItem_Left">
+                                <span class="StarRating_IconBox" style="width: 60px; height: 12px;">
+	                                <span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span>
+	                                <span class="StarRating_Icon_Foreground_Mask" style="width: 60px; height: 12px;">
+	                                	<span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span>
+	                                </span>
+	                             </span>
+                                 <ul class="ReviewerMetadata_List">
+                                     
+                                     <li class="ReviewerMetadata_UserId">nic***</li>
+                                 </ul>
+                                 <ul class="ReviewMetadata_List">
+                                     
+                                     <li class="ReviewMetadata_Date">2020.04.22.</li>
+                                 </ul>
+                             </div>
                                 
-                                <!-- 전부 비동기 -->
+                                
                                 <div class="ReviewItem_Right" >
                                     <div class="ReviewItem_Right_Top" >
-                                        <!-- 댓글 작성 내용 -->
+                                        
                                         <div class="ReviewContent"><span width="0"><span><span>너무 재밌습니다.반전에 반전 결말을
                                                         예측하기어렵네요~</span></span><span
                                                     style="position: fixed; visibility: hidden; top: 0px; left: 0px;"><span
@@ -369,11 +381,11 @@
                                                         </path>
                                                     </svg>
                                                     <span class="ReviewButtons_CommentLabel">댓글</span>
-                                                    <!-- 댓글 갯수 > 0 일때 표시되는 부분 -->
+                                                    
                                                     <span class="ReviewButtons_CommentCount">1</span>
                                                 </button></li>
 
-                                                    <!-- 좋아요 버튼.. 시간 없으면 빼기  -->
+                                                    
                                              <li class="ReviewButtons_LikeButtonItem"><button
                                                     class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton"><svg
                                                         class="RSGIcon RSGIcon-thumbUp RSGIcon-thumbUp1 ReviewButtons_LikeIcon RUIButton_SVGIcon"
@@ -393,9 +405,9 @@
                                         </ul>
                                     </div>
                                     
-                                    <!-- 댓글 버튼 누르면 비동기로 댓글 입력창 뜨게하기 -->
+                                    
                                     <div class="Comments collapse" id="comment" style="background-color: rgba(210, 210, 210, 0.19);">
-                                        <!-- 대댓 목록 css로 bg color 주기 -->
+                                        
                                         <ul class="CommentList">
                                             <li class="CommentItem">
                                                 <div class="CommentItem_Content">
@@ -412,7 +424,7 @@
                                             </li>
                                         </ul>
 
-                                        <!-- 대댓 입력 창 -->
+                                        
                                         <div class="CommentForm_Wrapper">
                                             <div class="CommentForm">
                                                 <textarea class="CommentForm_Textarea" name="commentContent" title="댓글 입력" placeholder="이 곳에 댓글을 남겨주세요." style="height: 30px!important;"></textarea>
@@ -424,14 +436,15 @@
 
                                 </div>
                             </li>
+                            
+                             -->
+                            
             
-                        </ul><button
-                            class="RUIButton RUIButton-color-gray RUIButton-size-large RUIButton-outline RUIButton-borderWidth-thick ReviewList_ShowMoreButton"><span
-                                class="ReviewList_ShowMoreButton_Count">10</span>개 더보기<svg
-                                class="RSGIcon RSGIcon-arrowDown RSGIcon-arrow1Down ReviewList_ShowMoreButton_Icon RUIButton_SVGIcon"
-                                viewBox="0 0 48 28" width="48" height="28">
-                                <path d="M48 .6H0l24 26.8z"></path>
-                            </svg></button>
+                        </ul>
+                        	<button class="RUIButton RUIButton-color-gray RUIButton-size-large RUIButton-outline RUIButton-borderWidth-thick ReviewList_ShowMoreButton">
+                        		<span class="ReviewList_ShowMoreButton_Count">10</span>개 더보기<svg class="RSGIcon RSGIcon-arrowDown RSGIcon-arrow1Down ReviewList_ShowMoreButton_Icon RUIButton_SVGIcon" viewBox="0 0 48 28" width="48" height="28">
+                        															 <path d="M48 .6H0l24 26.8z"></path></svg>
+							 </button>
                     </div>
             
                 </div>
