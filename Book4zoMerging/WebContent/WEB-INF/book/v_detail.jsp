@@ -157,19 +157,18 @@
 
             <section class="PageBookDetail_Panel">
                 <h2 class="PageBookDetail_PanelTitle"><strong>책소개</strong></h2>
-                <div class="PageBookDetail_PanelContent">
-                	<div id = "BookDetail_Description">
-                	 <c:choose>
-						<c:when test="${fn:length(book.description) > 120}">
-							<c:out value="${fn:substring(book.description,0,120)}"/>...
-						</c:when>
-						<c:otherwise>
-							${book.description}
-						</c:otherwise>
-					</c:choose>
-                	</div>
+                <div id = "BookDetail_Description" class="PageBookDetail_PanelContent">
+                    <div>
+                     <c:choose>
+                        <c:when test="${fn:length(book.description) > 120}">
+                            <c:out value="${fn:substring(book.description,0,120)}"/>...
+                        </c:when>
+                        <c:otherwise>
+                            ${book.description}
+                        </c:otherwise>
+                    </c:choose>
+                    </div>
 
-                    
 
                     <div class="BookDetail_ContentTruncWrapper">
                         <button id="BookDetail_ContentTruncButton" class="BookDetail_ContentTruncButton">
@@ -575,6 +574,7 @@
                       
 					});
 					$('#reply').append(reply);
+					$('#replyContent').val("");
 					
 					
 				},
@@ -583,8 +583,25 @@
 				}
     		});
     	});
-           
-        $('.StarRatingInput_Label').click(function() {
+    	   
+        
+	        //리뷰 입력창 글자수 한글 150자 제한하기
+	        $('#replyContent').keyup(function(){
+	            if($('#replyContent').val().length > 150){
+	                $('#replyContent').val($('#replyContent').val().substring(0,150));
+	            }
+	         });
+    	   
+        
+	        //책소개 계속보기
+	        $('#BookDetail_ContentTruncButton').click(function(){
+	            console.log('클릭 ');
+	            $('#BookDetail_Description').empty(); 
+	            $('#BookDetail_Description').append('${book.description}');
+	        });
+
+    	     
+        	$('.StarRatingInput_Label').click(function() {
              //리뷰 왕별 click하면 채워지게 만들기 (댓글에 들어가는 별점 여기서 적용되게 해야함)
              $('.StarRatingInput_Label').removeClass('StarRatingInput_Label-filled');
              $('label:lt('+$(this)[0].dataset.rating+')').addClass('StarRatingInput_Label-filled');
