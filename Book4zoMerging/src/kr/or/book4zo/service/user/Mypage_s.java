@@ -35,14 +35,11 @@ public class Mypage_s implements Action {
 			PostDao postDao = new PostDao();
 			List<PostDto> postList = postDao.getPostList(userId);
 			request.setAttribute("postList", postList);
+			System.out.println("postList 확인 : " + postList);
 			
 			BookDao bookDao = new BookDao();
 			List<BookDto> bookList = bookDao.getAllBookList();
 			request.setAttribute("bookList", bookList);
-			
-			
-			
-			
 			
 			
 		} catch (Exception e) {

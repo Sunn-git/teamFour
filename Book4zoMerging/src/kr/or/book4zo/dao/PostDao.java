@@ -145,14 +145,17 @@ public class PostDao {
 					
 					sql = "SELECT POST_SEQ, USER_ID, BOOK_SEQ," + 
 							"POST_TITLE, POST_CONTENTS, POST_DATE," + 
-							"POST_VIEWS, POST_UPLOAD_FILE FROM POST WHERE BOOK_SEQ = ?";
+							"POST_VIEWS, POST_UPLOAD_FILE FROM POST WHERE BOOK_SEQ = ?" +
+							"ORDER BY POST_SEQ DESC";
+					
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setInt(1, bookSeq);
 					rs = pstmt.executeQuery();
 					
-					PostDto post = new PostDto();
-					
 					while(rs.next()) {
+						
+						PostDto post = new PostDto();
+						
 						post.setPost_seq(rs.getInt("POST_SEQ"));
 						post.setUser_id(rs.getString("USER_ID"));
 						post.setBook_seq(rs.getInt("BOOK_SEQ"));
@@ -188,14 +191,17 @@ public class PostDao {
 					
 					sql = "SELECT POST_SEQ, USER_ID, BOOK_SEQ," + 
 							"POST_TITLE, POST_CONTENTS, POST_DATE," + 
-							"POST_VIEWS, POST_UPLOAD_FILE FROM POST WHERE USER_ID = ?";
+							"POST_VIEWS, POST_UPLOAD_FILE FROM POST WHERE USER_ID = ?" +
+							"ORDER BY POST_SEQ DESC";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, userId);
 					rs = pstmt.executeQuery();
 					
-					PostDto post = new PostDto();
+
 					
 					while(rs.next()) {
+						PostDto post = new PostDto();
+						
 						post.setPost_seq(rs.getInt("POST_SEQ"));
 						post.setUser_id(rs.getString("USER_ID"));
 						post.setBook_seq(rs.getInt("BOOK_SEQ"));

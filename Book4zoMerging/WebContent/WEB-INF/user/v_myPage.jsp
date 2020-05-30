@@ -166,8 +166,7 @@
           
           	<c:forEach var="post" items="${requestScope.postList}">
           	 <c:forEach var="book" items="${requestScope.bookList}">
-          	 ${book}
-          	 <c:if test="${post.book_seq == 0}">
+          	 <c:if test="${post.book_seq == book.bookSeq}">
             <div class="row">
               <div class="col-md-8 m-auto">
               	<div class ="card card-body">
