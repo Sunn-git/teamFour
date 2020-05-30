@@ -192,27 +192,37 @@
 
           <!-- 내 댓글 영역 -->
           <div class="tab-pane text-center gallery" id="reply">
+          
+
+          	<c:forEach var="reply" items="${requestScope.replyList}">
+          	<c:forEach var="book" items="${requestScope.bookList}">
+          	<c:if test="${reply.book_seq == book.bookSeq}">
+          	${reply}
+          	${book}
             <div class="row">
               <div class="col-md-8 m-auto">
               	<div class ="card card-body">
-              		<a href="#">
               		<div class="mydipsbooks row mt-2">
               			<div class="col-md-2 mb-3" style="padding:0;">
-	              			<a href="#"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:60px; margin:0 8px 0 8px;"></a>
+	              			<a href="Detail.book?bookSeq=${book.bookSeq}">
+	              				<img class="dipsbook" src="${book.coverUrl}" alt="${book.title}" style="width:60px; margin:0 8px 0 8px;">
+              				</a>
 	            
               			</div>
               			<div class="col-md-9" align="left">
-              				<span>책제목</span> - <span>저자</span>
-              				<p>아~~~~~~~~댓글란인데 아직 안했다~~~~선언니꺼랑 합치면서 수정해야한다!</p>
+              				<span>${book.title}</span> - <span>저자 ${book.author}</span>
+              				<p>${reply.reply_content}</p>
               				<button class="btn btn-rose btn-link btn-round">
-                				<i class="material-icons">favorite</i> 받은 좋아요 수 10개
+                				<i class="material-icons">favorite</i> 받은 좋아요 수 n개
              				</button>
               			</div>
               		</div>
-              		</a>
               	</div>
               </div>
             </div>
+            </c:if>
+            </c:forEach>
+            </c:forEach>
           </div>
 
 

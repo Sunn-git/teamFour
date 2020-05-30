@@ -69,39 +69,39 @@ public class ReplyDao {
         }
 	   
 	   
-	   //리플 리스트
-	   public List<ReplyDto> getReplyList(String book_seq) {
+     // 책번호로 리플 리스트 가져오기
+	   public List<ReplyDto> getReplyList(int book_seq) {
 		      List<ReplyDto> replyList = null;
-//		      NVL(image,'default.png')
 		      try {
+		    	  System.out.println("book_seq 확인 : "+book_seq);
 		    	  conn = ds.getConnection();
-					pstmt = conn.prepareStatement("select ? from book");
-					pstmt.setInt(1,Integer.parseInt(book_seq));
+					pstmt = conn.prepareStatement("select * from reply where book_seq =? ORDER BY REPLY_SEQ DESC");
+					pstmt.setInt(1, book_seq);
 					rs = pstmt.executeQuery();
 					
+					
+					replyList = new ArrayList<ReplyDto>();
 					while(rs.next()) {
-						String sql="select REPLY_SEQ,USER_ID,BOOK_SEQ,REPLY_STAR_RATE,REPLY_CONTENT, REPLY_DATE, REPLY_LIKE,REFER,DEPTH,STEP from reply ORDER BY REPLY_SEQ DESC";
-						pstmt = conn.prepareStatement(sql);
 						
-						rs = pstmt.executeQuery();
-						replyList = new ArrayList<ReplyDto>();
-						while(rs.next()) {
-							ReplyDto reply = new ReplyDto();
-							reply.setReply_seq(rs.getInt("reply_seq"));
-							reply.setUser_id(rs.getString("user_id"));
-							reply.setBook_seq(Integer.parseInt(book_seq));
-							reply.setReply_star_rate(rs.getInt("reply_star_rate"));
-							reply.setReply_content(rs.getString("reply_content"));
-							reply.setReply_date(rs.getString("reply_date"));
-							reply.setReply_like(rs.getInt("reply_like"));
-							reply.setRefer(rs.getInt("refer"));
-							reply.setDepth(rs.getInt("depth"));
-							reply.setStep(rs.getInt("step"));
+						ReplyDto reply = new ReplyDto();
+						reply.setReply_seq(rs.getInt("reply_seq"));
+						reply.setUser_id(rs.getString("user_id"));
+						reply.setBook_seq(book_seq);
+						reply.setReply_star_rate(rs.getInt("reply_star_rate"));
+						reply.setReply_content(rs.getString("reply_content"));
+						reply.setReply_date(rs.getString("reply_date"));
+						reply.setReply_like(rs.getInt("reply_like"));
+						reply.setRefer(rs.getInt("refer"));
+						reply.setDepth(rs.getInt("depth"));
+						reply.setStep(rs.getInt("step"));
+						
+						System.out.println("reply 확인 : "+ reply);
 							
-							replyList.add(reply);
-						}
+						replyList.add(reply);
 					}
-		    	  
+					
+					System.out.println("replyList 확인 : " + replyList);
+					
 		      }catch (Exception e) {
 		         System.out.println("오류 :" + e.getMessage());
 		      }finally {
@@ -117,6 +117,50 @@ public class ReplyDao {
 		   }
 	   
 	   
+	     // 아이디로 리플 리스트 가져오기
+		   public List<ReplyDto> getReplyList(String user_id) {
+			      List<ReplyDto> replyList = null;
+			      try {
+			    	  conn = ds.getConnection();
+						pstmt = conn.prepareStatement("select * from reply where USER_ID =? ORDER BY REPLY_SEQ DESC");
+						pstmt.setString(1, user_id);
+						rs = pstmt.executeQuery();
+						
+						
+						replyList = new ArrayList<ReplyDto>();
+						while(rs.next()) {
+							ReplyDto reply = new ReplyDto();
+							reply.setReply_seq(rs.getInt("reply_seq"));
+							reply.setUser_id(rs.getString("user_id"));
+							reply.setBook_seq(rs.getInt("book_seq"));
+							reply.setReply_star_rate(rs.getInt("reply_star_rate"));
+							reply.setReply_content(rs.getString("reply_content"));
+							reply.setReply_date(rs.getString("reply_date"));
+							reply.setReply_like(rs.getInt("reply_like"));
+							reply.setRefer(rs.getInt("refer"));
+							reply.setDepth(rs.getInt("depth"));
+							reply.setStep(rs.getInt("step"));
+								
+							replyList.add(reply);
+						}
+						
+						System.out.println("replyList 확인 : " + replyList);
+						
+			      }catch (Exception e) {
+			         System.out.println("오류 :" + e.getMessage());
+			      }finally {
+			         try {
+			            pstmt.close();
+			            rs.close();
+			            conn.close();//반환
+			         } catch (Exception e2) {
+			            
+			         }
+			      }
+			      return replyList;
+			   }
+	   
+
 	   
 	   
 	   

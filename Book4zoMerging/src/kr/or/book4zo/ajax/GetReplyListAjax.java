@@ -34,13 +34,14 @@ public class GetReplyListAjax extends HttpServlet {
 
     	System.out.println("UserList.ajax 타니?");
 		try {
-			String book_seq = request.getParameter("book_seq");
+			int book_seq = Integer.parseInt(request.getParameter("book_seq"));
+			
   		  	ReplyDao replydao = new ReplyDao();
   		  	List<ReplyDto> replyList = replydao.getReplyList(book_seq);
-  		  	System.out.println("여기까지 되니?");
+  		  	System.out.println("replyList 확인 : "+ replyList);
 //  		  	죽을거같아요
-  		  	List<ReplyDto> replyOriginList = null;
-  		  	List<ReplyDto> reReplyList = null;
+//  		  	List<ReplyDto> replyOriginList = null;
+//  		  	List<ReplyDto> reReplyList = null;
   		  	System.out.println("여기까지 되니?");
 //			for (ReplyDto reply : replyList) {
 //				

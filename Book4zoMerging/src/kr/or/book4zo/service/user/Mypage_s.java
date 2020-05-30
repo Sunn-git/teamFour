@@ -41,7 +41,8 @@ public class Mypage_s implements Action {
 			request.setAttribute("bookList", bookList);
 			
 			ReplyDao replyDao = new ReplyDao();
-			
+			List<ReplyDto> replyList = replyDao.getReplyList(userId);
+			request.setAttribute("replyList", replyList);
 			
 		} catch (Exception e) {
 			System.out.println("Mypage_s 에러 : " + e.getMessage());

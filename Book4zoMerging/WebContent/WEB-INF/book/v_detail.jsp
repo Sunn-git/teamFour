@@ -306,7 +306,7 @@
 
                                 </div>
                 
-                                <div class="ReviewForm" userid="${user_id}">
+                                <div id="ReviewForm" class="ReviewForm" userid="${user_id}" bookSeq="${book.bookSeq}">
                                     <textarea class="ReviewTextarea col-sm-12" id="replyContent" name="replyContent" title="리뷰 입력" placeholder="리뷰를 작성해주세요." style="height: 45.9844px;"></textarea>
                                     <div class="ReviewForm_ButtonsWrapper">
                                         <div style="display: inline-block;"></div>
@@ -335,7 +335,7 @@
                     </div>
 
                     <div class="ReviewsList_Wrapper" id="replyList_Warpper">
-                        <ul class="ReviewList" id="replyList">
+                        <ul id="replyList" class="ReviewList">
                             <!-- 비동기 댓글 자리 -->
                         </ul>
 
@@ -358,7 +358,7 @@
 
                 console.log("성공");
 					console.log(data);
-					$('#reply').empty();
+					$('#replyList').empty();
 					
 					let reply = "";
                     let seeMoreButton = "";
@@ -401,12 +401,12 @@
 				type:"POST",
 				dataType:"json",
 				data:{
-					book_seq : 171
+					book_seq : $('#ReviewForm').attr('bookSeq')
 				},
 				success:function(data){
 					console.log("성공");
 					console.log(data);
-					$('#reply').empty();
+					$('#replyList').empty();
 					
 					let reply = "";
                     let seeMoreButton = "";
@@ -440,7 +440,6 @@
 					$('#replyList').append(reply);
                     $('#replyList_Warpper').append(seeMoreButton);
 
-                    $('#reply').append(reply);
 					$('#replyContent').val("");
 
 
@@ -454,7 +453,7 @@
     	   // 리뷰 남기기
     	$('#reviewWriteBtn').click(function(){
     		console.log($('#replyContent').val());
-    		console.log($('.ReviewForm').attr('userid'));
+    		console.log($('#ReviewForm').attr('userid'));
     		console.log($('#choiceStarRating').children('input:checked').val());
             console.log($('label[class=StarRatingInput_Label][checked=checked]').length);
             
@@ -463,9 +462,9 @@
 				type:"POST",
 				dataType:"json",
 				data:{
-					book_seq : 171,
+					book_seq : $('#ReviewForm').attr('bookSeq'),
 					reply_content : $('#replyContent').val(),
-					user_id : $('.ReviewForm').attr('userid'),
+					user_id : $('#ReviewForm').attr('userid'),
 					reply_star_rate : $('#choiceStarRating').children('input:checked').val()
 				},
 				success:function(data){
@@ -473,7 +472,7 @@
 
 	                console.log("성공");
 						console.log(data);
-						$('#reply').empty();
+						$('#replyList').empty();
 						
 						let reply = "";
 	                    let seeMoreButton = "";
@@ -506,6 +505,7 @@
 
 						$('#replyList').append(reply);
 	                    $('#replyList_Warpper').append(seeMoreButton);
+						$('#replyContent').val("");
 					
 					
 				},

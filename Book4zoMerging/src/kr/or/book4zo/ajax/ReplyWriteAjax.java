@@ -56,7 +56,7 @@ public class ReplyWriteAjax extends HttpServlet {
 				System.out.println("댓글 등록 실패");
 			}
 			
-			List<ReplyDto> replyList = replydao.getReplyList(book_seq);
+			List<ReplyDto> replyList = replydao.getReplyList(Integer.parseInt(book_seq));
 			
 			JSONArray jsonReplyList = JSONArray.fromObject(replyList);
 			
