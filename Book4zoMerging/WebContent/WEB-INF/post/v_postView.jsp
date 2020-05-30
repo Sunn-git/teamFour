@@ -107,10 +107,10 @@ enctype="multipart/form-data" name="postform">
 	<tr align="center" valign="middle">
 		<td colspan="5">
 			<c:if test="${currentPost.user_id == user_id }">
-				<a class="btn btn-rose btn-round" href="./PostModify.post?post_seq=${currentPost.post_seq}">
+				<a class="btn btn-rose btn-round" href="PostModify.post?post_seq=${currentPost.post_seq}">
 					&nbsp;수정&nbsp;
 				</a> 
-				<a id="confirmDelete" class="btn btn-white btn-round" href="./Delete.post?post_seq=${currentPost.post_seq}">
+				<a id="confirmDelete" class="btn btn-white btn-round" href="Delete.post?post_seq=${currentPost.post_seq}">
 					&nbsp;삭제&nbsp;
 				</a>
 			</c:if>
@@ -120,8 +120,8 @@ enctype="multipart/form-data" name="postform">
 	<tr align="center" valign="middle">
 		<td colspan="5">
 			<br>
-			<a class="btn btn-block btn-gray btn-round" href="/Detail.book?bookSeq=">
-					&nbsp;&nbsp;&nbsp;뒤로 가기&nbsp;&nbsp;&nbsp;
+			<a class="btn btn-block btn-gray btn-round" href="Detail.book?bookSeq=${currentPost.book_seq}">
+					&nbsp;&nbsp;&nbsp;책으로 돌아가기&nbsp;&nbsp;&nbsp;
 				</a>
 		</td>
 	</tr>

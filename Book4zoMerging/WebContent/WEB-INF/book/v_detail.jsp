@@ -202,7 +202,7 @@
 	                                
 	                                <p class="card-text">${post.post_contents}</p>
 	      
-	                                <a href="javascript:;" class="btn btn-rose btn-round" style="position: relative; margin: 0;"> ${post.user_id} 님의 포스트 읽으러 가기</a>
+	                                <a href="PostDetailView.post?post_seq=${post.post_seq}" class="btn btn-rose btn-round" style="position: relative; margin: 0;"> ${post.user_id} 님의 포스트 읽으러 가기</a>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -470,10 +470,42 @@
 				},
 				success:function(data){
 					
-                    ReplyListSuccessAjax(data);
 
-					$('#reply').append(reply);
-					$('#replyContent').val("");
+	                console.log("성공");
+						console.log(data);
+						$('#reply').empty();
+						
+						let reply = "";
+	                    let seeMoreButton = "";
+
+						$.each(data, function(index, item){
+							/* if depth ==1 continue?? */
+							/* if depth == 0 {... } if depth == 1{...} */
+
+							reply += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: 12px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
+	                        
+	                        reply += '<ul class="ReviewerMetadata_List"><li class="ReviewerMetadata_UserId">'+item.user_id+'</li><li class="ReviewerMetadata_IsBuyerBadge"><svg class="RSGIcon RSGIcon-badgeBuyer RSGIcon-badgeBuyer1 ReviewerMetadata_IsBuyer_Icon" viewBox="0 0 30 11" width="30" height="11"><path d="M8.35 5.29h1.583v1.115h-4.15v4.438H4.381V6.406H.279V5.29h6.74c.192-.923.288-2.123.288-3.43h-5.84V.733h7.232C8.698 2.46 8.591 4.067 8.35 5.29zM14.712 8.061h-4.33V1.44h4.33v6.621zM13.393 2.52h-1.691v4.462h1.691V2.52zm4.414 8.323V5.482h-.863v4.869h-1.32V.349h1.32v4.006h.863V.157h1.343v10.686h-1.343zM25.512 8.361c-.984-.492-2.256-1.871-2.566-2.902-.265 1.092-1.344 2.519-2.592 3.131l-.864-1.045c1.775-.972 2.711-2.615 2.711-4.857V2.4h-2.159V1.248h5.697V2.4h-2.087v.276c0 2.255 1.031 3.779 2.639 4.666l-.779 1.019zm2.686-4.09h1.523v1.164h-1.523v5.409h-1.402V.157h1.402v4.114z"></path></svg></li></ul>';
+	                        
+	                        reply += '<ul class="ReviewMetadata_List"><li class="ReviewMetadata_Date">'+item.reply_date+'</li><li class="ReviewMetadata_Report"><button class="ReviewMetadata_ReportButton" type="button">수정</button><button class="ReviewMetadata_ReportButton" type="button">삭제</button></li></ul></div>';
+	                        
+	                        reply += '<div class="ReviewItem_Right"><div class="ReviewItem_Right_Top"><div class="ReviewContent"><span width="0"><span><span>'+item.reply_content+'</span></span></span></div>';
+	                        
+	                        reply += ' <ul class="ReviewButtons_List"><li class="ReviewButtons_OpenCommentsButtonItem"><button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_OpenCommentsButton pressed"><svg class="RSGIcon RSGIcon-speechbubble RSGIcon-speechbubble2 ReviewButtons_CommentIcon" viewBox="0 0 56 48" width="56" height="48"><path d="M36.6 0H19.4C8.9 0 .4 8.5.4 18.9c0 9.2 6.7 16.9 15.5 18.5v7.2c0 1.4.8 2.6 2.1 3.2.5.1.9.2 1.4.2.9 0 1.8-.3 2.4-1l9.6-9.3h5.2c10.4 0 18.9-8.5 18.9-18.9C55.6 8.5 47.1 0 36.6 0z"></path></svg><span class="ReviewButtons_CommentLabel">댓글</span><span class="ReviewButtons_CommentCount">'+'대댓 몇개인지 5'+'</span></button></li>';
+	                        
+	                        reply += ' <li class="ReviewButtons_LikeButtonItem"><button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton"><svg class="RSGIcon RSGIcon-thumbUp RSGIcon-thumbUp1 ReviewButtons_LikeIcon RUIButton_SVGIcon" viewBox="0 0 44 49" width="44" height="49"><g><path d="M41.7 32.7s2.3-1.3 2.1-4.3c-.1-1.9-2.4-3.7-2.4-3.7s1-1.8 1-2.6 0-2.9-2.1-4-12.1.4-12.1.4 1-5.8 1.1-6.6c.1-.8 1-1.7 1.1-4.4.2-3.5-1.2-7.6-4.2-7.5C23.1.1 24 5 24 5.8c0 .8-2.2 5.8-4.2 9-1.9 3.2-4.2 4.6-4.9 7.8-.6 2.7-3.6 3.8-3.6 3.8-.9.2-.9 1-.8 1.7 1.9 11.7 3.8 18 3.8 18s5 1.1 6.8 1.2c1.8.1 1.5.2 3.3.6 1.8.3 5.5 0 8.5 0s4.2-.7 7.1-2.8c2.9-2.1.8-5 .8-5s2.4-.6 2.4-3.8c0-2.8-1.5-3.6-1.5-3.6zM7.7 28.1c-.2-.9-1.1-1.6-2-1.6H2c-.9 0-1.7.7-1.8 1.6v18c0 .9.8 1.6 1.7 1.6h8.2c.9 0 1.3-1.2 1.1-2.2L7.7 28.1z"></path></g></svg><span class="ReviewButtons_LikeCount">'+'좋아요 몇개인지 10'+'</span></button></li></ul></div>';
+	                        
+	                        reply += '<div class="Comments"><ul class="CommentList"><li class="CommentItem"><div class="CommentItem_Content"><p>대댓글 내용</p></div><div class="CommentItem_Metadata"><span class="CommentItem_MaskedUId"><span class="a11y">작성자</span>'+'대댓 작성자'+'</span><span class="CommentItem_CommentDate"><span class="a11y">작성일</span>'+'대댓 작성일'+'</span></div></li></ul>';
+	                        
+	                        reply += '<div class="CommentForm_Wrapper"><div class="CommentForm"><textarea class="CommentForm_Textarea" name="commentContent" title="댓글 입력" placeholder="이 곳에 댓글을 남겨주세요." style="height: 30px;"></textarea><button class="RUIButton RUIButton-color-blue RUIButton-size-small CommentForm_SubmitButton" disabled="">댓글 달기</button></div></div></div></div></li>';
+
+	                      });
+	                      
+
+	                    seeMoreButton += '<button class="RUIButton RUIButton-color-gray RUIButton-size-large RUIButton-outline RUIButton-borderWidth-thick ReviewList_ShowMoreButton"><span class="ReviewList_ShowMoreButton_Count">'+'n'+'</span>개 더보기<svg class="RSGIcon RSGIcon-arrowDown RSGIcon-arrow1Down ReviewList_ShowMoreButton_Icon RUIButton_SVGIcon" viewBox="0 0 48 28" width="48" height="28"><path d="M48 .6H0l24 26.8z"></path></svg></button>';
+
+
+						$('#replyList').append(reply);
+	                    $('#replyList_Warpper').append(seeMoreButton);
 					
 					
 				},
