@@ -6,8 +6,6 @@
 <%
 //코드구현
 request.setCharacterEncoding("UTF-8");
-  PostDto postdto=  (PostDto)request.getAttribute("postdto");
-//String sFilePath = sDownLoadPath + "\\" + filename;
 
 %>
 
@@ -36,6 +34,8 @@ request.setCharacterEncoding("UTF-8");
 <body>
 
 <c:set var="user_id" value="${sessionScope.user_id}"/>
+<c:set var="currentPost" value="${requestScope.CurrentPost}"/>
+${currentPost }
 
 
 <!-- 게시판 수정 -->
@@ -50,12 +50,12 @@ enctype="multipart/form-data" name="postform">
 		<tr>
 			<td>
 			
-			<c:if test="${'.writer' == user_id }"><!-- 내가 구현해야하는거란다... -->
+			<c:if test="${currentPost.user_id == user_id }"><!-- 내가 구현해야하는거란다... -->
 				<img> <!-- 땡땡땡 아이콘 넣어야하는 곳 드롭박스로 열리게 해서 아이디값이랑 WRITER가 같으면 수정가능하게 --> 
-				<button class="btn btn-rose btn-round" href="postModify.post?num=">
+				<button class="btn btn-rose btn-round" href="postModify.post?num=${currentPost.post_seq}">
 				&nbsp;수정&nbsp; <!-- svg를 클릭해서 드롭다운 메뉴가 나온다 -->
-				</button>
-				<button class="btn btn-rose btn-round" href="postDelete.post?num=">
+				</button> 
+				<button class="btn btn-rose btn-round" href="postDelete.post?num=${currentPost.post_seq}">
 				&nbsp;삭제&nbsp;
 				</button>
 			</c:if>
@@ -69,7 +69,7 @@ enctype="multipart/form-data" name="postform">
 		</td>
 		
 		<td style="font-family:돋음; font-size:12">
-		<%=postdto.getPost_title()%>
+			${currentPost.post_title}
 		</td>
 	</tr>
 	
@@ -88,8 +88,7 @@ enctype="multipart/form-data" name="postform">
 			<table border=0 width=490 height=250 style="table-layout:fixed">
 				<tr>
 					<td valign=top style="font-family:돋음; font-size:12">
-					<%=postdto.getPost_contents() %>
-					<%=postdto %>
+						${currentPost.post_contents}
 					</td>
 				</tr>
 			</table>
@@ -102,12 +101,18 @@ enctype="multipart/form-data" name="postform">
 		<td style="font-family:돋음; font-size:12">
 			<div align="center">첨부파일</div>
 		</td>
+		
 		<td style="font-family:돋음; font-size:12">
-		<%if(!(postdto.getPost_upload_file()==null)){ %>
-		<a href="./postUpload/<%=postdto.getPost_upload_file()%>">
-			<%=postdto.getPost_upload_file() %>
-		</a>
-		<%} %>
+			<c:choose>
+				<c:when test="${currentPost.post_upload_file == 'N'}">
+					&nbsp;&nbsp;첨부파일이 없습니다
+				</c:when>
+				<c:otherwise>
+					<a href="./postUpload/${currentPost.post_upload_file}">
+						${currentPost.post_upload_file}
+					</a>
+				</c:otherwise>
+			</c:choose>
 		</td>
 	</tr>
 	
@@ -117,11 +122,12 @@ enctype="multipart/form-data" name="postform">
 	<tr><td colspan="2">&nbsp;</td></tr>
 	<tr align="center" valign="middle">
 		<td colspan="5">
-			<font size=2>			
-			<a href="./PostModify.post?num=<%=postdto.getPost_seq() %>">
+			<font size=2>
+						
+			 <a href="./PostModify.post?num=${currentPost.post_seq}">
 			[임시수정]
 			</a>&nbsp;&nbsp;
-			<a href="./PostDeleteAction.post?num=<%=postdto.getPost_seq() %>"
+			<a href="./PostDelete_s.post?num=${currentPost.post_seq}"
 			>
 			[임시삭제]
 			</a>&nbsp;&nbsp;

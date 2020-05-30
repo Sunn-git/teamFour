@@ -30,6 +30,7 @@
 <!-- 게시판 등록 -->
 <body>
 <c:set var="user_id" value="${sessionScope.user_id}"/>
+
 	<div class= "col-md-12 ml-auto mr-auto">
 	<form class="form" method="post" action="PostWrite_s.post"
 		enctype="multipart/form-data" name="postform">
@@ -65,7 +66,7 @@
 				<td style="font-family: 돋음; font-size: 12">
 					<div align="center">파일 첨부</div>
 				</td>
-				<td><input name="post_upload_file" type="file" /></td>
+				<td><input name="file" type="file" /></td>
 			</tr>
 			<tr bgcolor="cccccc">
 				<td colspan="2" style="height: 1px;"></td>

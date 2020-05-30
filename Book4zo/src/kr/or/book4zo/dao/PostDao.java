@@ -156,17 +156,19 @@ public class PostDao {
 		} catch (Exception ex) {
 			System.out.println("getDetail 에러 : " + ex);
 		} finally {
-			closed();
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt !=null)try{pstmt.close();}catch(SQLException ex){}
+			if(conn !=null)try{conn.close();}catch(SQLException ex){}
 		}
-		return null;
+			return null;
 	}
 
 	// 글 등록
 	// write.jsp
 	public int postInsert(PostDto postdto) {
-
-		System.out.println("postdto 확인 : " + postdto);
-
+		
+		System.out.println("postdto 확인 : "+postdto);
+		
 		int num = 0;
 		String sql = "";
 		String sql2 = "";
@@ -175,49 +177,65 @@ public class PostDao {
 
 		try {
 			conn = ds.getConnection();
-			pstmt = conn.prepareStatement("select max(Post_Seq) from post");
-			rs = pstmt.executeQuery();
-
-			if (rs.next())
-				num = rs.getInt(1) + 1;
-			else
-				num = 1;
-
-			if (postdto.getPost_upload_file() == null) {
-				postdto.setPost_upload_file("N");
-			}
-
+//			pstmt = conn.prepareStatement("select max(Post_Seq) from post");
+//			rs = pstmt.executeQuery();
+//
+//			if (rs.next())
+//				num = rs.getInt(1) + 1;
+//			else
+//				num = 1;
+			
+			if(postdto.getPost_upload_file() == null){
+			    postdto.setPost_upload_file("N");
+			   }
+			
 			sql = "insert into post (POST_SEQ,USER_ID,BOOK_SEQ,POST_TITLE,";
 			sql += "POST_CONTENTS,POST_DATE,POST_VIEWS,POST_UPLOAD_FILE)";
-			sql += "values(post_seq.NEXTVAL, ?, ?, ?, ?, sysdate, ?, ? )";
+			sql	+= "values(post_seq.NEXTVAL, ?, ?, ?, ?, sysdate, ?, ? )";
+
 
 			pstmt = conn.prepareStatement(sql);
-			// pstmt.setInt(1, num);
-			pstmt.setString(1, postdto.getUser_id());
-			pstmt.setInt(2, 1); // postdto.getBook_Seq()
+			//pstmt.setInt(1, num);
+			pstmt.setString(1, "a"); // postdto.getUser_id()
+			pstmt.setInt(2, 1); //postdto.getBook_Seq()
 			pstmt.setString(3, postdto.getPost_title());
 			pstmt.setString(4, postdto.getPost_contents());
-			// pstmt.setString(5, postdto.getPost_date());
+			//pstmt.setString(5, postdto.getPost_date());
 			pstmt.setInt(5, postdto.getPost_views());
 			pstmt.setString(6, postdto.getPost_upload_file());
+		
+				
 
 			int queryResult = pstmt.executeUpdate();
-
-			System.out.println("insert 결과 : " + queryResult);
-
-			// 포스트번호에 최대값을 만들어주고 그렇게해서 셋리쿼스트해서 꺼내온다
-			sql2 = "select max(POST_SEQ) from post";
+			
+			System.out.println("insert 결과 : "+queryResult);
+			
+			//포스트번호에 최대값을 만들어주고  그렇게해서 셋리쿼스트해서 꺼내온다
+			//sql2 = "select max(POST_SEQ) from post";
+			//pstmt = conn.prepareStatement(sql2);
+		
+			//postNum = pstmt.ex
+			
+			sql2 = "SELECT MAX(POST_SEQ) FROM POST";
 			pstmt = conn.prepareStatement(sql2);
 			rs = pstmt.executeQuery();
-			if (rs.next()) {
+			
+			while(rs.next()) {
 				postNum = rs.getInt(1);
 			}
-			System.out.println("postNum :"+ postNum);
-			// 포스트번호에 최대값을 만들어주고 그렇게해서 셋리쿼스트해서
-			System.out.println("result 값을 :" + queryResult);
-			if (queryResult == 0)
+			
+			
+			System.out.println("result 값을 :"+queryResult);
+
+			System.out.println("currentPostSeq 확인 : " + postNum);
+								
+
+			if (queryResult == 0) {
+				System.out.println("포스트 작성 실패");
 				return 0;
+			}							
 			return postNum;
+			
 		} catch (Exception ex) {
 			System.out.println("postInsert 에러 : " + ex);
 		} finally {
@@ -241,30 +259,18 @@ public class PostDao {
 		} catch (Exception ex) {
 			System.out.println("postModify 에러 : " + ex);
 		} finally {
-			closed();
-		}
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(conn!=null)try{conn.close();}catch(SQLException ex){}
+			}
 		return false;
 	}
 
 	// 글 삭제
 	// delete.jsp
 	public boolean PostDelete(int num) {
-		// 주의점
-		// 규칙 : 원본글이 삭제되면 다 지워 (ref = 1 ) .....
 
-		// 규칙 : state 컬럼 : T , F 글이 삭제하는 것이 아니라 상태
-		// : update set state = F where num=1
-		// : F (삭제된 글) 문자만
-
-		// 규칙 : 원본글 답변 지워지지 않고 답변 이 있으면 삭제 금지
-		// : 답변 1개라도 있으면 원본글(삭제)
-		// : 답변에 답변이 1개라도 있다면 삭제금지
-
-		// Table column : state : t , f
-		// 원본글
-		// ->답변 삭제 (x) 답변
-		// ->답변_1
-		String Post_delete_sql = "delete from post where post_seq=?";
+		String Post_delete_sql = "delete max(post_seq) from post where post_seq=?";
 
 		int result = 0;
 
@@ -303,8 +309,14 @@ public class PostDao {
 	// 비인증형 게시판(일반 사용자) : 글을 수정 , 삭제 => 비번
 	// 삭제 수정하려는 글에 확인작업 (비번)
 	// Modify.jsp , Delete.jsp
+	
 	public boolean isPostWriter(int num, String user_id) {
-		String post_sql = "select max(Post_Seq) from post where user_id=?";
+		
+		
+		System.out.println("user_id : " + user_id);
+		
+		
+		String post_sql = "select max(post_seq) from post where user_id=?";
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(post_sql);

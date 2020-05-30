@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.book4zo.action.Action;
 import kr.or.book4zo.action.ActionForward;
+import kr.or.book4zo.service.post.PostDelete_s;
 import kr.or.book4zo.service.post.PostDetail_s;
 import kr.or.book4zo.service.post.PostList_s;
 import kr.or.book4zo.service.post.PostModifyAction;
@@ -91,7 +92,7 @@ public class PostController extends HttpServlet {
 //상세보기 실험중입니다. 
 
 		else if (url_Command.equals("/PostDetailView.post")) {
-			// 실패하면 다시 돌아오기 PostDetail.post
+			// 실패하면 다시 돌아오기 
 			System.out.println("PostListView.post여기에 타고있니??");
 			// 아 PostDetail.post
 			action = new PostDetail_s();
@@ -113,9 +114,9 @@ public class PostController extends HttpServlet {
 		
 	 else if (url_Command.equals("/PostModifyAction.post")) {
 		System.out.println("PostModifyAction.post 타고서 포스트 수정화면가자");
-		//여기서 에러가 나오고 
+		//여기서 에러가 나오고 PostModifyActio  PostModifyView_s
 		action = new PostModifyAction(); // 다형성 여기는 타서 가고 
-		System.out.println("PostModifyView_s 가고있니??"); //여기도 타서 가고
+		System.out.println("PostModifyActio 가고있니??"); //여기도 타서 가고
 		forward = action.execute(request, response);
 	 }
 	 else if (url_Command.equals("/PostModify.post")) {
@@ -130,7 +131,15 @@ public class PostController extends HttpServlet {
 				e.printStackTrace();
 			}
 	 }
-		
+	else if(url_Command.equals("/PostDelete_s.post")){
+		   System.out.println("PostDelete_s.post 실행하자");
+		   action = new PostDelete_s();
+		   try{
+			   forward=action.execute(request, response);
+		   }catch(Exception e){
+			   e.printStackTrace();
+		   }
+	}
 		
 		
 		

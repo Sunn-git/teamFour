@@ -7,7 +7,7 @@
 	request.setCharacterEncoding("UTF-8");
 	PostDto postdto = (PostDto)request.getAttribute("postdto");
 %>
-
+ 
 <html>
 <head>
 	<title>MVC 게시판</title>
@@ -20,8 +20,10 @@
 
 <body>
 <c:set var="user_id" value="${sessionScope.user_id}"/>
+<c:set var="currentPost" value="${requestScope.CurrentPost}"/>
+${postdto }
 <!-- 게시판 수정 -->
-
+									<!--PostModifyView_s.post  -->
 <form class="form" method="post" action="PostModifyAction.post"
 enctype="multipart/form-data" name="modifyform">
 <input type="hidden" name="post_seq" value="<%=postdto.getPost_seq() %>">
@@ -68,13 +70,25 @@ enctype="multipart/form-data" name="modifyform">
 	<tr align="center" valign="middle">
 		<td colspan="5">
 			<font size=2>
-			<a href="javascript:modifyboard()">[임시수정]</a>&nbsp;&nbsp;
+			
+			 <a href="./PostModifyAction.post?num=${postdto.post_seq}"> 
+			[임시수정]
+			</a>&nbsp;&nbsp;
 			<a href="javascript:history.go(-1)">[임시뒤로]</a>&nbsp;&nbsp;
 			</font>
 		</td>
 	</tr>
 </table>
-</form>
+
+
+<div class="">
+<img alt="" src=""> <!-- 수정되어야함  세션스코프 유저 이미지로 받아오기--> 
+회원 프로필 뿌려질 곳
+
+
 <!-- 게시판 수정 -->
+
+</div>
+</form>
 </body>
 </html>
