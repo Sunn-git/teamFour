@@ -34,7 +34,7 @@ public class GetReplyListAjax extends HttpServlet {
 
     	System.out.println("UserList.ajax 타니?");
 		try {
-			String book_seq = request.getParameter("book_seq");
+			int book_seq = Integer.parseInt(request.getParameter("book_seq"));
   		  	ReplyDao replydao = new ReplyDao();
   		  	List<ReplyDto> replyList = replydao.getReplyList(book_seq);
   		  	System.out.println("여기까지 되니?");
@@ -42,38 +42,6 @@ public class GetReplyListAjax extends HttpServlet {
   		  	List<ReplyDto> replyOriginList = null;
   		  	List<ReplyDto> reReplyList = null;
   		  	System.out.println("여기까지 되니?");
-//			for (ReplyDto reply : replyList) {
-//				
-//				if(reply.getDepth() == 0) {
-//					ReplyDto origin = new ReplyDto();
-//					origin.setBook_seq(reply.getBook_seq());
-//					origin.setReply_seq(reply.getReply_seq());
-//					origin.setUser_id(reply.getUser_id());
-//					origin.setReply_content(reply.getReply_content());
-//					origin.setReply_date(reply.getReply_date());
-//					origin.setReply_like(reply.getReply_like());
-//					origin.setReply_star_rate(reply.getReply_star_rate());
-//					origin.setRefer(reply.getRefer());
-//					origin.setDepth(reply.getDepth());
-//					origin.setStep(reply.getStep());
-//					replyOriginList.add(origin);
-//				}
-//				if(reply.getDepth() == 1) {
-//					ReplyDto reReply = new ReplyDto();
-//					reReply.setBook_seq(reply.getBook_seq());
-//					reReply.setReply_seq(reply.getReply_seq());
-//					reReply.setUser_id(reply.getUser_id());
-//					reReply.setReply_content(reply.getReply_content());
-//					reReply.setReply_date(reply.getReply_date());
-//					reReply.setReply_like(reply.getReply_like());
-//					reReply.setReply_star_rate(reply.getReply_star_rate());
-//					reReply.setRefer(reply.getRefer());
-//					reReply.setDepth(reply.getDepth());
-//					reReply.setStep(reply.getStep());
-//					reReplyList.add(reply);
-//				}
-//				
-//			}
   		  	
 			JSONArray jsonReplyList = JSONArray.fromObject(replyList);
 //			JSONArray jsonReplyOriginList = JSONArray.fromObject(replyOriginList);

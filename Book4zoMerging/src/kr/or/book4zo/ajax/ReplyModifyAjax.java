@@ -1,7 +1,6 @@
 package kr.or.book4zo.ajax;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,40 +14,38 @@ import kr.or.book4zo.dto.ReplyDto;
 import net.sf.json.JSONArray;
 
 /**
- * Servlet implementation class ReplyWriteAjax
+ * Servlet implementation class ReplyModifyAjax
  */
-@WebServlet("/ReplyWrite.ajax")
-public class ReplyWriteAjax extends HttpServlet {
+@WebServlet("/ReplyModify.ajax")
+public class ReplyModifyAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
-    public ReplyWriteAjax() {
+    public ReplyModifyAjax() {
         super();
-      
+    
     }
 
-	
-    protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	System.out.println("BookList.ajax 타니?");
+    	System.out.println("ReplyModify.ajax 타니?");
     	request.setCharacterEncoding("UTF-8");	
 		boolean result = false;
 		
 		try {
 			int book_seq = Integer.parseInt(request.getParameter("book_seq"));
+			int reply_seq = Integer.parseInt(request.getParameter("reply_seq"));
 			String reply_content = request.getParameter("reply_content");
 			String user_id = request.getParameter("user_id");
-			String reply_star_rate = request.getParameter("reply_star_rate");
 			
 			System.out.println("== parameter 확인 ==");
 			System.out.println(book_seq);
+			System.out.println(reply_seq);
 			System.out.println(reply_content);
-			System.out.println(user_id);
-			System.out.println(reply_star_rate);
+			System.out.println(user_id); 
 			System.out.println("========");
 			
 			ReplyDao replydao = new ReplyDao();
-			result = replydao.replyWrite(book_seq,reply_content,user_id,reply_star_rate); //수정해야함 
+			result = replydao.replyUpdate(reply_seq,reply_content); 
 			
 			if(result == true) {
 				System.out.println("댓글 등록 성공");
@@ -56,6 +53,7 @@ public class ReplyWriteAjax extends HttpServlet {
 				System.out.println("댓글 등록 실패");
 			}
 			
+			//인풋창 원래대로 바꾸는 법 배워야해요
 			List<ReplyDto> replyList = replydao.getReplyList(book_seq);
 			
 			JSONArray jsonReplyList = JSONArray.fromObject(replyList);

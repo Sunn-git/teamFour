@@ -70,38 +70,34 @@ public class ReplyDao {
 	   
 	   
 	   //리플 리스트
-	   public List<ReplyDto> getReplyList(String book_seq) {
+	   public List<ReplyDto> getReplyList(int book_seq) {
+		   		System.out.println("getReplyList 출력중");
 		      List<ReplyDto> replyList = null;
 //		      NVL(image,'default.png')
 		      try {
 		    	  conn = ds.getConnection();
-					pstmt = conn.prepareStatement("select ? from book");
-					pstmt.setInt(1,Integer.parseInt(book_seq));
+					pstmt = conn.prepareStatement("select * from reply where book_seq =? ORDER BY REPLY_SEQ DESC");
+					pstmt.setInt(1,book_seq);
 					rs = pstmt.executeQuery();
 					
+					
+					replyList = new ArrayList<ReplyDto>();
 					while(rs.next()) {
-						String sql="select REPLY_SEQ,USER_ID,BOOK_SEQ,REPLY_STAR_RATE,REPLY_CONTENT, REPLY_DATE, REPLY_LIKE,REFER,DEPTH,STEP from reply ORDER BY REPLY_SEQ DESC";
-						pstmt = conn.prepareStatement(sql);
-						
-						rs = pstmt.executeQuery();
-						replyList = new ArrayList<ReplyDto>();
-						while(rs.next()) {
-							ReplyDto reply = new ReplyDto();
-							reply.setReply_seq(rs.getInt("reply_seq"));
-							reply.setUser_id(rs.getString("user_id"));
-							reply.setBook_seq(Integer.parseInt(book_seq));
-							reply.setReply_star_rate(rs.getInt("reply_star_rate"));
-							reply.setReply_content(rs.getString("reply_content"));
-							reply.setReply_date(rs.getString("reply_date"));
-							reply.setReply_like(rs.getInt("reply_like"));
-							reply.setRefer(rs.getInt("refer"));
-							reply.setDepth(rs.getInt("depth"));
-							reply.setStep(rs.getInt("step"));
+						ReplyDto reply = new ReplyDto();
+						reply.setReply_seq(rs.getInt("reply_seq"));
+						reply.setUser_id(rs.getString("user_id"));
+						reply.setBook_seq(book_seq);
+						reply.setReply_star_rate(rs.getInt("reply_star_rate"));
+						reply.setReply_content(rs.getString("reply_content"));
+						reply.setReply_date(rs.getString("reply_date"));
+						reply.setReply_like(rs.getInt("reply_like"));
+						reply.setRefer(rs.getInt("refer"));
+						reply.setDepth(rs.getInt("depth"));
+						reply.setStep(rs.getInt("step"));
 							
-							replyList.add(reply);
-						}
+						replyList.add(reply);
 					}
-		    	  
+					
 		      }catch (Exception e) {
 		         System.out.println("오류 :" + e.getMessage());
 		      }finally {
@@ -116,7 +112,7 @@ public class ReplyDao {
 		      return replyList;
 		   }
 	   //리플 인서트
-	   public boolean replyWrite(String book_seq, String reply_content, String user_id, String reply_star_rate) {
+	   public boolean replyWrite(int book_seq, String reply_content, String user_id, String reply_star_rate) {
 		   //String user_id,int book_seq, int reply_star_rate, String reply_content, String reply_date, int reply_like, int refer, int depth, int step
 			int num = 0;
 			String sql = "";
@@ -126,7 +122,7 @@ public class ReplyDao {
 			try {
 				conn = ds.getConnection();
 				pstmt = conn.prepareStatement("select ? from book");
-				pstmt.setInt(1,Integer.parseInt(book_seq));
+				pstmt.setInt(1,book_seq);
 				rs = pstmt.executeQuery();
 
 				if (rs.next()) { System.out.println("pstmt.executeQuery() : "+ rs);}
@@ -138,7 +134,7 @@ public class ReplyDao {
 				System.out.println("별점 출력 : " +reply_star_rate);
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, user_id);
-				pstmt.setInt(2, Integer.parseInt(book_seq));
+				pstmt.setInt(2, book_seq);
 				pstmt.setInt(3, Integer.parseInt(reply_star_rate));
 				pstmt.setString(4, reply_content);
 //				pstmt.setInt(5, reply.getReply_like());
@@ -181,6 +177,40 @@ public class ReplyDao {
 			}
 			return false;
 		}
+	   public boolean replyUpdate(int reply_seq, String reply_content) {
+		   int num = 0;
+			String sql = "";
+
+			int result = 0;
+			try {
+				conn = ds.getConnection();
+				pstmt = conn.prepareStatement("select * from reply where reply_seq=?");
+				pstmt.setInt(1,reply_seq);
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+					sql += "UPDATE reply SET reply_content=?";
+					sql += "WHERE reply_seq = ?";
+					pstmt = conn.prepareStatement(sql);
+					
+					pstmt.setString(1, reply_content);
+					pstmt.setInt(2, reply_seq);
+					
+					result = pstmt.executeUpdate();
+					
+					if(result ==0) {
+						return false;
+					}else {
+						return true;
+					}
+					
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		   
+		   return false;
+	   }
 	   
 }
 
