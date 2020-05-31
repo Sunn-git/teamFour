@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html>
 <html>
@@ -43,7 +43,7 @@
 	</c:otherwise>
 </c:choose>
 </header>
-  <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/city-profile.jpg');"></div>
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('${pageContext.request.contextPath}/assets/img/city-profile.jpg');"></div>
   <div class="main main-raised">
     <div class="profile-content">
       <div class="container">
