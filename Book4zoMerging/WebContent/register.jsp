@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>Login 테스트</title>
+<title>여기 아님</title>
 <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no'
 	name='viewport' />
 <!--     Fonts and icons     -->
@@ -77,18 +77,20 @@
 						<form class="form" method="" action="">
 							<div class="card-header card-header-rose text-center">
 								<h4 class="card-title">Login</h4>
-								<div class="social-line">
-									<a href="#pablo" class="btn btn-just-icon btn-link"> <i
-										class="fa fa-facebook-square"></i>
-									</a> <a href="#pablo" class="btn btn-just-icon btn-link"> <i
-										class="fa fa-twitter"></i>
-									</a> <a href="#pablo" class="btn btn-just-icon btn-link"> <i
-										class="fa fa-google-plus"></i>
-									</a>
-								</div>
+								<br>
 							</div>
 
 							<div class="card-body">
+								<div class="row">
+									<div class="profile ml-auto mr-auto mt-2">
+										<div class="btn btn-white btn-round btn-fab" style="width:80px; height:80px;"id="profileUpload" name="profileUpload">
+											<div style="margin-top:30%;">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H2.992A.993.993 0 0 1 2 20.007V3.993zM4 5v14h16V5H4zm8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm5-11h2v2h-2V6z"/></svg>
+											</div>
+										</div>
+									</div>
+									<!-- <input type="text" class="form-control" name="USER_ID" placeholder="아이디"> -->
+								</div>
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text"> <i
@@ -135,8 +137,6 @@
 									<input type="password" class="form-control" name="USER_NAME" placeholder="이름">
 								</div>
 
-
-
 								<div class="row">
 									<div class="col-md-6 mx-auto">
 										<button class="btn btn-link btn-rose btn-round" href="#pablo">
@@ -155,7 +155,7 @@
 		</div>
 	</div>
 	</div>
-
+	
 
 	<!--   Core JS Files   -->
 	<script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
@@ -173,5 +173,6 @@
 	<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 	<script src="../assets/js/material-kit.js?v=2.0.7"
 		type="text/javascript"></script>
+
 </body>
 </html>
