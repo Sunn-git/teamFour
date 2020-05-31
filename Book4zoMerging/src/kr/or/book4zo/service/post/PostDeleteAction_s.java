@@ -22,6 +22,8 @@ public class PostDeleteAction_s implements Action {
 	boolean userCheck = false;
 	
 	int num = Integer.parseInt(request.getParameter("post_seq"));
+	int bookSeq = Integer.parseInt(request.getParameter("bookSeq"));
+	
 	
 	PostDao postDao = new PostDao();
 
@@ -36,7 +38,7 @@ public class PostDeleteAction_s implements Action {
 	///////////////////////////////////////////////////
 	ActionForward forward = new ActionForward();
 	forward.setRedirect(false);
-	forward.setPath("/Main.book");
+	forward.setPath("/Detail.book?bookSeq="+bookSeq);
 	return forward;
 	
 	}

@@ -68,6 +68,7 @@ public class BookController extends HttpServlet {
 			forward = action.execute(request, response);
 			System.out.println("Detail.book 끝");
 		}
+		
 		//API 자료를 DB에 저장하기
 		else if(urlCmd.equals("/SaveDataToDB.book")) {
 			System.out.println("/SaveDataToDB.book 실행");
@@ -76,6 +77,11 @@ public class BookController extends HttpServlet {
 			forward = action.execute(request, response);
 			System.out.println("SaveDataToDB.book 끝");
 			
+		}else if(urlCmd.equals("/BestSellerView.book")) {
+			System.out.println("/BestSellerView.book 실행");
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/WEB-INF/book/v_bestSeller.jsp");
 		}
 		
 		
