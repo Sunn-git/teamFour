@@ -359,7 +359,7 @@
     <!--         end carousel -->
 
 
-<a href="SaveDataToDB.book"> DB 저장 테스트</a>
+
 
 <div class="container bestsellerbykeyward" style ="width : 860px;">
 <h3>키워드 별 베스트셀러 <button class="btn btn-link btn-sm btn-toggle" onclick = "location.href = 'BestSellerView.book' ">게시글 더보기</button></h3>

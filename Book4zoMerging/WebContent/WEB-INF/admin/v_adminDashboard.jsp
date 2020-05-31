@@ -88,8 +88,8 @@
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Capacity</p>
-                      <p class="card-title">150GB<p>
+                      <p class="card-category">DB 저장</p>
+                      <p class="card-title"><a href="SaveDataToDB.book"> 도서 DB 저장하기</a><p>
                     </div>
                   </div>
                 </div>
