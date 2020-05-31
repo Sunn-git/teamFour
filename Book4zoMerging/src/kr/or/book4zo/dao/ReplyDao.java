@@ -44,7 +44,7 @@ public class ReplyDao {
                 pstmt.setInt(1, book_seq);
                 rs = pstmt.executeQuery();
                 while (rs.next()) {
-                    rowcount ++;
+                    rowcount = rs.getInt("count(*)");
                 }
             } catch (Exception e) {
 
@@ -96,12 +96,12 @@ public class ReplyDao {
 						reply.setDepth(rs.getInt("depth"));
 						reply.setStep(rs.getInt("step"));
 						
-						System.out.println("reply 확인 : "+ reply);
+//						System.out.println("reply 확인 : "+ reply);
 							
 						replyList.add(reply);
 					}
 					
-					System.out.println("replyList 확인 : " + replyList);
+//					System.out.println("replyList 확인 : " + replyList);
 					
 		      }catch (Exception e) {
 		         System.out.println("오류 :" + e.getMessage());
@@ -145,7 +145,7 @@ public class ReplyDao {
 							replyList.add(reply);
 						}
 						
-						System.out.println("replyList 확인 : " + replyList);
+//						System.out.println("replyList 확인 : " + replyList);
 						
 			      }catch (Exception e) {
 			         System.out.println("오류 :" + e.getMessage());
@@ -232,6 +232,8 @@ public class ReplyDao {
 			}
 			return false;
 		}
+	   
+	   
 	   public boolean replyUpdate(int reply_seq, String reply_content) {
 		   int num = 0;
 			String sql = "";
@@ -265,6 +267,44 @@ public class ReplyDao {
 			}
 		   
 		   return false;
+	   }
+	   
+	   
+	   public double getAvgStarRate(int bookSeq) {
+		   double avgStarRate = 0.0;
+		   String sql = "SELECT TRUNC(AVG(REPLY_STAR_RATE), 2) AVG_STAR_RATE FROM REPLY WHERE BOOK_SEQ = ?";
+		   
+		   try {
+			   conn = ds.getConnection();
+			   pstmt = conn.prepareStatement(sql);
+			   pstmt.setInt(1, bookSeq);
+			   rs = pstmt.executeQuery();
+			   
+			   while(rs.next()) {
+				   avgStarRate = rs.getDouble("AVG_STAR_RATE");
+			   }
+			   
+//			   System.out.println("avgStarRate 확인 : "+avgStarRate);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(rs != null) {
+						rs.close();
+					}
+					if(pstmt != null) {
+						pstmt.close();
+					}
+					if(conn != null) {
+						conn.close();
+					}
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		   
+		   return avgStarRate;
 	   }
 	   
 }

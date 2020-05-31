@@ -32,21 +32,22 @@ public class GetReplyListAjax extends HttpServlet {
     }
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    	System.out.println("UserList.ajax 타니?");
+    	System.out.println("GetReplyListAjax");
 		try {
-			int book_seq = Integer.parseInt(request.getParameter("book_seq"));
+			String bookSeq = request.getParameter("book_seq");
+			int book_seq = Integer.parseInt(bookSeq);
 			
   		  	ReplyDao replydao = new ReplyDao();
   		  	List<ReplyDto> replyList = replydao.getReplyList(book_seq);
-  		  	System.out.println("replyList 확인 : "+ replyList);
+//  		  	System.out.println("replyList 확인 : "+ replyList);
 
   		  	System.out.println("여기까지 되니?");
 
   		  	
 			JSONArray jsonReplyList = JSONArray.fromObject(replyList);
 			
-			System.out.println("== ServiceCommentWriteAction ==");
-			System.out.println("jsonReplyList : "+jsonReplyList);
+//			System.out.println("== ServiceCommentWriteAction ==");
+//			System.out.println("jsonReplyList : "+jsonReplyList);
 			
 			response.setContentType("application/x-json; charset=UTF-8");
 			PrintWriter out = response.getWriter(); 

@@ -60,8 +60,8 @@ public class ReplyWriteAjax extends HttpServlet {
 			
 			JSONArray jsonReplyList = JSONArray.fromObject(replyList);
 			
-			System.out.println("== ServiceCommentWriteAction ==");
-			System.out.println(jsonReplyList);
+//			System.out.println("== ServiceCommentWriteAction ==");
+//			System.out.println(jsonReplyList);
 			
 			response.setContentType("application/x-json; charset=UTF-8");
 			response.getWriter().print(jsonReplyList);

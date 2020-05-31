@@ -9,6 +9,7 @@ import kr.or.book4zo.action.Action;
 import kr.or.book4zo.action.ActionForward;
 import kr.or.book4zo.dao.BookDao;
 import kr.or.book4zo.dao.PostDao;
+import kr.or.book4zo.dao.ReplyDao;
 import kr.or.book4zo.dto.BookDto;
 import kr.or.book4zo.dto.PostDto;
 
@@ -34,6 +35,17 @@ public class Book_Detail_s implements Action{
 			request.setAttribute("postList", postList);
 			
 			//댓글 dao를 여기 만들어서 리뷰 리스트, 리뷰 평점 평균을  request에 set하기
+			ReplyDao replyDao = new ReplyDao();
+			
+			int replyCount = replyDao.getListCount(book.getBookSeq());
+			System.out.println("replyCount 확인 : "+replyCount);
+			double avgStarRate = replyDao.getAvgStarRate(book.getBookSeq());
+			System.out.println("avgStarRate 확인 : "+avgStarRate);
+			
+			request.setAttribute("replyCount", replyCount);
+			request.setAttribute("avgStarRate", avgStarRate);
+
+			
 			
 		    forward = new ActionForward();
 		    forward.setRedirect(false);

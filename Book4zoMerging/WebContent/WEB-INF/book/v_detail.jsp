@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -77,6 +78,10 @@
 </head>
 
 <body class="focus-free">
+<c:set var="replyCount" value="${requestScope.replyCount}" />
+<c:set var="avgStarRate" value="${requestScope.avgStarRate}" />
+
+
     <div id="app">
 
         <header>
@@ -132,13 +137,13 @@
                             <p class="PageBookDetail_RatingSummary">
                                 <span class="StarRating_IconBox dark" style="width: 74px; height: 15px;">
                                     <span class="StarRating_Icon_Background" style="width: 74px; height: 15px;"></span>
-                                    <span class="StarRating_Icon_Foreground_Mask" style="width: 63.64px; height: 15px;">
+                                    <span class="StarRating_Icon_Foreground_Mask" style="width: <fmt:formatNumber value="${avgStarRate*14.8}" pattern=".00" />px; height: 15px;">
                                         <span class="StarRating_Icon_Foreground" style="width: 74px; height: 15px;"></span>
                                     </span>
                                 </span>
                                 <!-- 평점이 들어가야 하는데 댓글 별점 평균을 실시간으로 반영해야해서 book객체에 점수를 저장할 수 없다.(아니면 평점 추가될 때마다 매번 reset돼야함..) 비동기로 하는게 낫겠다 -->
-                                <span class="PageBookDetail_RatingSummaryAverage">{request로 평점평균 받아오기}</span>
-                                <span class="PageBookDetail_RatingSummaryCount"> ( {리뷰 개수} 명 )</span>
+                                <span class="PageBookDetail_RatingSummaryAverage">${avgStarRate}</span>
+                                <span class="PageBookDetail_RatingSummaryCount"> ( ${replyCount} 명 )</span>
                             </p>
                             <div class="PageBookDetail_DownloadWrapper">
                                 <!-- 포스트로 이동하는 경로 넣을 부분 -->
@@ -164,7 +169,7 @@
                             <c:out value="${fn:substring(book.description,0,120)}"/>...
                         </c:when>
                         <c:otherwise>
-                            ${book.description}
+							 ${book.description}
                         </c:otherwise>
                     </c:choose>
                     </div>
@@ -225,15 +230,15 @@
                                         <div class="StarRatingForm">
                                             <div class="BuyerRatingSummary">
                                                 <p class="AverageRating_Title">리뷰어 별점</p>
-                                                <div class="AverageRating_Score">{request로 평점평균 받아오기}<span class="a11y">점</span></div>
+                                                <div class="AverageRating_Score">${avgStarRate}<span class="a11y">점</span></div>
                                                 <span class="StarRating_IconBox AverageRating_StarRating" style="width: 76px; height: 16px;">
                                                     <span class="StarRating_Icon_Background" style="width: 76px; height: 16px;"></span>
-                                                    <span class="StarRating_Icon_Foreground_Mask" style="width: 65.36px; height: 16px;">
+                                                    <span class="StarRating_Icon_Foreground_Mask" style="width: <fmt:formatNumber value="${avgStarRate*15.2}" pattern=".00" />px; height: 16px;">
                                                         <span class="StarRating_Icon_Foreground" style="width: 76px; height: 16px;"></span>
                                                     </span>
                                                 </span>
                                                 
-                                                <p class="ParticipantCount"><strong class="ParticipantCount_Num">{리뷰 개수}</strong> 명이 평가함</p>
+                                                <p class="ParticipantCount"><strong class="ParticipantCount_Num">${replyCount}</strong> 명이 평가함</p>
                                             </div>
                                         </div>
                                     </div>
@@ -331,10 +336,10 @@
    <script>
        $(function() {
 
-		console.log($('input[name="MyStarRating"]'));
-
             var userId = $('#ReviewForm').attr('userid');
             var bookSeq = $('#ReviewForm').attr('bookSeq');
+            
+    		//console.log(bookSeq);
     	   
     	   //리뷰 리스트
     	   $.ajax({
@@ -390,7 +395,7 @@
     	   // 리뷰 남기기
     	$('#reviewWriteBtn').click(function(){
 
-            console.log($('#choiceStarRating').children('input:checked').length);
+            //console.log($('#choiceStarRating').children('input:checked').length);
 
             if(($('#replyContent').val() == "")||($('#choiceStarRating').children('input:checked').length == 0)){
                 alert('리뷰 내용과 별점을 모두 입력해주세요.');
@@ -437,10 +442,6 @@
 					});
 
                     replyList += '</ul>';
-
-
-                    seeMoreButton += '<button class="RUIButton RUIButton-color-gray RUIButton-size-large RUIButton-outline RUIButton-borderWidth-thick ReviewList_ShowMoreButton"><span class="ReviewList_ShowMoreButton_Count">'+'n'+'</span>개 더보기<svg class="RSGIcon RSGIcon-arrowDown RSGIcon-arrow1Down ReviewList_ShowMoreButton_Icon RUIButton_SVGIcon" viewBox="0 0 48 28" width="48" height="28"><path d="M48 .6H0l24 26.8z"></path></svg></button>';
-
 
 					$('#replyList_Warpper').append(replyList);
 
@@ -517,10 +518,6 @@
 					});
 
                     replyList += '</ul>';
-
-
-                    seeMoreButton += '<button class="RUIButton RUIButton-color-gray RUIButton-size-large RUIButton-outline RUIButton-borderWidth-thick ReviewList_ShowMoreButton"><span class="ReviewList_ShowMoreButton_Count">'+'n'+'</span>개 더보기<svg class="RSGIcon RSGIcon-arrowDown RSGIcon-arrow1Down ReviewList_ShowMoreButton_Icon RUIButton_SVGIcon" viewBox="0 0 48 28" width="48" height="28"><path d="M48 .6H0l24 26.8z"></path></svg></button>';
-
 
 					$('#replyList_Warpper').append(replyList);
 

@@ -37,12 +37,12 @@ protected void doProcess(HttpServletRequest request, HttpServletResponse respons
 			String reply_content = request.getParameter("reply_content");
 			String user_id = request.getParameter("user_id");
 			
-			System.out.println("== parameter 확인 ==");
-			System.out.println(book_seq);
-			System.out.println(reply_seq);
-			System.out.println(reply_content);
-			System.out.println(user_id); 
-			System.out.println("========");
+//			System.out.println("== parameter 확인 ==");
+//			System.out.println(book_seq);
+//			System.out.println(reply_seq);
+//			System.out.println(reply_content);
+//			System.out.println(user_id); 
+//			System.out.println("========");
 			
 			ReplyDao replydao = new ReplyDao();
 			result = replydao.replyUpdate(reply_seq,reply_content); 
@@ -58,8 +58,8 @@ protected void doProcess(HttpServletRequest request, HttpServletResponse respons
 			
 			JSONArray jsonReplyList = JSONArray.fromObject(replyList);
 			
-			System.out.println("== ServiceCommentWriteAction ==");
-			System.out.println(jsonReplyList);
+//			System.out.println("== ServiceCommentWriteAction ==");
+//			System.out.println(jsonReplyList);
 			
 			response.setContentType("application/x-json; charset=UTF-8");
 			response.getWriter().print(jsonReplyList);
