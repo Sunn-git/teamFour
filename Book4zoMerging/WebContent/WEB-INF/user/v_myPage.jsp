@@ -62,13 +62,15 @@
             	<li class="dropdown nav-item">
             		<a href="javascript:;" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
             			<div class="profile-photo-small">
-                        	<img src="./assets/img/faces/avatar.jpg" alt="Circle Image" class="rounded-circle img-fluid">
-                      	</div>
+	                      	<div class="thumbnail rounded-circle" style="width:100%; height:100%; overflow:hidden;">
+	                        	<img src="userUpload/${user_image}" alt="Circle Image" class=" img-fluid" style="max-width:100%;">
+	                      	</div>
+                      </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                       <h6 class="dropdown-header">${param.userId}님 반갑습니다 :)</h6>
                       <a href="Mypage.book" class="dropdown-item">내 도서함</a>
-                      <a href="InfoEdit.book" class="dropdown-item">내 계정 관리</a>
+                      <a href="InfoEdit.user" class="dropdown-item">내 정보 수정</a>
                       <a href="javascript:;" class="dropdown-item">로그아웃</a>
                     </div>
             	</li>
@@ -78,13 +80,13 @@
   </nav>
 
 
-  <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/city-profile.jpg');">
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('${pageContext.request.contextPath}/assets/img/city-profile.jpg');">
   </div>
 
 
   <div class="main main-raised">
     <div class="profile-content">
-      <h3>${param.userId} 님의 소중한 책장</h3>
+      
       <div class="container">
 
         <!-- 프로필 영역 -->
@@ -92,10 +94,10 @@
           <div class="col-md-6 ml-auto mr-auto">
             <div class="profile">
               <div class="avatar">
-                <img src="${pageContext.request.contextPath}/assets/img/faces/christian.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                <img src="userUpload/${user_image}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
               </div>
               <div class="name">
-                <h3 class="title">Christian Louboutin</h3>
+                <h3 class="title">${param.userId} 님</h3>
               </div>
             </div>
           </div>
@@ -137,7 +139,7 @@
           	 <c:if test="${post.book_seq == book.bookSeq}">
             <div class="row">
               <div class="col-md-8 m-auto">
-              	<div class ="card card-body" onclick="location.href='PostDetailView.post?post_seq=${post.post_seq}';">
+              	<div class ="card card-body" style="margin-top : 4px;" onclick="location.href='PostDetailView.post?post_seq=${post.post_seq}';">
               		<div class="mydipsbooks row mt-3">
               			<div class="col-md-3 mb-4">
 							<a href="Detail.book?bookSeq=${post.book_seq}">
@@ -160,7 +162,7 @@
           </div>
 
 
-          <!-- 내 포스트 목록 영역 -->
+          <!-- 내 댓글 목록 영역 -->
    
           <div class="tab-pane text-center gallery" id="post">
           
@@ -168,8 +170,8 @@
           	<c:forEach var="book" items="${requestScope.bookList}">
           	<c:if test="${reply.book_seq == book.bookSeq}">
             <div class="row">
-              <div class="col-md-8 m-auto">
-              	<div class ="card card-body">
+              <div class="col-md-8 m-auto" >
+              	<div class ="card card-body" style="margin-top : 4px;" >
               		<div class="mydipsbooks row mt-2">
               			<div class="col-md-2 mb-3" style="padding:0;">
 	              			<a href="Detail.book?bookSeq=${book.bookSeq}">
@@ -206,24 +208,24 @@
     <div class="container">
       <nav class="float-left">
         <ul>
-          <li>
+          <!-- <li>
             <a href="https://www.creative-tim.com/">
-              Creative Tim
+              Creative Tim Template
             </a>
-          </li>
+          </li> -->
           <li>
-            <a href="https://www.creative-tim.com/presentation">
+            <a href="#">
               About Us
             </a>
           </li>
           <li>
-            <a href="https://www.creative-tim.com/blog">
+            <a href="#">
               Blog
             </a>
           </li>
           <li>
-            <a href="https://www.creative-tim.com/license">
-              Licenses
+            <a href="#">
+              Review 4 Book Subscribe
             </a>
           </li>
         </ul>
@@ -233,7 +235,7 @@
         <script>
           document.write(new Date().getFullYear())
         </script>, made with <i class="material-icons">favorite</i> by
-        <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
+        <!-- <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web. -->
       </div>
     </div>
   </footer>

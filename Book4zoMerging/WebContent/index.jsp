@@ -374,8 +374,8 @@
         <div class="curation-nav swipe">
           <ul class="swiper-wrap">
             <li class="swiper-slide">
-              <button type="button" id="btn-total" class="active" name="total" style="margin-left: 6px">종합</button>
-              <button type="button" id="btn-noble" class=" " name="소설" style="margin-left: 6px">소설</button>
+              <!-- <button type="button" id="btn-total" class="active" name="total" style="margin-left: 6px">종합</button> -->
+              <button type="button" id="btn-noble" class="active" name="소설" style="margin-left: 6px">소설</button>
               <button type="button" id="btn-poem" class="" name="시/에세이" style="margin-left: 6px">시/에세이</button>
               <button type="button" id="btn-social" class="" name="예술/대중문화" style="margin-left: 6px">예술/대중문화</button>
               <button type="button" id="btn-business" class="" name="경제경영" style="margin-left: 6px">경제/경영</button>
