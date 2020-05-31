@@ -66,7 +66,7 @@
         	type : "POST",
         	dataType : "json",
         	success : function(data){
-        		console.log(data);
+        		//console.log(data);
         		var totalCount=0;
         		
             $("#book-list").empty();
@@ -101,7 +101,7 @@
             }); //each end
            $('#total-length').empty();
            $('#total-length').append(totalCount)
-			console.log(totalCount)
+			//console.log(totalCount)
         	}
         }); //ajax end
         
@@ -117,7 +117,7 @@
     	        	type : "POST",
     	        	dataType : "json",
     	        	success : function(data){
-    	        		console.log(data);
+    	        		//console.log(data);
     	        		var totalCount=0;
     	            $("#book-list").empty();
     	            
@@ -151,7 +151,7 @@
     	            }); //each end
     	           $('#total-length').empty();
     	           $('#total-length').append(totalCount)
-    				console.log(totalCount)
+    				//console.log(totalCount)
     	        	}
     	        });
     	   }
@@ -198,7 +198,7 @@
     	            }); //each end
     	           $('#total-length').empty();
     	           $('#total-length').append(totalCount)
-    				console.log(totalCount)
+    				//console.log(totalCount)
 			}
     		   
     	   }) 
@@ -241,7 +241,7 @@
           <div class="col-md-10 mr-auto ml-auto">
             <!-- Carousel Card -->
 
-            <div class="card card-raised card-carousel">
+            <div class="card card-raised card-carousel" style="height: 390px;">
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="300000">
                 <ol class="carousel-indicators">
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -256,7 +256,7 @@
                   <div class="carousel-item active">                    
                     <div class="PageBookDetail_Header PageBookDetail_Header-dark" style="background: rgb(0, 0, 0);">
                         <!-- 배경 책 표지 사진 들어가는 부분 -->
-                        <span class="PageBookDetail_HeaderBackground" style="background-image: url(&quot;https://www.hwanil.ms.kr/wp-content/uploads/kboard_attached/38/202004/5e97c41f3bb946634846.jpg&quot;);">
+                        <span class="PageBookDetail_HeaderBackground" style="background-image: url(&quot;https://img.ridicdn.net/cover/2066001220/xxlarge&quot;);">
                             <span class="Left_GradientOverlay" style="background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);"></span>
                             <span class="Right_GradientOverlay" style="background: linear-gradient(to left, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);"></span>
                         </span>
@@ -265,18 +265,16 @@
                                 <div class="PageBookDetail_ThumbnailWrapper">
                                     <button class="PageBookDetail_ThumbnailButton">
                                         <!-- 책 썸네일 들어가는 부분 -->
-                                        <img class="PageBookDetail_Thumbnail" src="https://www.hwanil.ms.kr/wp-content/uploads/kboard_attached/38/202004/5e97c41f3bb946634846.jpg" alt="${book.title}">
+                                        <img class="PageBookDetail_Thumbnail" src="https://img.ridicdn.net/cover/2066001220/xxlarge" alt="녹나무의 파수꾼">
                                     </button>
                                 </div>
                                 <div class="PageBookDetail_Meta" style="width:100% !important; word-break:break-all !important; word-wrap:break-word !important;">
-                                    <h1 class="PageBookDetail_BookTitle" style="font-size: 48px;">제목</h1>
+                                    <h4 class="PageBookDetail_BookTitle" style="font-size: 48px;">녹나무의 파수꾼</h4>
                                     <p class="PageBookDetail_BookElements">
-                                        <span class="PageBookDetail_Authors">${book.author} 저</span>
+                                        <span class="PageBookDetail_Authors">히가시노 게이고 저</span>
 
-                                         <!-- 역자가 null이 아닌 경우에만 출력 -->                                
-                                        <c:if test="${book.translator != null}">
-                                          <span class="PageBookDetail_Publisher"> ·  ${book.translator} 역</span>                                
-                                        </c:if>
+                                         <!-- 역자가 null이 아닌 경우에만 출력 -->
+                                          <span class="PageBookDetail_Publisher"> ·  양윤옥 역</span> 
                                 </div>
                             </div>
                         </div>
@@ -288,7 +286,7 @@
                   <div class="carousel-item">
                     <div class="PageBookDetail_Header PageBookDetail_Header-dark" style="background: rgb(0, 0, 0);">
                         <!-- 배경 책 표지 사진 들어가는 부분 -->
-                        <span class="PageBookDetail_HeaderBackground" style="background-image: url(&quot;https://www.hwanil.ms.kr/wp-content/uploads/kboard_attached/38/202004/5e97c41f3bb946634846.jpg&quot;);">
+                        <span class="PageBookDetail_HeaderBackground" style="background-image: url(&quot;https://img.ridicdn.net/cover/209000290/xxlarge&quot;);">
                             <span class="Left_GradientOverlay" style="background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);"></span>
                             <span class="Right_GradientOverlay" style="background: linear-gradient(to left, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);"></span>
                         </span>
@@ -297,18 +295,16 @@
                                 <div class="PageBookDetail_ThumbnailWrapper">
                                     <button class="PageBookDetail_ThumbnailButton">
                                         <!-- 책 썸네일 들어가는 부분 -->
-                                        <img class="PageBookDetail_Thumbnail" src="https://www.hwanil.ms.kr/wp-content/uploads/kboard_attached/38/202004/5e97c41f3bb946634846.jpg" alt="${book.title}">
+                                        <img class="PageBookDetail_Thumbnail" src="https://img.ridicdn.net/cover/209000290/xxlarge" alt="데미안">
                                     </button>
                                 </div>
                                 <div class="PageBookDetail_Meta" style="width:100% !important; word-break:break-all !important; word-wrap:break-word !important;">
-                                    <h1 class="PageBookDetail_BookTitle" style="font-size: 48px;">제목</h1>
+                                    <h4 class="PageBookDetail_BookTitle" style="font-size: 48px;">한중록</h4>
                                     <p class="PageBookDetail_BookElements">
-                                        <span class="PageBookDetail_Authors">${book.author} 저</span>
+                                        <span class="PageBookDetail_Authors">혜경궁 홍씨 저</span>
+                                        
+                               			<span class="PageBookDetail_Publisher"> ·  신동운 역</span> 
 
-                                         <!-- 역자가 null이 아닌 경우에만 출력 -->                                
-                                        <c:if test="${book.translator != null}">
-                                          <span class="PageBookDetail_Publisher"> ·  ${book.translator} 역</span>                                
-                                        </c:if>
                                 </div>
                             </div>
                         </div>
@@ -318,7 +314,7 @@
                   <div class="carousel-item">
                     <div class="PageBookDetail_Header PageBookDetail_Header-dark" style="background: rgb(0, 0, 0);">
                       <!-- 배경 책 표지 사진 들어가는 부분 -->
-                      <span class="PageBookDetail_HeaderBackground" style="background-image: url(&quot;https://www.hwanil.ms.kr/wp-content/uploads/kboard_attached/38/202004/5e97c41f3bb946634846.jpg&quot;);">
+                      <span class="PageBookDetail_HeaderBackground" style="background-image: url(&quot;https://img.ridicdn.net/cover/754023439/xxlarge&quot;);">
                           <span class="Left_GradientOverlay" style="background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);"></span>
                           <span class="Right_GradientOverlay" style="background: linear-gradient(to left, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);"></span>
                       </span>
@@ -327,18 +323,16 @@
                               <div class="PageBookDetail_ThumbnailWrapper">
                                   <button class="PageBookDetail_ThumbnailButton">
                                       <!-- 책 썸네일 들어가는 부분 -->
-                                      <img class="PageBookDetail_Thumbnail" src="https://www.hwanil.ms.kr/wp-content/uploads/kboard_attached/38/202004/5e97c41f3bb946634846.jpg" alt="${book.title}">
+                                      <img class="PageBookDetail_Thumbnail" src="https://img.ridicdn.net/cover/754023439/xxlarge" alt="침묵의 봄">
                                   </button>
                               </div>
                               <div class="PageBookDetail_Meta" style="width:100% !important; word-break:break-all !important; word-wrap:break-word !important;">
-                                  <h1 class="PageBookDetail_BookTitle" style="font-size: 48px;">제목</h1>
+                                  <h4 class="PageBookDetail_BookTitle" style="font-size: 48px;">침묵의 봄</h4>
                                   <p class="PageBookDetail_BookElements">
-                                      <span class="PageBookDetail_Authors">${book.author} 저</span>
+                                      <span class="PageBookDetail_Authors">Rachel Carson 저</span>
 
-                                       <!-- 역자가 null이 아닌 경우에만 출력 -->                                
-                                      <c:if test="${book.translator != null}">
-                                        <span class="PageBookDetail_Publisher"> ·  ${book.translator} 역</span>                                
-                                      </c:if>
+                                        <span class="PageBookDetail_Publisher"> ·  김은령 역</span>                                
+
                               </div>
                           </div>
                       </div>
