@@ -196,4 +196,40 @@ public class UserDao {
 	        }
 	        return userList;
 	     }
+		
+		
+		//실시간 회원가입 차트
+
+		public int countUser(){
+		    
+		      int rowcount = 0;
+		      
+		      try{
+		         conn = ds.getConnection();
+		         String sql = "select * from users"; //유저는 테이블명 확인좀할게용
+		         pstmt = conn.prepareStatement(sql);
+		         rs = pstmt.executeQuery();
+
+		         while(rs.next()){
+		        	 rowcount++;
+		         }
+		      }catch(Exception e){
+		         System.out.println(e.getMessage());
+		      }finally {
+		           try {
+		              pstmt.close();
+		              rs.close();
+		              conn.close();//반환
+		           } catch (Exception e2) {
+		              
+		           }
+		           
+		        }
+		      return rowcount;
+		   }
+	   
+
+		
+		
+		
 }

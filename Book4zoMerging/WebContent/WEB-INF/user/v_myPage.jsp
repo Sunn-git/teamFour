@@ -107,21 +107,19 @@
           <div class="col-md-8 ml-0">
             <div class="profile-tabs">
               <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+              
               	<li class="nav-item">
                   <a class="nav-link active" href="#favorite" role="tab" data-toggle="tab">
-                    <i class="material-icons">favorite</i> 찜목록
+                    <i class="material-icons">favorite</i> 포스트
                   </a>
                 </li>
+                
                 <li class="nav-item">
                   <a class="nav-link" href="#post" role="tab" data-toggle="tab">
-                    <i class="material-icons">camera</i> 포스트
+                    <i class="material-icons">camera</i> 내 댓글
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#reply" role="tab" data-toggle="tab">
-                    <i class="material-icons">palette</i> 내 댓글
-                  </a>
-                </li>
+                
               </ul>
             </div>
           </div>
@@ -133,36 +131,6 @@
 
           <!-- 찜목록 영역 -->
           <div class="tab-pane active text-center gallery" id="favorite">
-            <div class="row">
-              <div class="col-md-8 m-auto">
-              	<div class ="card card-body">
-              		<div class="mydipsbooks row mt-3">
-              			<div class="col-md-3">
-	              			<a href="Detail.book"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
-	              			<h5>책제목</h5>
-              			</div>
-              			<div class="col-md-3">
-	              			<a href="Detail.book"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
-	              			<h5>책제목</h5>
-              			</div>
-              			<div class="col-md-3">
-	              			<a href="Detail.book"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
-	              			<h5>책제목</h5>
-              			</div>
-              			<div class="col-md-3">
-	              			<a href="Detail.book"><img class="dipsbook" src="${pageContext.request.contextPath}/assets/img/nodab.jpg" style="width:140px; margin:0 8px 0 8px;"></a>
-	              			<h5>책제목</h5>
-              			</div>
-              		</div>
-              	</div>
-              </div>
-            </div>
-          </div>
-
-
-          <!-- 내 포스트 목록 영역 -->
-   
-          <div class="tab-pane text-center gallery" id="post">
           
           	<c:forEach var="post" items="${requestScope.postList}">
           	 <c:forEach var="book" items="${requestScope.bookList}">
@@ -188,12 +156,14 @@
             </c:if>
             </c:forEach>
             </c:forEach>
+            
           </div>
 
-          <!-- 내 댓글 영역 -->
-          <div class="tab-pane text-center gallery" id="reply">
-          
 
+          <!-- 내 포스트 목록 영역 -->
+   
+          <div class="tab-pane text-center gallery" id="post">
+          
           	<c:forEach var="reply" items="${requestScope.replyList}">
           	<c:forEach var="book" items="${requestScope.bookList}">
           	<c:if test="${reply.book_seq == book.bookSeq}">
@@ -207,13 +177,12 @@
               				</a>
 	            
               			</div>
+              			
               			<div class="col-md-9" align="left">
               				<span>${book.title}</span> - <span>저자 ${book.author}</span>
               				<p>${reply.reply_content}</p>
-              				<button class="btn btn-rose btn-link btn-round">
-                				<i class="material-icons">favorite</i> 받은 좋아요 수 n개
-             				</button>
               			</div>
+
               		</div>
               	</div>
               </div>
@@ -221,6 +190,7 @@
             </c:if>
             </c:forEach>
             </c:forEach>
+            
           </div>
 
 

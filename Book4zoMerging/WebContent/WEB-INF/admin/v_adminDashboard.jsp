@@ -18,10 +18,23 @@
   <!-- CSS Files -->
   <link href="${pageContext.request.contextPath}/admin_assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="${pageContext.request.contextPath}/admin_assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="${pageContext.request.contextPath}/admin_assets/assets/demo/demo.css" rel="stylesheet" />
+
   <!--  JQuery 추가 -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	    <!-- JS -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
+
+
+	<!-- 차트 -->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
+
 </head>
 <body>
   <div class="wrapper ">
@@ -29,7 +42,6 @@
       <div class="logo">
         <a href="https://www.creative-tim.com" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="${pageContext.request.contextPath}/assets/img/logo-small.png">
           </div>
           <!-- <p>CT</p> -->
         </a>
@@ -173,20 +185,34 @@
             </div>
           </div>
         </div>
+        
+        
+        
+        <!-- 차트 뿌려질 부분 -->
         <div class="row">
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
-                <h5 class="card-title">Users Behavior</h5>
+                <h5 class="card-title">실시간 회원 수</h5>
                 <p class="card-category">24 Hours performance</p>
               </div>
               <div class="card-body ">
+              
+              <!-- 
                 <canvas id=chartHours width="400" height="100"></canvas>
+               -->
+                
+                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
+
+				</div>
+                
+                
+                
               </div>
               <div class="card-footer ">
                 <hr>
                 <div class="stats">
-                  <i class="fa fa-history"></i> Updated 3 minutes ago
+                  <i class="fa fa-history"></i> Updating every 5 seconds
                 </div>
               </div>
             </div>
@@ -249,21 +275,212 @@
   <script src="${pageContext.request.contextPath}/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/admin_assets/js/core/popper.min.js"></script>
   <script src="${pageContext.request.contextPath}/admin_assets/js/core/bootstrap.min.js"></script>
-  <script src="${pageContext.request.contextPath}/admin_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
   <!-- Chart JS -->
   <script src="${pageContext.request.contextPath}/admin_assets/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->
   <script src="${pageContext.request.contextPath}/admin_assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="${pageContext.request.contextPath}/admin_assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-  <script src="${pageContext.request.contextPath}/admin_assets/demo/demo.js" />
+
+  <!-- 
   <script>
     $(document).ready(function() {
-      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-      demo.initChartsPages();
+	 console.log("jquery 실행");
+      //demo.initChartsPages();
+      
+      Highcharts.setOptions({
+          global: { useUTC: false	//시간표시방법
+       	  }
+      });
+
+      Highcharts.chart('#container', {
+          chart: {
+              type: 'spline',		//차트모양
+              animation: Highcharts.svg, //애니메이션 모양
+              marginRight: 10,	//오른쪽 여백
+              events: {
+                  load: function () {
+
+                      // set up the updating of the chart each second
+                      var series = this.series[0];
+                      setInterval(function () {
+                      	
+                          $.ajax({
+                              url : "UserCount_s",
+                              type: "GET",
+                              dataType: "JSON",
+                              success: function(data)
+                              {
+                       			console.log(data.count);				//데이터 어떻게 넘어오는지 항상 찍어보라고 선생님께서 말씀하셨지
+                                  var x = (new Date()).getTime(), // current time
+                                  y = data.count
+                            		series.addPoint([x, y], true, true);	//점추가 할껀지 안할껀지
+                       
+                              },
+                              error: function (xhr)
+                              {
+                                  console.log('Error get data from ajax' + xhr.status);
+                              }
+                          });
+                      }, 1000);
+                  }
+              }
+          },
+          title: {
+              text: 'DYNAMIC USERLIST'
+          },
+          xAxis: {
+              type: 'datetime',
+              tickPixelInterval: 150
+          },
+          yAxis: {
+          	tickPixelInterval: 300,
+              title: {
+                  text: 'Number of Members'
+              },
+              plotLines: [{
+                  value: 0,
+                  width: 1,
+                  color: '#808080'
+              }]
+          },
+          tooltip: {
+              formatter: function () {
+                  return '<b>' + this.series.name + '</b><br/>' +
+                      Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                      Highcharts.numberFormat(this.y, 2);
+              }
+          },
+          legend: {
+              enabled: false
+          },
+          exporting: {
+              enabled: false
+          },
+          series: [{
+              name: 'number of members',
+              data: (function () {
+                  // generate an array of random data
+                  var data = [],
+                      time = (new Date()).getTime(),
+                      i;
+
+                  for (i = -20; i <= 0; i += 1)
+                  {
+                      data.push({
+                          x: time + i * 1000,
+                          y: data.count	//처음에 나오는 데이터 값
+                      });
+                  }
+                  return data;
+              }())
+          }]
+      });
+      
+      
+      
+      
     });
   </script>
 </body>
+	 -->
+
+	<script type="text/javascript">
+		$(function(){
+			
+		      Highcharts.setOptions({
+		          global: { useUTC: false	//시간표시방법
+		       	  }
+		      });
+
+		      Highcharts.chart('container', {
+		          chart: {
+		              type: 'spline',		//차트모양
+		              animation: Highcharts.svg, //애니메이션 모양
+		              marginRight: 10,	//오른쪽 여백
+		              events: {
+		                  load: function () {
+
+		                      // set up the updating of the chart each second
+		                      var series = this.series[0];
+		                      setInterval(function () {
+		                      	
+		                          $.ajax({
+		                              url : "UserCount_s",
+		                              type: "GET",
+		                              dataType: "JSON",
+		                              success: function(data)
+		                              {
+		                       			console.log(data.count);				//데이터 어떻게 넘어오는지 항상 찍어보라고 선생님께서 말씀하셨지
+		                                  var x = (new Date()).getTime(), // current time
+		                                  y = data.count
+		                            		series.addPoint([x, y], true, true);	//점추가 할껀지 안할껀지
+		                       
+		                              },
+		                              error: function (xhr)
+		                              {
+		                                  console.log('Error get data from ajax' + xhr.status);
+		                              }
+		                          });
+		                      }, 5000);
+		                  }
+		              }
+		          },
+		          title: {
+		              text: '실시간 회원수 현황'
+		          },
+		          xAxis: {
+		              type: 'datetime',
+		              tickPixelInterval: 150
+		          },
+		          yAxis: {
+		          	tickPixelInterval: 300,
+		              title: {
+		                  text: '회원수'
+		              },
+		              plotLines: [{
+		                  value: 0,
+		                  width: 1,
+		                  color: '#808080'
+		              }]
+		          },
+		          tooltip: {
+		              formatter: function () {
+		                  return '<b>' + this.series.name + '</b><br/>' +
+		                      Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+		                      Highcharts.numberFormat(this.y, 2);
+		              }
+		          },
+		          legend: {
+		              enabled: false
+		          },
+		          exporting: {
+		              enabled: false
+		          },
+		          series: [{
+		              name: 'number of members',
+		              data: (function () {
+		                  // generate an array of random data
+		                  var data = [],
+		                      time = (new Date()).getTime(),
+		                      i;
+
+		                  for (i = -20; i <= 0; i += 1)
+		                  {
+		                      data.push({
+		                          x: time + i * 1000,
+		                          y: data.count	//처음에 나오는 데이터 값
+		                      });
+		                  }
+		                  return data;
+		              }())
+		          }]
+		      });
+		      
+		      
+			
+			
+			
+		});
+	</script>
+
 </html>
