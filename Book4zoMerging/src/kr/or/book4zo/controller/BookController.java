@@ -52,7 +52,7 @@ public class BookController extends HttpServlet {
 			forward.setPath("/index.jsp");
 			
 		}
-		//sidebar 페이지 연결 
+		//search 페이지 연결 
 		else if(urlCmd.equals("/Search.book")) {
 			System.out.println("/Search.book 실행");
 			forward = new ActionForward();
@@ -60,6 +60,7 @@ public class BookController extends HttpServlet {
 			forward.setPath("/WEB-INF/book/v_search.jsp");
 			
 		}
+		
 		//detail페이지 연결, 도서정보 가져가기, 포스트 정보 가져가기 댓글정보도 가져가야함
 		else if(urlCmd.equals("/Detail.book")) {
 			System.out.println("/Detail.book 실행");

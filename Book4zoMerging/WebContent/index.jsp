@@ -123,6 +123,7 @@
     	            
 
     	        		$.each(data, function (index, item) {
+    	        		
     	                let bl = "<li>"
     	                bl += "<a href='Detail.book?bookSeq="+ item.bookSeq +"'>"
     	                bl += "<div class='image book-icon readingbook'>"
@@ -147,8 +148,10 @@
     	              
     	              $('#book-list').append(bl)
     	              totalCount+=1;
+    	                
+    	              console.log(index);
     	              
-    	            }); //each end
+    	            }); //each end << 와 언니 똑똑쓰해 써놓으면 알아보기 쉽네요
     	           $('#total-length').empty();
     	           $('#total-length').append(totalCount)
     				console.log(totalCount)

@@ -371,7 +371,7 @@
 						/* if depth == 0 {... } if depth == 1{...} */
 
                         if(userId == item.user_id){
-                            editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" type="button">삭제</button>';
+                            editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                         }
 
 						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
@@ -522,7 +522,7 @@
 						/* if depth == 0 {... } if depth == 1{...} */
 
                         if(userId == item.user_id){
-                            editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" type="button">삭제</button>';
+                            editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                         }
 
 						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
@@ -559,21 +559,70 @@
 
 
                //리뷰 삭제도 하기,,
-               /* $(document).on("click","#replyDelete"){
+               $(document).on("click","#replyDelete",function(){
                    console.log("삭제 버튼 클릭");
+                   
+                	   
                    let data = {
-                           reply_seq : $(this).attr("replySeq")
+                           reply_seq : $(this).attr("replySeq"),
+                           book_seq : bookSeq
                    }
+                   
+				   /* var resultConfirm = confirm("정말 삭제하시겠습니까?");
+                   if(resultConfirm){ */
                    $.ajax({
                        url : "ReplyDelete.ajax",
                        dataType : "JSON",
                        type : "POST",
                        data : data,
                        success : function(data){
-                           
+                           $('#replyList_Warpper').empty();
+       					
+       					let replyList = '<ul id="replyList" class="ReviewList">';
+                           let seeMoreButton = "";
+                           let editAndDelButton = "";
+
+       					$.each(data, function(index, item){
+
+       						/* if depth ==1 continue?? */
+       						/* if depth == 0 {... } if depth == 1{...} */
+
+                               if(userId == item.user_id){
+                                   editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" type="button">삭제</button>';
+                               }
+
+       						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
+                               
+                               replyList += '<ul class="ReviewerMetadata_List"><li class="ReviewerMetadata_UserId">'+item.user_id+'</li><li class="ReviewMetadata_Report">'+editAndDelButton+'</li></ul>';
+                               
+                               replyList += '<ul class="ReviewMetadata_List"><li class="ReviewMetadata_Date">'+item.reply_date+'</li></ul></div>';
+                               
+                               replyList += '<div class="ReviewItem_Right"><div class="ReviewItem_Right_Top"><div class="ReviewContent"><div class="reply_content_'+item.reply_seq+'">'+item.reply_content+'</div></div>';
+                               
+                               replyList += ' <ul class="ReviewButtons_List"><li class="ReviewButtons_OpenCommentsButtonItem"><button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_OpenCommentsButton pressed"><svg class="RSGIcon RSGIcon-speechbubble RSGIcon-speechbubble2 ReviewButtons_CommentIcon" viewBox="0 0 56 48" width="56" height="48"><path d="M36.6 0H19.4C8.9 0 .4 8.5.4 18.9c0 9.2 6.7 16.9 15.5 18.5v7.2c0 1.4.8 2.6 2.1 3.2.5.1.9.2 1.4.2.9 0 1.8-.3 2.4-1l9.6-9.3h5.2c10.4 0 18.9-8.5 18.9-18.9C55.6 8.5 47.1 0 36.6 0z"></path></svg><span class="ReviewButtons_CommentLabel">댓글</span><span class="ReviewButtons_CommentCount">'+'대댓 몇개인지 5'+'</span></button></li>';
+                               
+                               replyList += ' <li class="ReviewButtons_LikeButtonItem"><button class="RUIButton RUIButton-color-gray RUIButton-size-small RUIButton-outline ReviewButtons_LikeButton"><svg class="RSGIcon RSGIcon-thumbUp RSGIcon-thumbUp1 ReviewButtons_LikeIcon RUIButton_SVGIcon" viewBox="0 0 44 49" width="44" height="49"><g><path d="M41.7 32.7s2.3-1.3 2.1-4.3c-.1-1.9-2.4-3.7-2.4-3.7s1-1.8 1-2.6 0-2.9-2.1-4-12.1.4-12.1.4 1-5.8 1.1-6.6c.1-.8 1-1.7 1.1-4.4.2-3.5-1.2-7.6-4.2-7.5C23.1.1 24 5 24 5.8c0 .8-2.2 5.8-4.2 9-1.9 3.2-4.2 4.6-4.9 7.8-.6 2.7-3.6 3.8-3.6 3.8-.9.2-.9 1-.8 1.7 1.9 11.7 3.8 18 3.8 18s5 1.1 6.8 1.2c1.8.1 1.5.2 3.3.6 1.8.3 5.5 0 8.5 0s4.2-.7 7.1-2.8c2.9-2.1.8-5 .8-5s2.4-.6 2.4-3.8c0-2.8-1.5-3.6-1.5-3.6zM7.7 28.1c-.2-.9-1.1-1.6-2-1.6H2c-.9 0-1.7.7-1.8 1.6v18c0 .9.8 1.6 1.7 1.6h8.2c.9 0 1.3-1.2 1.1-2.2L7.7 28.1z"></path></g></svg><span class="ReviewButtons_LikeCount">'+'좋아요 몇개인지 10'+'</span></button></li></ul></div>';
+                           });
+
+                           replyList += '</ul>';
+
+
+                           seeMoreButton += '<button class="RUIButton RUIButton-color-gray RUIButton-size-large RUIButton-outline RUIButton-borderWidth-thick ReviewList_ShowMoreButton"><span class="ReviewList_ShowMoreButton_Count">'+'n'+'</span>개 더보기<svg class="RSGIcon RSGIcon-arrowDown RSGIcon-arrow1Down ReviewList_ShowMoreButton_Icon RUIButton_SVGIcon" viewBox="0 0 48 28" width="48" height="28"><path d="M48 .6H0l24 26.8z"></path></svg></button>';
+
+
+       					$('#replyList_Warpper').append(replyList);
+                           $('#replyList_Warpper').append(seeMoreButton);
+
+                           $('#replyContent').val("");
+                           $('input[name="MyStarRating"]').removeAttr('checked'); 
+
                        }
                    })
-               }); */
+                   /* }else{
+                	   console.log("삭제 취소 누름");
+                	  return;
+                   } */
+               });
 
 
     	   

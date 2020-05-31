@@ -24,7 +24,7 @@
   <link href="${pageContext.request.contextPath}/assets/demo/demo.css" rel="stylesheet" />
   
   	    <!-- 준수 CSS -->     
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css" /> <!-- 여기에  layout css -->
+    <link rel="stylesheet" href="c/css/layout.css" /> <!-- 여기에  layout css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home-3.10f79.css" /> <!-- 여기에 버튼 css -->    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bookList.css" />
     
@@ -105,7 +105,16 @@
   
   <!-- jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  
+  <style type="text/css">
+  #jumbo{
+  	background-image : url("${pageContext.request.contextPath}/assets/img/searchjumbo.jpg");
+  	background-size: 100%;
+  	height:300px; 
+  	background-color:#b8a7a7; 
+  	color : white; 
+  	padding-top: 160px;
+  }
+  </style>
 </head>
 <body>
 	<c:set var="user_id" value="${sessionScope.user_id}"/>
@@ -128,10 +137,9 @@
 	</header>
 	
 	
-	<div class="header" style="height:240px; background-color:#b8a7a7; color : white; padding-top: 120px;">
+	<div class="header" id="jumbo" >
 		<div class="container">
-		<h2 style="margin:0;">Review 4 Book과 함께하는 독서 이야기</h2>
-		<p>rakaskdf asdfasdfqlsdfjasd qwdfjs qwsd fs dfa sd wdfas dfasdfa asdfqwdf sf</p>
+		
 		</div>
 	</div>
 	
@@ -257,6 +265,7 @@
 	$(function(){
 		
 		
+		//일단한번 비동기
 
 		//검색 기능 : 버튼클릭 
 		$('#bookSearchInputButton').click(function() {

@@ -33,18 +33,21 @@
               
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse">
-                <form class="form-inline ml-auto">
+              
+              	<!-- 시간이 있으면 했을 내브 서치 -->
+                <!-- <form class="form-inline ml-auto" action="Search.book">
                   <div class="form-group has-rose">
-                    <input type="text" class="form-control" placeholder="도서 검색하기 :)" style="width:480px;">
+                    <input type="text" id="searchVal" name="searchVal" class="form-control" placeholder="도서 검색하기 :)" style="width:480px;">
                   </div>
-                  <button type="submit" class="btn btn-rose btn-raised btn-fab btn-round" style="margin-left:8px;">
+                  <button id="searchWithVal" class="btn btn-rose btn-raised btn-fab btn-round" style="margin-left:8px;">
                     <i class="material-icons">search</i>
                   </button>
-                </form>
-                <button onclick="location.href='Search.book'" class="btn btn-white btn-raised btn-fab btn-round" style="margin-right:16px;">
-                    <i class="material-icons">search</i>
-                  </button>
+                </form> -->
+                
                 <ul class="navbar-nav ml-auto">
+                  <li><button onclick="location.href='Search.book'" class="btn btn-white btn-raised btn-fab btn-round" style="margin-right:16px;">
+                    <i class="material-icons">search</i>
+                  </button></li>
                   <li class="dropdown nav-item">
                     <a href="javascript:;" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
                       <div class="profile-photo-small">

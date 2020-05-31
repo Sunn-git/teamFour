@@ -23,15 +23,11 @@
               <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                    <a href="Logout.user" class="nav-link">
-                      Discover
-                    </a>
+                    <button onclick="location.href='Search.book'" class="btn btn-white btn-raised btn-fab btn-round" style="margin-right:16px;">
+                    <i class="material-icons">search</i>
+                  </button>
                   </li>
-                  <li class="nav-item">
-                    <a href="javascript:;" class="nav-link">
-                      Wishlist
-                    </a>
-                  </li>
+                  
                   <li class="dropdown nav-item">
                     <a href="javascript:;" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
                       <div class="profile-photo-small">
