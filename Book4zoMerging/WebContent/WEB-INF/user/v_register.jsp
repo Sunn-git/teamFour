@@ -25,6 +25,69 @@
 <link href="${pageContext.request.contextPath}/assets/demo/demo.css"
 	rel="stylesheet" />
 
+	<style>
+		*{
+			border : 1px solid lightgray;
+		}
+	</style>
+
+<script>
+      $(document).ready(function() {
+        var re_id = /^[a-z0-9]{5,12}$/;  //아이디 정규표현
+        var re_name = /^[가-힣][가-힣]+$/;  //이름 한글만 두글자 이상
+        var re_pwd = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,20}$/; // 비번
+        //8~20자의 영문,숫자 사이에 적어도 하나의 영어대문자,특수문자가 포함돼야함
+ 
+        function regCheck(inputId, reg) {
+            
+        let divId = "#" + $(inputId).parent().next().children('div').attr('id');
+        // parameter로 받은 inputId로 divId 가져오기
+            $(inputId).on({
+                keyup : function() {
+                    if(inputId != '#user_pwdCheck'){
+                        if(!(reg.test($(inputId).val()))){
+                            $(divId).text('형식에 맞지 않습니다.');
+                            $(divId).css("color", "tomato");
+                        }else{
+                            $(divId).text('올바른 형식입니다.');
+                            $(divId).css("color", "green");
+                        }
+                    }else{
+                        if($(inputId).val() != $('#userPass').val()){
+                            $(divId).text('비밀번호가 일치하지 않습니다.');
+                            $(divId).css("color", "tomato");
+                        }else{
+                            $(divId).text('비밀번호가 일치합니다.');
+                            $(divId).css("color", "green");
+                        }
+                    }
+                },
+                change : function() {
+                    if(inputId != '#user_pwdCheck'){
+                        if(!(reg.test($(inputId).val()))){
+                            $(inputId).val("");
+                        }
+                    }else{
+                        if($(inputId).val() != $('#userPass').val()){
+                            $(inputId).val("");
+                        }
+                    }
+                }
+            });
+        }
+        // vaildation 함수
+ 
+        regCheck("#user_id", re_id);
+        // id 검증
+        regCheck("#user_name", re_name);
+        // id 검증
+        regCheck("#user_pwd", re_pwd);
+        // pwd 검증
+        regCheck("#user_pwdCheck", re_pwd);
+        // pwdcheck 검증
+
+      });
+  </script>
 
 </head>
 <body class="register-page sidebar-collapse">
@@ -41,13 +104,15 @@
 							</div>
 
 							<div class="card-body">
+								
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text"> <i
 											class="material-icons">perm_identity</i>
 										</span>
 									</div>
-									<input type="text" id="user_id" name="user_id" class="form-control" placeholder="아이디">
+									<input type="text" id="user_id" name="user_id" class="form-control" placeholder="아이디" required>
+								
 								</div>
 								<div class="input-group">
 									<div class="input-group-prepend">
@@ -55,7 +120,7 @@
 											class="material-icons">lock_outline</i>
 										</span>
 									</div>
-									<input type="password" id="user_pwd" name="user_pwd"  class="form-control" placeholder="비밀번호">
+									<input type="password" id="user_pwd" name="user_pwd"  class="form-control" placeholder="비밀번호" required>
 								</div>
 
 								<div class="input-group">
@@ -65,7 +130,8 @@
 										</span>
 									</div>
 									<input type="password" id="user_pwdCheck" name="user_pwdCheck"  class="form-control"
-										placeholder="비밀번호 확인">
+										placeholder="비밀번호 확인" required>
+									<div id="pwdCheck_result"></div>
 								</div>
 								
 								<div class="input-group">
@@ -74,7 +140,7 @@
 											class="material-icons">face</i>
 										</span>
 									</div>
-									<input type="text" id="user_name" name="user_name" class="form-control" placeholder="이름">
+									<input type="text" id="user_name" name="user_name" class="form-control" placeholder="이름" required>
 								</div>
 								
 								<div class="input-group">
@@ -84,7 +150,7 @@
 										</span>
 									</div>
 									<input type="email" id="user_email" name="user_email"  class="form-control"
-										placeholder="이메일 주소">
+										placeholder="이메일 주소" required>
 								</div>
 								<div class="input-group">
 									<div class="input-group-prepend">
@@ -92,7 +158,9 @@
 											class="material-icons">profile</i>
 										</span>
 									</div>
-									<input type="file" id="user_image" name="user_image"  class="form-control">
+									<div class="btn btn-link btn-round btn-fab"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H2.992A.993.993 0 0 1 2 20.007V3.993zM4 5v14h16V5H4zm8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm5-11h2v2h-2V6z"/></svg>
+											</div>
+									<input type="file" id="user_image" name="user_image"  class="form-control" >
 								</div>
 
 
@@ -130,5 +198,16 @@
 	<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 	<script src="../assets/js/material-kit.js?v=2.0.7"
 		type="text/javascript"></script>
+	<script type="text/javascript">
+		$("#user_pwdCheck").keyup(function(){
+			console.log("keyup후 function작동")
+			if($('#user_pwdCheck').val() == $('#user_pwd').val()){
+				$('#pwdCheck_result').html("<p style='color:green;'>입력하신 비밀번호가 일치합니다.</p>");
+			}else{
+				$('#pwdCheck_result').html("<p style='color:green;'>입력하신 비밀번호가 일치하지 않습니다.</p>");
+				
+			}
+		});
+	</script>	
 </body>
 </html>

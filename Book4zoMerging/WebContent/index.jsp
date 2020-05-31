@@ -419,6 +419,10 @@
     </div>
 </div>
 </div>
+	<footer>
+		<jsp:include page="/WEB-INF/common/v_footer.jsp"/>
+	</footer>
+
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath}/assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="${pageContext.request.contextPath}/assets/js/core/popper.min.js" type="text/javascript"></script>
