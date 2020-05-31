@@ -220,7 +220,7 @@
             <section class="PageBookDetail_Panel Reviews_Wrapper">
                 <div class="Reviews"><span class="a11y">리뷰</span>
                 
-                    <c:if test="${sessionScope.user_id != null}">
+                   
                     
                         <div class="ReviewsHeader" style="margin-bottom: 50px;">
                             <div class="ReviewsHeader_Right" style="text-align: center;">
@@ -238,7 +238,7 @@
                                                     </span>
                                                 </span>
                                                 
-                                                <p class="ParticipantCount"><strong class="ParticipantCount_Num">${replyCount}</strong> 명이 평가함</p>
+                                                <p class="ParticipantCount"><strong class="ParticipantCount_Num">${replyCount}</strong> 개의 리뷰가 있습니다</p>
                                             </div>
                                         </div>
                                     </div>
@@ -292,14 +292,14 @@
                                     <textarea class="ReviewTextarea col-sm-12" id="replyContent" name="replyContent" title="리뷰 입력" placeholder="리뷰를 작성해주세요." style="height: 45.9844px;"></textarea>
                                     <div class="ReviewForm_ButtonsWrapper">
                                         <div style="display: inline-block;"></div>
-                                        <button id="reviewWriteBtn" class="btn btn-rose btn-sm center">리뷰 남기기</button>
+                                        <button id="reviewWriteBtn" class="btn btn-rose btn-sm center"  <c:if test="${sessionScope.user_id == null}"> disabled</c:if> >리뷰 남기기</button>
 
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    </c:if>
+                    
 
                     <div class="ReviewListHeader">
                         <!-- 이거 리스트 사라지면 구분선 사라짐 -->
@@ -366,6 +366,8 @@
 
                         if(userId == item.user_id){
                             editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>';
+                        }else if(userId == 'admin'){
+                        	editAndDelButton = '<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>'';
                         }
 
 						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
@@ -427,6 +429,8 @@
 
                         if(userId == item.user_id){
                             editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" replySeq="'+item.reply_seq+'" type="button">삭제</button>';
+                        }else if(userId == 'admin'){
+                        	editAndDelButton = '<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>'';
                         }
 
 						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
@@ -502,6 +506,8 @@
 
                         if(userId == item.user_id){
                             editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" replySeq="'+item.reply_seq+'" type="button">삭제</button>';
+                        }else if(userId == 'admin'){
+                        	editAndDelButton = '<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>'';
                         }
 
 						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
@@ -562,6 +568,8 @@
 
                                if(userId == item.user_id){
                                    editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" replySeq="'+item.reply_seq+'" type="button">삭제</button>';
+                               }else if(userId == 'admin'){
+                               	editAndDelButton = '<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>'';
                                }
 
        						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';

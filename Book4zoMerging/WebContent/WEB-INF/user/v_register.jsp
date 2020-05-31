@@ -28,65 +28,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-<script>
-      $(document).ready(function() {
-        var re_id = /^[a-z0-9]{5,12}$/;  //아이디 정규표현
-        var re_name = /^[가-힣][가-힣]+$/;  //이름 한글만 두글자 이상
-        var re_pwd = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,20}$/; // 비번
-        //8~20자의 영문,숫자 사이에 적어도 하나의 영어대문자,특수문자가 포함돼야함
- 
-        function regCheck(inputId, reg) {
-            
-        let divId = "#" + $(inputId).parent().next().children('div').attr('id');
-        // parameter로 받은 inputId로 divId 가져오기
-            $(inputId).on({
-                keyup : function() {
-                    if(inputId != '#user_pwdCheck'){
-                        if(!(reg.test($(inputId).val()))){
-							console.log('형식에 맞지 않습니다.');
-                            //alert('형식에 맞지 않습니다.');
-							$(inputId).val("");
-                        }else{
-
-                        }
-                    }else{
-                        if($(inputId).val() != $('#userPass').val()){
-							console.log('비밀번호가 일치하지 않습니다.');
-                            //alert('비밀번호가 일치하지 않습니다.');
-                            $(inputId).val("");
-                        }else{
-							
-                        }
-                    }
-                },
-                change : function() {
-                    if(inputId != '#user_pwdCheck'){
-                        if(!(reg.test($(inputId).val()))){
-                            $(inputId).val("");
-                        }
-                    }else{
-						console.log('비밀번호가 일치하지 않습니다.');
-                        if($(inputId).val() != $('#userPass').val()){
-                            $(inputId).val("");
-                        }
-                    }
-                }
-            });
-        }
-        // vaildation 함수
- 
-        regCheck("#user_id", re_id);
-        // id 검증
-        regCheck("#user_name", re_name);
-        // id 검증
-        regCheck("#user_pwd", re_pwd);
-        // pwd 검증
-        regCheck("#user_pwdCheck", re_pwd);
-        // pwdcheck 검증
-
-      });
-  </script>
-
 </head>
 <body class="register-page sidebar-collapse">
 	<div class="page-header header-filter"
