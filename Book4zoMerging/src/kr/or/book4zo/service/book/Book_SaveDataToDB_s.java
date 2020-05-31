@@ -25,12 +25,21 @@ public class Book_SaveDataToDB_s implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException  {
-		
 		System.out.println("Book_SaveDataToDB_s");
+
 		
+		String[] categoryIdList = {"101","102","103","117","118","119"};
+		
+		for(int j = 0; j < categoryIdList.length; j ++) {
+			
+		System.out.println("=== "+categoryIdList[j]+" 시작 ===");
+			
 		ActionForward forward = null;
 		String json = "";
-		String address = "http://book.interpark.com/api/bestSeller.api?key=ECF73A29EE9688587F70A785201AB95DE352C2284B870EEE927ECAC11048DEDE&categoryId=100&output=json";
+		String address = "http://book.interpark.com/api/bestSeller.api?key=ECF73A29EE9688587F70A785201AB95DE352C2284B870EEE927ECAC11048DEDE&categoryId=";
+			   address += categoryIdList[j]+"&output=json";
+		
+		
 		BufferedReader br;
 		URL url;
 		HttpURLConnection conn;
@@ -114,19 +123,25 @@ public class Book_SaveDataToDB_s implements Action{
 					 
 					if(result == 0) {
 						System.out.println("DB 저장 실패");
-					}else {
-						System.out.println("DB 저장 성공");
-					}
+						}else {
+							System.out.println("DB 저장 성공");
+						}
 					
-				} catch (Exception e) {
-					System.out.println("insertBookListToDB 에러");
-					System.out.println(e.getMessage());
-				}
-			}
+					} catch (Exception e) {
+						System.out.println("insertBookListToDB 에러");
+						System.out.println(e.getMessage());
+					}
+				
+			}//List for end
+			
+
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		 } //DB 저장용 for end
+		
 		return null;
 	}
 }
