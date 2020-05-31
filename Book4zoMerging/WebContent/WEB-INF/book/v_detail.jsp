@@ -367,7 +367,7 @@
                         if(userId == item.user_id){
                             editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                         }else if(userId == 'admin'){
-                        	editAndDelButton = '<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>'';
+                        	editAndDelButton = '<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                         }
 
 						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
@@ -430,7 +430,7 @@
                         if(userId == item.user_id){
                             editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                         }else if(userId == 'admin'){
-                        	editAndDelButton = '<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>'';
+                        	editAndDelButton = '<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                         }
 
 						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
@@ -507,7 +507,7 @@
                         if(userId == item.user_id){
                             editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                         }else if(userId == 'admin'){
-                        	editAndDelButton = '<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>'';
+                        	editAndDelButton = '<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                         }
 
 						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
@@ -569,7 +569,7 @@
                                if(userId == item.user_id){
                                    editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                                }else if(userId == 'admin'){
-                               	editAndDelButton = '<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>'';
+                               	editAndDelButton = '<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                                }
 
        						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
