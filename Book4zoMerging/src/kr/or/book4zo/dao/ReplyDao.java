@@ -307,5 +307,42 @@ public class ReplyDao {
 		   return avgStarRate;
 	   }
 	   
+
+	   //리플 삭제
+	   public boolean replyDelete(int reply_seq) {
+		   int num = 0;
+		   String sql = "";
+		   int result = 0;
+		   
+		   try {
+			   conn = ds.getConnection();
+			   pstmt = conn.prepareStatement("select * from reply where reply_seq=?");
+			   pstmt.setInt(1,reply_seq);
+			   rs = pstmt.executeQuery();
+			   
+			   if(rs.next()) {
+				  sql = "delete reply where reply_seq=?";
+				  pstmt = conn.prepareStatement(sql);
+				  pstmt.setInt(1,reply_seq);
+				  
+				  result = pstmt.executeUpdate();
+				  if(result ==0) {
+						return false;
+					}else {
+						return true;
+					}
+			   }
+			   
+		   }catch (Exception e) {
+			   
+		   }
+		   
+		   return false;
+	   }
+	   
+
+	   
+	   
+	   
 }
 

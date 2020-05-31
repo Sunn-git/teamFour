@@ -24,12 +24,9 @@
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link href="${pageContext.request.contextPath}/assets/demo/demo.css"
 	rel="stylesheet" />
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-	<style>
-		*{
-			border : 1px solid lightgray;
-		}
-	</style>
 
 <script>
       $(document).ready(function() {
@@ -46,19 +43,19 @@
                 keyup : function() {
                     if(inputId != '#user_pwdCheck'){
                         if(!(reg.test($(inputId).val()))){
-                            $(divId).text('형식에 맞지 않습니다.');
-                            $(divId).css("color", "tomato");
+							console.log('형식에 맞지 않습니다.');
+                            //alert('형식에 맞지 않습니다.');
+							$(inputId).val("");
                         }else{
-                            $(divId).text('올바른 형식입니다.');
-                            $(divId).css("color", "green");
+
                         }
                     }else{
                         if($(inputId).val() != $('#userPass').val()){
-                            $(divId).text('비밀번호가 일치하지 않습니다.');
-                            $(divId).css("color", "tomato");
+							console.log('비밀번호가 일치하지 않습니다.');
+                            //alert('비밀번호가 일치하지 않습니다.');
+                            $(inputId).val("");
                         }else{
-                            $(divId).text('비밀번호가 일치합니다.');
-                            $(divId).css("color", "green");
+							
                         }
                     }
                 },
@@ -68,6 +65,7 @@
                             $(inputId).val("");
                         }
                     }else{
+						console.log('비밀번호가 일치하지 않습니다.');
                         if($(inputId).val() != $('#userPass').val()){
                             $(inputId).val("");
                         }
@@ -183,20 +181,20 @@
 
 
 	<!--   Core JS Files   -->
-	<script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
-	<script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-	<script src="../assets/js/core/bootstrap-material-design.min.js"
+	<script src="${pageContext.request.contextPath}/assets/js/core/jquery.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/core/popper.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/core/bootstrap-material-design.min.js"
 		type="text/javascript"></script>
-	<script src="../assets/js/plugins/moment.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/plugins/moment.min.js"></script>
 	<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-	<script src="../assets/js/plugins/bootstrap-datetimepicker.js"
+	<script src="${pageContext.request.contextPath}/assets/js/plugins/bootstrap-datetimepicker.js"
 		type="text/javascript"></script>
 	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-	<script src="../assets/js/plugins/nouislider.min.js"
+	<script src="${pageContext.request.contextPath}/assets/js/plugins/nouislider.min.js"
 		type="text/javascript"></script>
 	<!--  Google Maps Plugin    -->
 	<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-	<script src="../assets/js/material-kit.js?v=2.0.7"
+	<script src="${pageContext.request.contextPath}/assets/js/material-kit.js?v=2.0.7"
 		type="text/javascript"></script>
 	<script type="text/javascript">
 		$("#user_pwdCheck").keyup(function(){

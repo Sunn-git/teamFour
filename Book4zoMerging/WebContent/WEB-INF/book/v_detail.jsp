@@ -365,7 +365,7 @@
 						/* if depth == 0 {... } if depth == 1{...} */
 
                         if(userId == item.user_id){
-                            editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" type="button">삭제</button>';
+                            editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton"  replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                         }
 
 						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
@@ -426,7 +426,7 @@
 						/* if depth == 0 {... } if depth == 1{...} */
 
                         if(userId == item.user_id){
-                            editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" type="button">삭제</button>';
+                            editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                         }
 
 						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
@@ -464,9 +464,8 @@
                    let modify = "";
                    
                    modify += '<div class="input-group">';
-                   modify += '<input type="text" style="background-color:white;width:85%;margin-right:4px;padding:8px 16px 8px 16px;" name="content_'+$(this).attr("replySeq")+'" value="'+$(this).attr("content")+'"/>';
+                   modify += '<input type="text" style="background-color:white;width:90%;margin-right:4px;padding:8px 16px 8px 16px;" name="content_'+$(this).attr("replySeq")+'" value="'+$(this).attr("content")+'"/>';
                    modify += '<button style="margin-right:4px;" class="btn btn-rose" type="button" id="updateReply" replySeq="'+$(this).attr("replySeq")+'">&nbsp;&nbsp;수정&nbsp;&nbsp;</button>';
-                   modify += '<button class="btn btn-white" type="button" id="updateCancel" replySeq="'+$(this).attr("replySeq")+'" content="'+$(this).attr("content")+'">&nbsp;&nbsp;취소&nbsp;&nbsp;</button>';
                    modify += '</div>';
                    
                    $('.reply_content_'+$(this).attr("replySeq")).html(modify);
@@ -502,7 +501,7 @@
 						/* if depth == 0 {... } if depth == 1{...} */
 
                         if(userId == item.user_id){
-                            editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" type="button">삭제</button>';
+                            editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" replySeq="'+item.reply_seq+'" type="button">삭제</button>';
                         }
 
 						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
@@ -532,22 +531,63 @@
 
 
 
+
                //리뷰 삭제도 하기,,
-               /* $(document).on("click","#replyDelete"){
+               $(document).on("click","#replyDelete",function(){
                    console.log("삭제 버튼 클릭");
+                   
+                	   
                    let data = {
-                           reply_seq : $(this).attr("replySeq")
+                           reply_seq : $(this).attr("replySeq"),
+                           book_seq : bookSeq
                    }
+                   
+				   /* var resultConfirm = confirm("정말 삭제하시겠습니까?");
+                   if(resultConfirm){ */
                    $.ajax({
                        url : "ReplyDelete.ajax",
                        dataType : "JSON",
                        type : "POST",
                        data : data,
                        success : function(data){
-                           
+                           $('#replyList_Warpper').empty();
+       					
+       					let replyList = '<ul id="replyList" class="ReviewList">';
+                           let editAndDelButton = "";
+
+       					$.each(data, function(index, item){
+
+       						/* if depth ==1 continue?? */
+       						/* if depth == 0 {... } if depth == 1{...} */
+
+                               if(userId == item.user_id){
+                                   editAndDelButton = '<button class="ReviewMetadata_ReportButton" id="replyModify" type="button" replySeq="'+item.reply_seq+'" content="'+item.reply_content+'">수정</button>&nbsp;<button id="replyDelete" class="ReviewMetadata_ReportButton" replySeq="'+item.reply_seq+'" type="button">삭제</button>';
+                               }
+
+       						replyList += '<li class="ReviewItem"><div class="ReviewItem_Left"><span class="StarRating_IconBox" style="width: 60px; height: 12px;"><span class="StarRating_Icon_Background" style="width: 60px; height: 12px;"></span><span class="StarRating_Icon_Foreground_Mask" style="width: '+item.reply_star_rate*12+'px; height: 12px;"><span class="StarRating_Icon_Foreground" style="width: 60px; height: 12px;"></span></span></span>';
+                            
+                            replyList += '<ul class="ReviewerMetadata_List"><li class="ReviewerMetadata_UserId">'+item.user_id+'</li><li class="ReviewMetadata_Report">'+editAndDelButton+'</li></ul>';
+                            
+                            replyList += '<ul class="ReviewMetadata_List"><li class="ReviewMetadata_Date">'+item.reply_date+'</li></ul></div>';
+                            
+                            replyList += '<div class="ReviewItem_Right"><div class="ReviewItem_Right_Top"><div class="ReviewContent"><div class="reply_content_'+item.reply_seq+'">'+item.reply_content+'</div></div>';
+                            
+                            replyList += ' </div>';
+       					});
+
+                           replyList += '</ul>';
+
+       					$('#replyList_Warpper').append(replyList);
+                           $('#replyContent').val("");
+                           $('input[name="MyStarRating"]').removeAttr('checked'); 
+
                        }
                    })
-               }); */
+                   /* }else{
+                	   console.log("삭제 취소 누름");
+                	  return;
+                   } */
+               });
 
 
     	   
