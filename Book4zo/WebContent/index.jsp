@@ -100,6 +100,8 @@
     </div>
     <!--         end carousel -->
 <a href="Dashboard.admin">관리자페이지 테스트</a>
+<br>
+<a href="PostList.post">포스트작성</a><br>
 <div class="container bestsellerbykeyward">
 <h3>키워드 별 베스트셀러</h3>
 <div class="bestsellercontents">

@@ -89,14 +89,30 @@ public class UserController extends HttpServlet {
 		else if(urlCmd.equals("/LoginAction.user")) {
 			System.out.println("/LoginAction.user 실행");
 			action = new Login_s();
-			forward = action.execute(request, response);
+			try {
+				forward = action.execute(request, response);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 		//회원가입 서비스 연결
 		else if(urlCmd.equals("/RegisterAction.user")) {
 			System.out.println("/RegisterAction.user 실행");
 			action = new Register_s();
-			forward = action.execute(request, response);
+			try {
+				forward = action.execute(request, response);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		
